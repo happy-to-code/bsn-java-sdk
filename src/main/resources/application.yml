@@ -1,0 +1,24 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: tj-java-sdk
+
+
+# 自定义数据
+peer:
+  pubKey: ENC(q2jN0qmIz9C9s5qfCJhR/p2Yyi0anT9wwAhEkHIae1kaRIWwww5mWbQ3FewvtQlVVYX0Z7ZuWcufDnz2OpXAlL6e0X9ANFZy9F9M9waBoioMBUqx9krgUf/z1W31XeUJydh1itaQvm6ECYwJuUOLaUQW1pc9bd7ZKSd0cuTNlAIabWTMqPs3uerbJjJPIjd7)
+  privateKey: -----BEGIN PRIVATE KEY-----
+    MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQgYAQKDYyBqB8Ywsnz
+    2Gz7zZAU2aQYo0QdQO/ltOQeWcCgCgYIKoEcz1UBgi2hRANCAARbhMHt+g85lja5
+    MDwEp9WidHMVWM/Dg9bEdd1aE8qrUfVzzz7GhrMV6JHfs7/VO9TO9YTw3czuYm/s
+    QmiRJ+Vs
+    -----END PRIVATE KEY-----
+  ip: 10.1.3.150
+  port: 9008
+
+#盐
+jasypt:
+  encryptor:
+    password: tjfocvDz7oJn6
