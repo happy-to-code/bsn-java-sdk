@@ -15,6 +15,12 @@ public class NewTxQueryDto {
     private Integer peerType;
 
     /**
+     * 类型
+     */
+    private Integer type;
+
+
+    /**
      * 子类型
      */
     private Integer subType;

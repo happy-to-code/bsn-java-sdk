@@ -1,0 +1,198 @@
+syntax = "proto3";
+
+package peer;
+option java_generic_services = true;
+//option java_multiple_files = true;
+option java_package = "chain.tj.model.proto";
+option java_outer_classname = "Msg";
+
+message BlockchainBool {
+  bool ok = 1;
+  string err = 2;
+}
+
+message BlockchainHash {
+  bytes hashData = 1;
+}
+
+message BlockchainNumber {
+  uint64 number = 1;
+}
+
+//子链信息
+message SubLedgers {
+  repeated SubLedger subLedgers = 1;
+}
+
+//sdk根据子链名字查询也采用这个结构，只传一个名字就可以
+//返回的子链信息
+message SubLedger {
+  //子链名字
+  string name = 1;
+  //弃用,子链节点信息,
+  repeated PeerInfo memberList = 2;
+  //hash算法
+  string hashType = 3;
+  //创世区块语句
+  string word = 4;
+  //共识
+  string cons = 5;
+  //子链状态。 1冻结，2解冻，3销毁
+  uint32 state = 6;
+  //发送方公钥
+  string pubkey = 7;
+  //发送交易时间
+  uint64 timeStamp = 8;
+}
+
+//getMemberlist返回的节点信息
+message PeerInfo {
+  //节点id
+  string id = 1;
+  //暂时弃用
+  string addr = 2;
+  //节点离线/在线
+  int32 state = 3;
+  //节点版本
+  string version = 4;
+  //grpc端口
+  uint32 port = 5;
+  //节点的显示名称
+  string shownName = 6;
+  //内网地址
+  string inAddr = 7;
+  //外网地址
+  string outAddr = 8;
+  //是否是ledger节点
+  bool isLeader = 9;
+  //0共识节点,1数据节点
+  uint32 typ = 10;
+  //最大区块高度
+  uint64 height = 11;
+  //是否开启TLS服务0开启，1关闭
+  int32 TLSEnabled = 12;
+  //hash算法
+  string hashType = 13;
+  //consensus算法
+  string consensus = 14;
+  //时间戳,接受方根据时间判断是不是要舍弃此信息
+  uint64 timeStamp = 15;
+
+}
+
+//节点变更
+message PeerUpdateInfo {
+  //节点变更的类型，0：节点加入（共识节点）；1：节点退出；2：节点加入（非共识节点）
+  int32 typ = 1;
+  //节点的ID
+  string id = 2;
+  //节点的显示名称
+  string shownName = 3;
+  //节点的Lan地址
+  repeated string lanAddrs = 7;
+  //节点的Wlan地址
+  repeated string wlanAddrs = 8;
+}
+
+//MemberList
+message MemberListInfo {
+  repeated PeerInfo memberList = 1;
+}
+
+
+message SearchMes {
+  repeated bytes key = 1;
+  uint32 type = 2; //0-单key完整查询 1-多key完整查询 2-前缀查询 3-范围查询（暂未实现）
+}
+
+message SearchRes {
+  map<string, string> res = 1;
+}
+
+message PeerAddr {
+  string Addr = 1;
+}
+
+message PeerVersion {
+  string Version = 1;
+}
+
+message PeerStatusInfo {
+  map<string, double> diskUsedPercent = 1; //磁盘使用量
+  map<string, uint64> diskTotal = 2; //磁盘总量
+  uint64 memUsed = 3; //已使用内存
+  uint64 memAvailable = 4; //可使用内存
+  uint64 memTotal = 5; //内存总量
+  repeated double singleCPUUsedPercent = 6; //单个cpu使用量
+  double totalCPUUsedPercent = 7; //总的cpu使用量
+  double wsRateTotal = 8; //worldstate插入数据的总频率
+  double wsRateFromLast = 9; //worldstate插入数据的频率，从上次到此次
+  double wsRateEverySec10 = 10; //worldstate插入数据的频率，每10秒钟
+  map<string, uint64> uploadspeed = 11; //peer网络上传速度，key为网卡名字，value为速度
+  map<string, uint64> downloadspeed = 12; //peer网络下载速度，key为网卡名字，value为速度
+}
+
+message PeerPermission {
+  bytes peerID = 1; //节点的ID标识
+  repeated uint32 permissions = 2; //权限列表
+  string shownName = 3;
+  // bytes admin = 3;//公钥
+  //bytes sign = 4; //签名
+}
+
+message PeerPermissionList {
+  repeated PeerPermission permissions = 1; //权限列表
+
+  // bytes admin = 3;//公钥
+  //bytes sign = 4; //签名
+}
+
+
+message TokenAddress {
+  string addr = 1;
+}
+
+message CollAddress {
+  string toAddr = 1;
+}
+message FirstConn {
+  string ip = 1;
+  uint64 time = 2;
+  string pubkey = 3;
+}
+message PeerDetailInfo {
+  string version = 1;
+  string ip = 2;
+  string peerID = 3;
+  string peerName = 4;
+  int32 type = 5;
+  int32 rpc = 6;
+  string launchTime = 7;
+  string Log = 8;
+  string dbPath = 9;
+  string crypt = 10;
+  string hash = 11;
+  string consensus = 12;
+  string dockerImage = 13;
+  int32 blockPackTime = 14;
+  int32 blockSize = 15;
+}
+
+message PeerInfoAddr {
+  bool isDetail = 1;
+}
+
+message PeerNtx {
+  int32 Count = 1;
+  repeated bytes txIDs = 2;
+}
+
+//通用数据查询请求
+message GeneralReq {
+  uint32 type = 1; //参数类型，1-发行地址，2-归集地址
+}
+
+//通用数据查询返回
+message GeneralResp {
+  repeated bytes data = 1;
+}

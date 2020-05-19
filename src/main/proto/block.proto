@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package block;
+option java_generic_services = true;
+option java_package = "chain.tj.model.proto";
+option java_outer_classname = "MyBlock";
+
+message BlockHeader{
+  uint32 version = 1;
+  uint64 height = 2;
+  uint64 timestamp = 3;
+  bytes blockHash = 4;
+  bytes previousHash = 5;
+  bytes worldStateRoot = 6;
+  bytes transactionRoot = 7;
+}
+
+message Block{
+  BlockHeader header = 1;
+  repeated bytes txs = 2;
+  bytes extra = 3;
+}

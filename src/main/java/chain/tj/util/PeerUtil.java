@@ -8,13 +8,14 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -31,12 +32,12 @@ public class PeerUtil {
         int hexlen = inHex.length();
         byte[] result;
         if (hexlen % 2 == 1) {
-            //奇数
+            // 奇数
             hexlen++;
             result = new byte[(hexlen / 2)];
             inHex = "0" + inHex;
         } else {
-            //偶数
+            // 偶数
             result = new byte[(hexlen / 2)];
         }
         int j = 0;
@@ -112,8 +113,8 @@ public class PeerUtil {
     /**
      * 通过ip和端口获取PeerBlockingStub
      *
-     * @param host
-     * @param port
+     * @param
+     * @param
      * @return
      */
     // public static PeerGrpc.PeerBlockingStub getBlockingStubByIpAndPort(String host, int port) {
@@ -189,7 +190,13 @@ public class PeerUtil {
 
     private static ByteBuffer buffer = ByteBuffer.allocate(8);
 
-    //byte 数组与 long 的相互转换
+
+    /**
+     * byte 数组与 long 的相互转换
+     *
+     * @param x
+     * @return
+     */
     public static byte[] longToBytes(long x) {
         buffer.putLong(0, x);
         return buffer.array();
@@ -298,33 +305,139 @@ public class PeerUtil {
         return byteReturn;
     }
 
+    /**
+     * 数据的序列化
+     *
+     * @param dataBytes   数据
+     * @param pubKeyBytes 公钥
+     * @param o           数据类型
+     * @return
+     */
+    public static byte[] dataSerializable(byte[] dataBytes, byte[] pubKeyBytes, Object o) {
+        ByteBuf buf = Unpooled.buffer();
+        // 写入公钥
+        buf.writeBytes(int2Bytes(pubKeyBytes.length));
+        buf.writeBytes(pubKeyBytes);
+
+        if (o instanceof PeerTxDto) {
+            PeerTxDto peerTxDto = (PeerTxDto) o;
+            Integer opType = peerTxDto.getOpType();
+            buf.writeBytes(int2Bytes(opType));
+        }
+
+        // 写入数据
+        buf.writeBytes(int2Bytes(dataBytes.length));
+        buf.writeBytes(dataBytes);
+
+        // 封装返回数据
+        byte[] byteReturn = new byte[buf.writerIndex()];
+
+        byte[] array = buf.array();
+        for (int i = 0; i < byteReturn.length; i++) {
+            byteReturn[i] = array[i];
+        }
+        return byteReturn;
+    }
+
+    /**
+     * 对象转数组
+     *
+     * @param obj
+     * @return
+     */
+    public static byte[] toByteArray(Object obj) {
+        byte[] bytes = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(obj);
+            oos.flush();
+            bytes = bos.toByteArray();
+            oos.close();
+            bos.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return bytes;
+    }
+
+    /**
+     * 数组转对象
+     *
+     * @param bytes
+     * @return
+     */
+    public static Object toObject(byte[] bytes) {
+        Object obj = null;
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            obj = ois.readObject();
+            ois.close();
+            bis.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return obj;
+    }
 
     public static void main(String[] args) {
-        System.out.println(getRandomByteStr(3));
+        PeerTxDto peerTxDto = new PeerTxDto();
+        peerTxDto.setOpType(0);
+        peerTxDto.setPeerType(0);
+        peerTxDto.setId("abc");
+        peerTxDto.setShownName("newName");
+        peerTxDto.setLanAddrs(Arrays.asList("10.1.3.150"));
+        peerTxDto.setWlanAddrs(Arrays.asList("10.1.3.150"));
+        peerTxDto.setRpcPort(9999);
 
+        System.out.println("peerTxDto = " + peerTxDto);
 
-        // byte[] random = getRandomByte(16);
-        // for (byte b : random) {
+        byte[] bytes = toByteArray(peerTxDto);
+        for (byte aByte : bytes) {
+            System.out.print(aByte);
+        }
+        System.out.println("----->" + toHexString(bytes));
+
+        byte[] peerTxDtoBytes = getPeerTxDtoBytes(peerTxDto);
+
+        for (byte peerTxDtoByte : peerTxDtoBytes) {
+            System.out.print(peerTxDtoByte);
+        }
+        System.out.println("peerTxDtoBytes = " + peerTxDtoBytes);
+        System.out.println("peerTxDtoBytes十六进制：" + toHexString(peerTxDtoBytes));
+
+        // 将byte数组序列化成对象
+        // Object o = toObject(toByteArray(peerTxDto));
+        // System.out.println("o = " + (PeerTxDto) o);
+
+        // System.out.println(getRandomByteStr(3));
+        //
+        //
+        // // byte[] random = getRandomByte(16);
+        // // for (byte b : random) {
+        // //     System.out.print(b + " ");
+        // // }
+        //
+        //
+        // String sha256Str = getSHA256Str("123");
+        // System.out.println("sha256Str = " + sha256Str);
+        // byte[] bytes = int2Bytes(200, 4);
+        // for (byte aByte : bytes) {
+        //     System.out.print(aByte + " ");
+        // }
+        // System.out.println("----------");
+        // byte[] bytes1 = int2Bytes(200);
+        // for (byte b : bytes1) {
         //     System.out.print(b + " ");
         // }
-
-
-        String sha256Str = getSHA256Str("123");
-        System.out.println("sha256Str = " + sha256Str);
-        byte[] bytes = int2Bytes(200, 4);
-        for (byte aByte : bytes) {
-            System.out.print(aByte + " ");
-        }
-        System.out.println("----------");
-        byte[] bytes1 = int2Bytes(200);
-        for (byte b : bytes1) {
-            System.out.print(b + " ");
-        }
-        System.out.println("----------");
-        byte[] bytes2 = longToBytes(200L);
-        for (byte b : bytes2) {
-            System.out.print(b + " ");
-        }
+        // System.out.println("----------");
+        // byte[] bytes2 = longToBytes(200L);
+        // for (byte b : bytes2) {
+        //     System.out.print(b + " ");
+        // }
         // String s = "2c7f6f353d828e99692bb8bf960186f218674581495b399db753c00dd636c4f0583f7a833ce67d352e7d32be5d6e3fc899d7004efe1f450fc1a078ee856a8b75";
         // byte[] bytes = hexToByteArray(s, 16);
         // for (byte aByte : bytes) {

@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package peer;
+
+option java_outer_classname = "MyPeer";
+//option java_multiple_files = true;
+option java_package = "chain.tj.model.proto";
+
+message PeerRequest{
+  bytes nonce = 1; // 唯一标识
+  bytes payload = 2;//数据，Request或其他结构体的序列化
+  bytes pubkey = 3; //发送方公钥
+  bytes sign = 4;//对数据的签名
+}
+
+message PeerResponse{
+  bytes nonce = 1; // 唯一标识，等同请求中的nonce
+  bytes payload = 2; // Response
+  bool ok = 3;
+  string err = 4;
+}
+
+message BalanceAddress{
+  string addr = 1;
+  string tokenType = 2;
+}
+
+message Balance{
+  map<string, uint64> res = 1;
+}
+
+message TotalRes{
+  map<string, uint64> issue = 1;
+  map<string, uint64> recycle = 2;
+}
+
+message QueryTime{
+  uint64 startTime = 1;
+  uint64 endTime = 2;
+}
+
+message TxId{
+  bytes hash = 1;
+}
+
+message OnChain{
+  bool on = 1;
+}
+
+service Peer{
+  //PeerRequest: Transaction, PeerResponse:PeerResponse
+  rpc NewTransaction(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: Transaction, PeerResponse:PeerResponse
+  rpc NewQueryTransaction(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerRequest, PeerResponse:BlockchainNumber
+  rpc BlockchainGetHeight(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: BlockchainHash, PeerResponse:Block
+  rpc BlockchainGetBlockByHash(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: BlockchainNumber, PeerResponse:Block
+  rpc BlockchainGetBlockByHeight(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: BlockchainHash, PeerResponse:Transaction
+  rpc BlockchainGetTransaction(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: BlockchainHash, PeerResponse:BlockchainNumber
+  rpc BlockchainGetTransactionIndex(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: BlockchainHash, PeerResponse:BlockchainNumber
+  rpc BlockchainGetTransactionBlock(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerRequest, PeerResponse:MemberList
+  rpc GetMemberList(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerUpdateInfo, PeerResponse:PeerResponse
+  // rpc UpdatePeer(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerPermission, PeerResponse:PeerPermissionList
+  rpc GetPeerPermissions(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: SearchMes, PeerResponse:SearchRes
+  rpc Search(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerInfoAddr, PeerResponse:PeerNtx
+  rpc GetNtx(PeerRequest)returns(PeerResponse){};
+
+  //PeerRequest: PeerInfoAddr, PeerResponse:PeerDetailInfo
+  rpc GetPeerInfo(PeerRequest) returns(PeerResponse){};
+
+  //PeerRequest: PeerRequest, PeerResponse:PeerStatusInfo
+  rpc GetPeerHealthData(PeerRequest)returns(PeerResponse){};
+
+  //PeerRequest: PeerRequest, PeerResponse:PeerVersion
+  rpc GetPeerVersion(PeerRequest) returns(PeerResponse){};
+
+  rpc GetBalance(BalanceAddress)returns(Balance){};
+
+  rpc GetTotal(QueryTime)returns(TotalRes){};
+
+  rpc SaveFirstConn(PeerRequest)returns(PeerResponse){};
+
+  rpc IsOnChain(TxId)returns(OnChain){};
+
+
+  //PeerRequest: subledger, PeerResponse:subledgers
+  rpc Ledgers(PeerRequest)returns(PeerResponse){};
+
+  //通用数据接口 PeerRequest: GeneralReq, PeerResponse:GeneralResp
+  rpc GDI (PeerRequest) returns (PeerResponse);
+
+}

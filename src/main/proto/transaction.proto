@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package transaction;
+option java_generic_services = true;
+option java_package = "chain.tj.model.proto";
+option java_outer_classname = "MyTransaction";
+
+message TransactionHeader{
+  uint32 version = 1;
+  uint32 type = 2;
+  uint32 subType = 3;
+  uint64 timestamp = 4;
+  bytes transactionHash = 5;
+}
+
+
+message Transaction{
+  TransactionHeader header = 1;
+  bytes data = 2;//交易内容
+  bytes pubkey = 3; //发送方公钥
+  bytes sign = 4;//签名
+  bytes result = 5;
+  bytes extra = 6;
+}
+

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  * @Author: zhangyifei
  * @Date: 2020/5/18 16:25
  */
-@Service
 public interface PeerService {
     /**
      * 创建交易

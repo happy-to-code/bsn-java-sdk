@@ -2,6 +2,7 @@ package chain.tj.model.pojo.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  * @Date: 2020/5/18 16:58
  */
 @Data
-public class PeerTxDto {
+public class PeerTxDto implements Serializable {
+
+    private static final long serialVersionUID = 4908943075304554001L;
     /**
      * 操作类型，0-修改/新增；1-删除
      */
