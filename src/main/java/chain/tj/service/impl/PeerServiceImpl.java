@@ -13,6 +13,7 @@ import chain.tj.service.PeerService;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ import static chain.tj.util.TransactionUtil.getTransactionDto;
  * @Author: zhangyifei
  * @Date: 2020/5/18 16:26
  */
+@Slf4j
 @Service
 public class PeerServiceImpl implements PeerService {
 
@@ -53,7 +55,8 @@ public class PeerServiceImpl implements PeerService {
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
 
         // 获取当前时间戳
-        long currentTime = System.currentTimeMillis() / 1000;
+        // long currentTime = System.currentTimeMillis() / 1000;
+        long currentTime = 1589940953L;
 
         // 根据subType获取TransactionDto
         TransactionDto transactionDto = getTransactionDtoBySubType(newTxQueryDto, currentTime);
@@ -65,6 +68,9 @@ public class PeerServiceImpl implements PeerService {
         byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
         // sm3加密
         byte[] hashVal = sm3Hash(transactionDtoBytes);
+
+        // 7634d3271650f16ecdd5a93893f49c075a892e1a65feae3841f717b1c144e5e6
+        log.info("hashVal的十六进制：{}", toHexString(hashVal));
 
         byte[] priKeyBytes = new byte[0];
         try {
@@ -103,15 +109,6 @@ public class PeerServiceImpl implements PeerService {
      * @return MyPeer.PeerRequest
      */
     private MyPeer.PeerRequest getPeerRequest(TransactionDto transactionDto, ByteString peerPubKey) {
-        MyTransaction.TransactionHeader transactionHeader1 = MyTransaction.TransactionHeader.newBuilder()
-                .setVersion(transactionDto.getTransactionHeader().getVersion())
-                .setType(transactionDto.getTransactionHeader().getType())
-                .setSubType(transactionDto.getTransactionHeader().getSubType())
-                .setTimestamp(transactionDto.getTransactionHeader().getTimestamp())
-                .setTransactionHash(ByteString.copyFrom(transactionDto.getTransactionHeader().getTransactionHash()))
-                .build();
-
-
         MyTransaction.TransactionHeader transactionHeader = MyTransaction.TransactionHeader.newBuilder()
                 .setVersion(transactionDto.getTransactionHeader().getVersion())
                 .setType(transactionDto.getTransactionHeader().getType())
@@ -140,6 +137,7 @@ public class PeerServiceImpl implements PeerService {
      * @return
      */
     private byte[] serialTransactionDto(TransactionDto transactionDto) {
+        System.out.println("transactionDto = " + transactionDto);
         ByteBuf buf = Unpooled.buffer();
 
         if (null != transactionDto.getTransactionHeader()) {
@@ -192,6 +190,7 @@ public class PeerServiceImpl implements PeerService {
      */
     private void serialPeerTxDto(NewTxQueryDto newTxQueryDto, ByteString peerPubKey, TransactionDto transactionDto) {
         PeerTxDto peerTxDto = new PeerTxDto();
+
         peerTxDto.setOpType(newTxQueryDto.getOpType());
         peerTxDto.setPeerType(newTxQueryDto.getPeerType());
         peerTxDto.setId(newTxQueryDto.getMemberId());

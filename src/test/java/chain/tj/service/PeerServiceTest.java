@@ -25,7 +25,7 @@ public class PeerServiceTest extends TestCase {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
         newTxQueryDto.setPeerType(0);
         newTxQueryDto.setSubType(0);
-        newTxQueryDto.setType(4);
+        // newTxQueryDto.setType(4);
         newTxQueryDto.setOpType(0);
         newTxQueryDto.setAddr("10.1.3.150");
         newTxQueryDto.setRpcPort(9008);

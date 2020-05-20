@@ -272,26 +272,38 @@ public class PeerUtil {
      */
     public static byte[] getPeerTxDtoBytes(PeerTxDto peerTxDto) {
         ByteBuf buf = Unpooled.buffer();
-        buf.writeBytes(int2Bytes(peerTxDto.getOpType()));
-        buf.writeBytes(int2Bytes(peerTxDto.getPeerType()));
 
+        if (null != peerTxDto.getOpType()) {
+            buf.writeBytes(int2Bytes(peerTxDto.getOpType()));
+        }
+        if (null != peerTxDto.getPeerType()) {
+            buf.writeBytes(int2Bytes(peerTxDto.getPeerType()));
+        }
 
-        buf.writeBytes(int2Bytes(peerTxDto.getId().getBytes().length));
-        buf.writeBytes(peerTxDto.getId().getBytes());
+        if (null != peerTxDto.getId()) {
+            buf.writeBytes(int2Bytes(peerTxDto.getId().getBytes().length));
+            buf.writeBytes(peerTxDto.getId().getBytes());
+        }
 
-        buf.writeBytes(int2Bytes(peerTxDto.getShownName().getBytes().length));
-        buf.writeBytes(peerTxDto.getShownName().getBytes());
+        if (null != peerTxDto.getShownName()) {
+            buf.writeBytes(int2Bytes(peerTxDto.getShownName().length()));
+            buf.writeBytes(peerTxDto.getShownName().getBytes());
+        }
 
         buf.writeBytes(int2Bytes(peerTxDto.getLanAddrs().size()));
-        for (String lanAddr : peerTxDto.getLanAddrs()) {
-            buf.writeBytes(int2Bytes(lanAddr.getBytes().length));
-            buf.writeBytes(lanAddr.getBytes());
+        if (peerTxDto.getLanAddrs().size() > 0) {
+            for (String lanAddr : peerTxDto.getLanAddrs()) {
+                buf.writeBytes(int2Bytes(lanAddr.getBytes().length));
+                buf.writeBytes(lanAddr.getBytes());
+            }
         }
 
         buf.writeBytes(int2Bytes(peerTxDto.getWlanAddrs().size()));
-        for (String wlanAddr : peerTxDto.getWlanAddrs()) {
-            buf.writeBytes(int2Bytes(wlanAddr.getBytes().length));
-            buf.writeBytes(wlanAddr.getBytes());
+        if (peerTxDto.getWlanAddrs().size() > 0) {
+            for (String wlanAddr : peerTxDto.getWlanAddrs()) {
+                buf.writeBytes(int2Bytes(wlanAddr.getBytes().length));
+                buf.writeBytes(wlanAddr.getBytes());
+            }
         }
 
         buf.writeBytes(int2Bytes(peerTxDto.getRpcPort()));
