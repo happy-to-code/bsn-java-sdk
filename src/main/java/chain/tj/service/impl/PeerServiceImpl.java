@@ -90,7 +90,6 @@ public class PeerServiceImpl implements PeerService {
         transactionDto.getTransactionHeader().setTransactionHash(hashVal);
         transactionDto.setSign(signBytes);
 
-
         // PeerRequest: Transaction, PeerResponse:PeerResponse
         // 封装请求对象
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
