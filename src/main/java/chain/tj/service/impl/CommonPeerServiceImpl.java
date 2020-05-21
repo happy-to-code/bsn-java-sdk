@@ -24,7 +24,7 @@ public class CommonPeerServiceImpl implements CommonPeerService {
      */
     @Override
     public PeerGrpc.PeerBlockingStub getStubByIpAndPort(String ip, Integer port) {
-        ManagedChannel channel = NettyChannelBuilder.forAddress(ip, port)
+        ManagedChannel channel = NettyChannelBuilder.forAddress("10.1.3.150", 9008)
                 .negotiationType(NegotiationType.PLAINTEXT)
                 .build();
 

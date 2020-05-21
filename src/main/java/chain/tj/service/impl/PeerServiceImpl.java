@@ -51,12 +51,14 @@ public class PeerServiceImpl implements PeerService {
     public void newTransaction(NewTxQueryDto newTxQueryDto) {
         // 验证数据 TODO
 
+        log.info("pubKey------------>{}", pubKey);
         // 将16进制的pubKey转换成ByteString
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+        log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
 
         // 获取当前时间戳
-        // long currentTime = System.currentTimeMillis() / 1000;
-        long currentTime = 1589940953L;
+        long currentTime = System.currentTimeMillis() / 1000;
+        // long currentTime = 1590050482;
 
         // 根据subType获取TransactionDto
         TransactionDto transactionDto = getTransactionDtoBySubType(newTxQueryDto, currentTime);
@@ -69,7 +71,6 @@ public class PeerServiceImpl implements PeerService {
         // sm3加密
         byte[] hashVal = sm3Hash(transactionDtoBytes);
 
-        // 7634d3271650f16ecdd5a93893f49c075a892e1a65feae3841f717b1c144e5e6
         log.info("hashVal的十六进制：{}", toHexString(hashVal));
 
         byte[] priKeyBytes = new byte[0];
@@ -158,17 +159,24 @@ public class PeerServiceImpl implements PeerService {
         if (null != transactionDto.getData()) {
             buf.writeBytes(int2Bytes(transactionDto.getData().length));
             buf.writeBytes(transactionDto.getData());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != transactionDto.getExtra()) {
             buf.writeBytes(int2Bytes(transactionDto.getExtra().length));
             buf.writeBytes(transactionDto.getExtra());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != transactionDto.getPubKey()) {
             buf.writeBytes(int2Bytes(transactionDto.getPubKey().length));
             buf.writeBytes(transactionDto.getPubKey());
+        } else {
+            buf.writeInt(0);
         }
+
 
         buf.writeInt(0);
 
@@ -194,16 +202,20 @@ public class PeerServiceImpl implements PeerService {
         peerTxDto.setOpType(newTxQueryDto.getOpType());
         peerTxDto.setPeerType(newTxQueryDto.getPeerType());
         peerTxDto.setId(newTxQueryDto.getMemberId());
-        peerTxDto.setShownName("newName");
+        peerTxDto.setShownName(newTxQueryDto.getShownName());
         peerTxDto.setLanAddrs(Arrays.asList(newTxQueryDto.getAddr()));
         peerTxDto.setWlanAddrs(Arrays.asList(newTxQueryDto.getAddr()));
         peerTxDto.setRpcPort(newTxQueryDto.getRpcPort());
+
+        System.out.println("peerTxDto = " + peerTxDto);
 
         // 获取TransactionHash
         byte[] peerTxDtoBytes = getPeerTxDtoBytes(peerTxDto);
 
         // 序列化
         byte[] sysData = dataSerializable(peerTxDtoBytes, peerPubKey.toByteArray(), peerTxDto);
+        log.info("sysData的十六进制：{}", toHexString(sysData));
+
         transactionDto.setData(sysData);
         transactionDto.setPubKey(peerPubKey.toByteArray());
     }

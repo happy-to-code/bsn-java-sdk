@@ -3,13 +3,11 @@ package chain.tj.util;
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.proto.MyPeer;
 import com.google.protobuf.InvalidProtocolBufferException;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static chain.tj.util.PeerUtil.*;
+import static chain.tj.util.PeerUtil.getPeerTxDtoBytes;
+import static chain.tj.util.PeerUtil.toHexString;
 
 /**
  * @Describe:
@@ -30,6 +28,8 @@ public class SelfTest {
         byte[] peerTxDtoBytes = getPeerTxDtoBytes(peerTxDto);
         String s = toHexString(peerTxDtoBytes);
         System.out.println("s = " + s);
+        // 0000000000000000030000006162630a0000000a00000031302e312e332e3135300a0000000a00000031302e312e332e31353030230000
+        // 000000000000000003000000616263010000000a00000031302e312e332e313530010000000a00000031302e312e332e31353030230000
 
 
         // List<String> strings = Arrays.asList("10.1.3.150");
