@@ -4,1675 +4,1802 @@
 package chain.tj.model.proto;
 
 public final class MyBlock {
-  private MyBlock() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  public interface BlockHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:block.BlockHeader)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional uint32 version = 1;</code>
-     */
-    int getVersion();
-
-    /**
-     * <code>optional uint64 height = 2;</code>
-     */
-    long getHeight();
-
-    /**
-     * <code>optional uint64 timestamp = 3;</code>
-     */
-    long getTimestamp();
-
-    /**
-     * <code>optional bytes blockHash = 4;</code>
-     */
-    com.google.protobuf.ByteString getBlockHash();
-
-    /**
-     * <code>optional bytes previousHash = 5;</code>
-     */
-    com.google.protobuf.ByteString getPreviousHash();
-
-    /**
-     * <code>optional bytes worldStateRoot = 6;</code>
-     */
-    com.google.protobuf.ByteString getWorldStateRoot();
-
-    /**
-     * <code>optional bytes transactionRoot = 7;</code>
-     */
-    com.google.protobuf.ByteString getTransactionRoot();
-  }
-  /**
-   * Protobuf type {@code block.BlockHeader}
-   */
-  public  static final class BlockHeader extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:block.BlockHeader)
-      BlockHeaderOrBuilder {
-    // Use BlockHeader.newBuilder() to construct.
-    private BlockHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BlockHeader() {
-      version_ = 0;
-      height_ = 0L;
-      timestamp_ = 0L;
-      blockHash_ = com.google.protobuf.ByteString.EMPTY;
-      previousHash_ = com.google.protobuf.ByteString.EMPTY;
-      worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
-      transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
+    private MyBlock() {
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BlockHeader(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              version_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-
-              height_ = input.readUInt64();
-              break;
-            }
-            case 24: {
-
-              timestamp_ = input.readUInt64();
-              break;
-            }
-            case 34: {
-
-              blockHash_ = input.readBytes();
-              break;
-            }
-            case 42: {
-
-              previousHash_ = input.readBytes();
-              break;
-            }
-            case 50: {
-
-              worldStateRoot_ = input.readBytes();
-              break;
-            }
-            case 58: {
-
-              transactionRoot_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyBlock.BlockHeader.class, chain.tj.model.proto.MyBlock.BlockHeader.Builder.class);
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
     }
 
-    public static final int VERSION_FIELD_NUMBER = 1;
-    private int version_;
-    /**
-     * <code>optional uint32 version = 1;</code>
-     */
-    public int getVersion() {
-      return version_;
+    public interface BlockHeaderOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:block.BlockHeader)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional uint32 version = 1;</code>
+         */
+        int getVersion();
+
+        /**
+         * <code>optional uint64 height = 2;</code>
+         */
+        long getHeight();
+
+        /**
+         * <code>optional uint64 timestamp = 3;</code>
+         */
+        long getTimestamp();
+
+        /**
+         * <code>optional bytes blockHash = 4;</code>
+         */
+        com.google.protobuf.ByteString getBlockHash();
+
+        /**
+         * <code>optional bytes previousHash = 5;</code>
+         */
+        com.google.protobuf.ByteString getPreviousHash();
+
+        /**
+         * <code>optional bytes worldStateRoot = 6;</code>
+         */
+        com.google.protobuf.ByteString getWorldStateRoot();
+
+        /**
+         * <code>optional bytes transactionRoot = 7;</code>
+         */
+        com.google.protobuf.ByteString getTransactionRoot();
     }
 
-    public static final int HEIGHT_FIELD_NUMBER = 2;
-    private long height_;
-    /**
-     * <code>optional uint64 height = 2;</code>
-     */
-    public long getHeight() {
-      return height_;
-    }
-
-    public static final int TIMESTAMP_FIELD_NUMBER = 3;
-    private long timestamp_;
-    /**
-     * <code>optional uint64 timestamp = 3;</code>
-     */
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    public static final int BLOCKHASH_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString blockHash_;
-    /**
-     * <code>optional bytes blockHash = 4;</code>
-     */
-    public com.google.protobuf.ByteString getBlockHash() {
-      return blockHash_;
-    }
-
-    public static final int PREVIOUSHASH_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString previousHash_;
-    /**
-     * <code>optional bytes previousHash = 5;</code>
-     */
-    public com.google.protobuf.ByteString getPreviousHash() {
-      return previousHash_;
-    }
-
-    public static final int WORLDSTATEROOT_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString worldStateRoot_;
-    /**
-     * <code>optional bytes worldStateRoot = 6;</code>
-     */
-    public com.google.protobuf.ByteString getWorldStateRoot() {
-      return worldStateRoot_;
-    }
-
-    public static final int TRANSACTIONROOT_FIELD_NUMBER = 7;
-    private com.google.protobuf.ByteString transactionRoot_;
-    /**
-     * <code>optional bytes transactionRoot = 7;</code>
-     */
-    public com.google.protobuf.ByteString getTransactionRoot() {
-      return transactionRoot_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (version_ != 0) {
-        output.writeUInt32(1, version_);
-      }
-      if (height_ != 0L) {
-        output.writeUInt64(2, height_);
-      }
-      if (timestamp_ != 0L) {
-        output.writeUInt64(3, timestamp_);
-      }
-      if (!blockHash_.isEmpty()) {
-        output.writeBytes(4, blockHash_);
-      }
-      if (!previousHash_.isEmpty()) {
-        output.writeBytes(5, previousHash_);
-      }
-      if (!worldStateRoot_.isEmpty()) {
-        output.writeBytes(6, worldStateRoot_);
-      }
-      if (!transactionRoot_.isEmpty()) {
-        output.writeBytes(7, transactionRoot_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (version_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, version_);
-      }
-      if (height_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(2, height_);
-      }
-      if (timestamp_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(3, timestamp_);
-      }
-      if (!blockHash_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, blockHash_);
-      }
-      if (!previousHash_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, previousHash_);
-      }
-      if (!worldStateRoot_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, worldStateRoot_);
-      }
-      if (!transactionRoot_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, transactionRoot_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyBlock.BlockHeader)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyBlock.BlockHeader other = (chain.tj.model.proto.MyBlock.BlockHeader) obj;
-
-      boolean result = true;
-      result = result && (getVersion()
-          == other.getVersion());
-      result = result && (getHeight()
-          == other.getHeight());
-      result = result && (getTimestamp()
-          == other.getTimestamp());
-      result = result && getBlockHash()
-          .equals(other.getBlockHash());
-      result = result && getPreviousHash()
-          .equals(other.getPreviousHash());
-      result = result && getWorldStateRoot()
-          .equals(other.getWorldStateRoot());
-      result = result && getTransactionRoot()
-          .equals(other.getTransactionRoot());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getVersion();
-      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getHeight());
-      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTimestamp());
-      hash = (37 * hash) + BLOCKHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockHash().hashCode();
-      hash = (37 * hash) + PREVIOUSHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getPreviousHash().hashCode();
-      hash = (37 * hash) + WORLDSTATEROOT_FIELD_NUMBER;
-      hash = (53 * hash) + getWorldStateRoot().hashCode();
-      hash = (37 * hash) + TRANSACTIONROOT_FIELD_NUMBER;
-      hash = (53 * hash) + getTransactionRoot().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyBlock.BlockHeader prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code block.BlockHeader}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:block.BlockHeader)
-        chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyBlock.BlockHeader.class, chain.tj.model.proto.MyBlock.BlockHeader.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyBlock.BlockHeader.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class BlockHeader extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:block.BlockHeader)
+            BlockHeaderOrBuilder {
+        // Use BlockHeader.newBuilder() to construct.
+        private BlockHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        version_ = 0;
 
-        height_ = 0L;
-
-        timestamp_ = 0L;
-
-        blockHash_ = com.google.protobuf.ByteString.EMPTY;
-
-        previousHash_ = com.google.protobuf.ByteString.EMPTY;
-
-        worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
-
-        transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
-      }
-
-      public chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyBlock.BlockHeader build() {
-        chain.tj.model.proto.MyBlock.BlockHeader result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private BlockHeader() {
+            version_ = 0;
+            height_ = 0L;
+            timestamp_ = 0L;
+            blockHash_ = com.google.protobuf.ByteString.EMPTY;
+            previousHash_ = com.google.protobuf.ByteString.EMPTY;
+            worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
+            transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyBlock.BlockHeader buildPartial() {
-        chain.tj.model.proto.MyBlock.BlockHeader result = new chain.tj.model.proto.MyBlock.BlockHeader(this);
-        result.version_ = version_;
-        result.height_ = height_;
-        result.timestamp_ = timestamp_;
-        result.blockHash_ = blockHash_;
-        result.previousHash_ = previousHash_;
-        result.worldStateRoot_ = worldStateRoot_;
-        result.transactionRoot_ = transactionRoot_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyBlock.BlockHeader) {
-          return mergeFrom((chain.tj.model.proto.MyBlock.BlockHeader)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyBlock.BlockHeader other) {
-        if (other == chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance()) return this;
-        if (other.getVersion() != 0) {
-          setVersion(other.getVersion());
-        }
-        if (other.getHeight() != 0L) {
-          setHeight(other.getHeight());
-        }
-        if (other.getTimestamp() != 0L) {
-          setTimestamp(other.getTimestamp());
-        }
-        if (other.getBlockHash() != com.google.protobuf.ByteString.EMPTY) {
-          setBlockHash(other.getBlockHash());
-        }
-        if (other.getPreviousHash() != com.google.protobuf.ByteString.EMPTY) {
-          setPreviousHash(other.getPreviousHash());
-        }
-        if (other.getWorldStateRoot() != com.google.protobuf.ByteString.EMPTY) {
-          setWorldStateRoot(other.getWorldStateRoot());
-        }
-        if (other.getTransactionRoot() != com.google.protobuf.ByteString.EMPTY) {
-          setTransactionRoot(other.getTransactionRoot());
-        }
-        onChanged();
-        return this;
-      }
+        private BlockHeader(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 8: {
 
-      public final boolean isInitialized() {
-        return true;
-      }
+                            version_ = input.readUInt32();
+                            break;
+                        }
+                        case 16: {
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyBlock.BlockHeader parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyBlock.BlockHeader) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+                            height_ = input.readUInt64();
+                            break;
+                        }
+                        case 24: {
 
-      private int version_ ;
-      /**
-       * <code>optional uint32 version = 1;</code>
-       */
-      public int getVersion() {
-        return version_;
-      }
-      /**
-       * <code>optional uint32 version = 1;</code>
-       */
-      public Builder setVersion(int value) {
-        
-        version_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 version = 1;</code>
-       */
-      public Builder clearVersion() {
-        
-        version_ = 0;
-        onChanged();
-        return this;
-      }
+                            timestamp_ = input.readUInt64();
+                            break;
+                        }
+                        case 34: {
 
-      private long height_ ;
-      /**
-       * <code>optional uint64 height = 2;</code>
-       */
-      public long getHeight() {
-        return height_;
-      }
-      /**
-       * <code>optional uint64 height = 2;</code>
-       */
-      public Builder setHeight(long value) {
-        
-        height_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 height = 2;</code>
-       */
-      public Builder clearHeight() {
-        
-        height_ = 0L;
-        onChanged();
-        return this;
-      }
+                            blockHash_ = input.readBytes();
+                            break;
+                        }
+                        case 42: {
 
-      private long timestamp_ ;
-      /**
-       * <code>optional uint64 timestamp = 3;</code>
-       */
-      public long getTimestamp() {
-        return timestamp_;
-      }
-      /**
-       * <code>optional uint64 timestamp = 3;</code>
-       */
-      public Builder setTimestamp(long value) {
-        
-        timestamp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 timestamp = 3;</code>
-       */
-      public Builder clearTimestamp() {
-        
-        timestamp_ = 0L;
-        onChanged();
-        return this;
-      }
+                            previousHash_ = input.readBytes();
+                            break;
+                        }
+                        case 50: {
 
-      private com.google.protobuf.ByteString blockHash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes blockHash = 4;</code>
-       */
-      public com.google.protobuf.ByteString getBlockHash() {
-        return blockHash_;
-      }
-      /**
-       * <code>optional bytes blockHash = 4;</code>
-       */
-      public Builder setBlockHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        blockHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes blockHash = 4;</code>
-       */
-      public Builder clearBlockHash() {
-        
-        blockHash_ = getDefaultInstance().getBlockHash();
-        onChanged();
-        return this;
-      }
+                            worldStateRoot_ = input.readBytes();
+                            break;
+                        }
+                        case 58: {
 
-      private com.google.protobuf.ByteString previousHash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes previousHash = 5;</code>
-       */
-      public com.google.protobuf.ByteString getPreviousHash() {
-        return previousHash_;
-      }
-      /**
-       * <code>optional bytes previousHash = 5;</code>
-       */
-      public Builder setPreviousHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        previousHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes previousHash = 5;</code>
-       */
-      public Builder clearPreviousHash() {
-        
-        previousHash_ = getDefaultInstance().getPreviousHash();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes worldStateRoot = 6;</code>
-       */
-      public com.google.protobuf.ByteString getWorldStateRoot() {
-        return worldStateRoot_;
-      }
-      /**
-       * <code>optional bytes worldStateRoot = 6;</code>
-       */
-      public Builder setWorldStateRoot(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        worldStateRoot_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes worldStateRoot = 6;</code>
-       */
-      public Builder clearWorldStateRoot() {
-        
-        worldStateRoot_ = getDefaultInstance().getWorldStateRoot();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes transactionRoot = 7;</code>
-       */
-      public com.google.protobuf.ByteString getTransactionRoot() {
-        return transactionRoot_;
-      }
-      /**
-       * <code>optional bytes transactionRoot = 7;</code>
-       */
-      public Builder setTransactionRoot(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        transactionRoot_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes transactionRoot = 7;</code>
-       */
-      public Builder clearTransactionRoot() {
-        
-        transactionRoot_ = getDefaultInstance().getTransactionRoot();
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:block.BlockHeader)
-    }
-
-    // @@protoc_insertion_point(class_scope:block.BlockHeader)
-    private static final chain.tj.model.proto.MyBlock.BlockHeader DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyBlock.BlockHeader();
-    }
-
-    public static chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BlockHeader>
-        PARSER = new com.google.protobuf.AbstractParser<BlockHeader>() {
-      public BlockHeader parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BlockHeader(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BlockHeader> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BlockHeader> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BlockOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:block.Block)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    boolean hasHeader();
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    chain.tj.model.proto.MyBlock.BlockHeader getHeader();
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder();
-
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    java.util.List<com.google.protobuf.ByteString> getTxsList();
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    int getTxsCount();
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    com.google.protobuf.ByteString getTxs(int index);
-
-    /**
-     * <code>optional bytes extra = 3;</code>
-     */
-    com.google.protobuf.ByteString getExtra();
-  }
-  /**
-   * Protobuf type {@code block.Block}
-   */
-  public  static final class Block extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:block.Block)
-      BlockOrBuilder {
-    // Use Block.newBuilder() to construct.
-    private Block(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Block() {
-      txs_ = java.util.Collections.emptyList();
-      extra_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Block(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+                            transactionRoot_ = input.readBytes();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 10: {
-              chain.tj.model.proto.MyBlock.BlockHeader.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(chain.tj.model.proto.MyBlock.BlockHeader.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                txs_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              txs_.add(input.readBytes());
-              break;
-            }
-            case 26: {
-
-              extra_ = input.readBytes();
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          txs_ = java.util.Collections.unmodifiableList(txs_);
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyBlock.internal_static_block_Block_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyBlock.Block.class, chain.tj.model.proto.MyBlock.Block.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int HEADER_FIELD_NUMBER = 1;
-    private chain.tj.model.proto.MyBlock.BlockHeader header_;
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    public boolean hasHeader() {
-      return header_ != null;
-    }
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    public chain.tj.model.proto.MyBlock.BlockHeader getHeader() {
-      return header_ == null ? chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
-    }
-    /**
-     * <code>optional .block.BlockHeader header = 1;</code>
-     */
-    public chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
-    }
-
-    public static final int TXS_FIELD_NUMBER = 2;
-    private java.util.List<com.google.protobuf.ByteString> txs_;
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    public java.util.List<com.google.protobuf.ByteString>
-        getTxsList() {
-      return txs_;
-    }
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    public int getTxsCount() {
-      return txs_.size();
-    }
-    /**
-     * <code>repeated bytes txs = 2;</code>
-     */
-    public com.google.protobuf.ByteString getTxs(int index) {
-      return txs_.get(index);
-    }
-
-    public static final int EXTRA_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString extra_;
-    /**
-     * <code>optional bytes extra = 3;</code>
-     */
-    public com.google.protobuf.ByteString getExtra() {
-      return extra_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (header_ != null) {
-        output.writeMessage(1, getHeader());
-      }
-      for (int i = 0; i < txs_.size(); i++) {
-        output.writeBytes(2, txs_.get(i));
-      }
-      if (!extra_.isEmpty()) {
-        output.writeBytes(3, extra_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (header_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getHeader());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < txs_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(txs_.get(i));
+            return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
         }
-        size += dataSize;
-        size += 1 * getTxsList().size();
-      }
-      if (!extra_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, extra_);
-      }
-      memoizedSize = size;
-      return size;
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyBlock.BlockHeader.class, chain.tj.model.proto.MyBlock.BlockHeader.Builder.class);
+        }
+
+        public static final int VERSION_FIELD_NUMBER = 1;
+        private int version_;
+
+        /**
+         * <code>optional uint32 version = 1;</code>
+         */
+        public int getVersion() {
+            return version_;
+        }
+
+        public static final int HEIGHT_FIELD_NUMBER = 2;
+        private long height_;
+
+        /**
+         * <code>optional uint64 height = 2;</code>
+         */
+        public long getHeight() {
+            return height_;
+        }
+
+        public static final int TIMESTAMP_FIELD_NUMBER = 3;
+        private long timestamp_;
+
+        /**
+         * <code>optional uint64 timestamp = 3;</code>
+         */
+        public long getTimestamp() {
+            return timestamp_;
+        }
+
+        public static final int BLOCKHASH_FIELD_NUMBER = 4;
+        private com.google.protobuf.ByteString blockHash_;
+
+        /**
+         * <code>optional bytes blockHash = 4;</code>
+         */
+        public com.google.protobuf.ByteString getBlockHash() {
+            return blockHash_;
+        }
+
+        public static final int PREVIOUSHASH_FIELD_NUMBER = 5;
+        private com.google.protobuf.ByteString previousHash_;
+
+        /**
+         * <code>optional bytes previousHash = 5;</code>
+         */
+        public com.google.protobuf.ByteString getPreviousHash() {
+            return previousHash_;
+        }
+
+        public static final int WORLDSTATEROOT_FIELD_NUMBER = 6;
+        private com.google.protobuf.ByteString worldStateRoot_;
+
+        /**
+         * <code>optional bytes worldStateRoot = 6;</code>
+         */
+        public com.google.protobuf.ByteString getWorldStateRoot() {
+            return worldStateRoot_;
+        }
+
+        public static final int TRANSACTIONROOT_FIELD_NUMBER = 7;
+        private com.google.protobuf.ByteString transactionRoot_;
+
+        /**
+         * <code>optional bytes transactionRoot = 7;</code>
+         */
+        public com.google.protobuf.ByteString getTransactionRoot() {
+            return transactionRoot_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (version_ != 0) {
+                output.writeUInt32(1, version_);
+            }
+            if (height_ != 0L) {
+                output.writeUInt64(2, height_);
+            }
+            if (timestamp_ != 0L) {
+                output.writeUInt64(3, timestamp_);
+            }
+            if (!blockHash_.isEmpty()) {
+                output.writeBytes(4, blockHash_);
+            }
+            if (!previousHash_.isEmpty()) {
+                output.writeBytes(5, previousHash_);
+            }
+            if (!worldStateRoot_.isEmpty()) {
+                output.writeBytes(6, worldStateRoot_);
+            }
+            if (!transactionRoot_.isEmpty()) {
+                output.writeBytes(7, transactionRoot_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (version_ != 0) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt32Size(1, version_);
+            }
+            if (height_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(2, height_);
+            }
+            if (timestamp_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(3, timestamp_);
+            }
+            if (!blockHash_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(4, blockHash_);
+            }
+            if (!previousHash_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(5, previousHash_);
+            }
+            if (!worldStateRoot_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(6, worldStateRoot_);
+            }
+            if (!transactionRoot_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(7, transactionRoot_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyBlock.BlockHeader)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyBlock.BlockHeader other = (chain.tj.model.proto.MyBlock.BlockHeader) obj;
+
+            boolean result = true;
+            result = result && (getVersion()
+                    == other.getVersion());
+            result = result && (getHeight()
+                    == other.getHeight());
+            result = result && (getTimestamp()
+                    == other.getTimestamp());
+            result = result && getBlockHash()
+                    .equals(other.getBlockHash());
+            result = result && getPreviousHash()
+                    .equals(other.getPreviousHash());
+            result = result && getWorldStateRoot()
+                    .equals(other.getWorldStateRoot());
+            result = result && getTransactionRoot()
+                    .equals(other.getTransactionRoot());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + VERSION_FIELD_NUMBER;
+            hash = (53 * hash) + getVersion();
+            hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getHeight());
+            hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getTimestamp());
+            hash = (37 * hash) + BLOCKHASH_FIELD_NUMBER;
+            hash = (53 * hash) + getBlockHash().hashCode();
+            hash = (37 * hash) + PREVIOUSHASH_FIELD_NUMBER;
+            hash = (53 * hash) + getPreviousHash().hashCode();
+            hash = (37 * hash) + WORLDSTATEROOT_FIELD_NUMBER;
+            hash = (53 * hash) + getWorldStateRoot().hashCode();
+            hash = (37 * hash) + TRANSACTIONROOT_FIELD_NUMBER;
+            hash = (53 * hash) + getTransactionRoot().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyBlock.BlockHeader prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code block.BlockHeader}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:block.BlockHeader)
+                chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyBlock.BlockHeader.class, chain.tj.model.proto.MyBlock.BlockHeader.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyBlock.BlockHeader.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                version_ = 0;
+
+                height_ = 0L;
+
+                timestamp_ = 0L;
+
+                blockHash_ = com.google.protobuf.ByteString.EMPTY;
+
+                previousHash_ = com.google.protobuf.ByteString.EMPTY;
+
+                worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
+
+                transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_BlockHeader_descriptor;
+            }
+
+            public chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyBlock.BlockHeader build() {
+                chain.tj.model.proto.MyBlock.BlockHeader result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyBlock.BlockHeader buildPartial() {
+                chain.tj.model.proto.MyBlock.BlockHeader result = new chain.tj.model.proto.MyBlock.BlockHeader(this);
+                result.version_ = version_;
+                result.height_ = height_;
+                result.timestamp_ = timestamp_;
+                result.blockHash_ = blockHash_;
+                result.previousHash_ = previousHash_;
+                result.worldStateRoot_ = worldStateRoot_;
+                result.transactionRoot_ = transactionRoot_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyBlock.BlockHeader) {
+                    return mergeFrom((chain.tj.model.proto.MyBlock.BlockHeader) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyBlock.BlockHeader other) {
+                if (other == chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance()) return this;
+                if (other.getVersion() != 0) {
+                    setVersion(other.getVersion());
+                }
+                if (other.getHeight() != 0L) {
+                    setHeight(other.getHeight());
+                }
+                if (other.getTimestamp() != 0L) {
+                    setTimestamp(other.getTimestamp());
+                }
+                if (other.getBlockHash() != com.google.protobuf.ByteString.EMPTY) {
+                    setBlockHash(other.getBlockHash());
+                }
+                if (other.getPreviousHash() != com.google.protobuf.ByteString.EMPTY) {
+                    setPreviousHash(other.getPreviousHash());
+                }
+                if (other.getWorldStateRoot() != com.google.protobuf.ByteString.EMPTY) {
+                    setWorldStateRoot(other.getWorldStateRoot());
+                }
+                if (other.getTransactionRoot() != com.google.protobuf.ByteString.EMPTY) {
+                    setTransactionRoot(other.getTransactionRoot());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyBlock.BlockHeader parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyBlock.BlockHeader) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int version_;
+
+            /**
+             * <code>optional uint32 version = 1;</code>
+             */
+            public int getVersion() {
+                return version_;
+            }
+
+            /**
+             * <code>optional uint32 version = 1;</code>
+             */
+            public Builder setVersion(int value) {
+
+                version_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional uint32 version = 1;</code>
+             */
+            public Builder clearVersion() {
+
+                version_ = 0;
+                onChanged();
+                return this;
+            }
+
+            private long height_;
+
+            /**
+             * <code>optional uint64 height = 2;</code>
+             */
+            public long getHeight() {
+                return height_;
+            }
+
+            /**
+             * <code>optional uint64 height = 2;</code>
+             */
+            public Builder setHeight(long value) {
+
+                height_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional uint64 height = 2;</code>
+             */
+            public Builder clearHeight() {
+
+                height_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            private long timestamp_;
+
+            /**
+             * <code>optional uint64 timestamp = 3;</code>
+             */
+            public long getTimestamp() {
+                return timestamp_;
+            }
+
+            /**
+             * <code>optional uint64 timestamp = 3;</code>
+             */
+            public Builder setTimestamp(long value) {
+
+                timestamp_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional uint64 timestamp = 3;</code>
+             */
+            public Builder clearTimestamp() {
+
+                timestamp_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString blockHash_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes blockHash = 4;</code>
+             */
+            public com.google.protobuf.ByteString getBlockHash() {
+                return blockHash_;
+            }
+
+            /**
+             * <code>optional bytes blockHash = 4;</code>
+             */
+            public Builder setBlockHash(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                blockHash_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes blockHash = 4;</code>
+             */
+            public Builder clearBlockHash() {
+
+                blockHash_ = getDefaultInstance().getBlockHash();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString previousHash_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes previousHash = 5;</code>
+             */
+            public com.google.protobuf.ByteString getPreviousHash() {
+                return previousHash_;
+            }
+
+            /**
+             * <code>optional bytes previousHash = 5;</code>
+             */
+            public Builder setPreviousHash(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                previousHash_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes previousHash = 5;</code>
+             */
+            public Builder clearPreviousHash() {
+
+                previousHash_ = getDefaultInstance().getPreviousHash();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString worldStateRoot_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes worldStateRoot = 6;</code>
+             */
+            public com.google.protobuf.ByteString getWorldStateRoot() {
+                return worldStateRoot_;
+            }
+
+            /**
+             * <code>optional bytes worldStateRoot = 6;</code>
+             */
+            public Builder setWorldStateRoot(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                worldStateRoot_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes worldStateRoot = 6;</code>
+             */
+            public Builder clearWorldStateRoot() {
+
+                worldStateRoot_ = getDefaultInstance().getWorldStateRoot();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString transactionRoot_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes transactionRoot = 7;</code>
+             */
+            public com.google.protobuf.ByteString getTransactionRoot() {
+                return transactionRoot_;
+            }
+
+            /**
+             * <code>optional bytes transactionRoot = 7;</code>
+             */
+            public Builder setTransactionRoot(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                transactionRoot_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes transactionRoot = 7;</code>
+             */
+            public Builder clearTransactionRoot() {
+
+                transactionRoot_ = getDefaultInstance().getTransactionRoot();
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:block.BlockHeader)
+        }
+
+        // @@protoc_insertion_point(class_scope:block.BlockHeader)
+        private static final chain.tj.model.proto.MyBlock.BlockHeader DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyBlock.BlockHeader();
+        }
+
+        public static chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<BlockHeader>
+                PARSER = new com.google.protobuf.AbstractParser<BlockHeader>() {
+            public BlockHeader parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new BlockHeader(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<BlockHeader> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<BlockHeader> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyBlock.BlockHeader getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyBlock.Block)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyBlock.Block other = (chain.tj.model.proto.MyBlock.Block) obj;
+    public interface BlockOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:block.Block)
+            com.google.protobuf.MessageOrBuilder {
 
-      boolean result = true;
-      result = result && (hasHeader() == other.hasHeader());
-      if (hasHeader()) {
-        result = result && getHeader()
-            .equals(other.getHeader());
-      }
-      result = result && getTxsList()
-          .equals(other.getTxsList());
-      result = result && getExtra()
-          .equals(other.getExtra());
-      return result;
-    }
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        boolean hasHeader();
 
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasHeader()) {
-        hash = (37 * hash) + HEADER_FIELD_NUMBER;
-        hash = (53 * hash) + getHeader().hashCode();
-      }
-      if (getTxsCount() > 0) {
-        hash = (37 * hash) + TXS_FIELD_NUMBER;
-        hash = (53 * hash) + getTxsList().hashCode();
-      }
-      hash = (37 * hash) + EXTRA_FIELD_NUMBER;
-      hash = (53 * hash) + getExtra().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        chain.tj.model.proto.MyBlock.BlockHeader getHeader();
+
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder();
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        java.util.List<com.google.protobuf.ByteString> getTxsList();
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        int getTxsCount();
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        com.google.protobuf.ByteString getTxs(int index);
+
+        /**
+         * <code>optional bytes extra = 3;</code>
+         */
+        com.google.protobuf.ByteString getExtra();
     }
 
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyBlock.Block parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyBlock.Block prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code block.Block}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:block.Block)
-        chain.tj.model.proto.MyBlock.BlockOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_Block_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyBlock.Block.class, chain.tj.model.proto.MyBlock.Block.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyBlock.Block.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
-        }
-        txs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        extra_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
-      }
-
-      public chain.tj.model.proto.MyBlock.Block getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyBlock.Block.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyBlock.Block build() {
-        chain.tj.model.proto.MyBlock.Block result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public chain.tj.model.proto.MyBlock.Block buildPartial() {
-        chain.tj.model.proto.MyBlock.Block result = new chain.tj.model.proto.MyBlock.Block(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          txs_ = java.util.Collections.unmodifiableList(txs_);
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.txs_ = txs_;
-        result.extra_ = extra_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyBlock.Block) {
-          return mergeFrom((chain.tj.model.proto.MyBlock.Block)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(chain.tj.model.proto.MyBlock.Block other) {
-        if (other == chain.tj.model.proto.MyBlock.Block.getDefaultInstance()) return this;
-        if (other.hasHeader()) {
-          mergeHeader(other.getHeader());
-        }
-        if (!other.txs_.isEmpty()) {
-          if (txs_.isEmpty()) {
-            txs_ = other.txs_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureTxsIsMutable();
-            txs_.addAll(other.txs_);
-          }
-          onChanged();
-        }
-        if (other.getExtra() != com.google.protobuf.ByteString.EMPTY) {
-          setExtra(other.getExtra());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyBlock.Block parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyBlock.Block) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private chain.tj.model.proto.MyBlock.BlockHeader header_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder> headerBuilder_;
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public chain.tj.model.proto.MyBlock.BlockHeader getHeader() {
-        if (headerBuilder_ == null) {
-          return header_ == null ? chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
-        } else {
-          return headerBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public Builder setHeader(chain.tj.model.proto.MyBlock.BlockHeader value) {
-        if (headerBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          header_ = value;
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(value);
+    public static final class Block extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:block.Block)
+            BlockOrBuilder {
+        // Use Block.newBuilder() to construct.
+        private Block(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
 
-        return this;
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public Builder setHeader(
-          chain.tj.model.proto.MyBlock.BlockHeader.Builder builderForValue) {
-        if (headerBuilder_ == null) {
-          header_ = builderForValue.build();
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(builderForValue.build());
+        private Block() {
+            txs_ = java.util.Collections.emptyList();
+            extra_ = com.google.protobuf.ByteString.EMPTY;
         }
 
-        return this;
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public Builder mergeHeader(chain.tj.model.proto.MyBlock.BlockHeader value) {
-        if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              chain.tj.model.proto.MyBlock.BlockHeader.newBuilder(header_).mergeFrom(value).buildPartial();
-          } else {
-            header_ = value;
-          }
-          onChanged();
-        } else {
-          headerBuilder_.mergeFrom(value);
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
 
-        return this;
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
+        private Block(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
+                            chain.tj.model.proto.MyBlock.BlockHeader.Builder subBuilder = null;
+                            if (header_ != null) {
+                                subBuilder = header_.toBuilder();
+                            }
+                            header_ = input.readMessage(chain.tj.model.proto.MyBlock.BlockHeader.parser(), extensionRegistry);
+                            if (subBuilder != null) {
+                                subBuilder.mergeFrom(header_);
+                                header_ = subBuilder.buildPartial();
+                            }
+
+                            break;
+                        }
+                        case 18: {
+                            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                                txs_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                                mutable_bitField0_ |= 0x00000002;
+                            }
+                            txs_.add(input.readBytes());
+                            break;
+                        }
+                        case 26: {
+
+                            extra_ = input.readBytes();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                    txs_ = java.util.Collections.unmodifiableList(txs_);
+                }
+                makeExtensionsImmutable();
+            }
         }
 
-        return this;
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public chain.tj.model.proto.MyBlock.BlockHeader.Builder getHeaderBuilder() {
-        
-        onChanged();
-        return getHeaderFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      public chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder() {
-        if (headerBuilder_ != null) {
-          return headerBuilder_.getMessageOrBuilder();
-        } else {
-          return header_ == null ?
-              chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
         }
-      }
-      /**
-       * <code>optional .block.BlockHeader header = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder> 
-          getHeaderFieldBuilder() {
-        if (headerBuilder_ == null) {
-          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder>(
-                  getHeader(),
-                  getParentForChildren(),
-                  isClean());
-          header_ = null;
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return chain.tj.model.proto.MyBlock.internal_static_block_Block_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyBlock.Block.class, chain.tj.model.proto.MyBlock.Block.Builder.class);
         }
-        return headerBuilder_;
-      }
 
-      private java.util.List<com.google.protobuf.ByteString> txs_ = java.util.Collections.emptyList();
-      private void ensureTxsIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          txs_ = new java.util.ArrayList<com.google.protobuf.ByteString>(txs_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public java.util.List<com.google.protobuf.ByteString>
-          getTxsList() {
-        return java.util.Collections.unmodifiableList(txs_);
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public int getTxsCount() {
-        return txs_.size();
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public com.google.protobuf.ByteString getTxs(int index) {
-        return txs_.get(index);
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public Builder setTxs(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTxsIsMutable();
-        txs_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public Builder addTxs(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTxsIsMutable();
-        txs_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public Builder addAllTxs(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureTxsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, txs_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes txs = 2;</code>
-       */
-      public Builder clearTxs() {
-        txs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
+        private int bitField0_;
+        public static final int HEADER_FIELD_NUMBER = 1;
+        private chain.tj.model.proto.MyBlock.BlockHeader header_;
 
-      private com.google.protobuf.ByteString extra_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes extra = 3;</code>
-       */
-      public com.google.protobuf.ByteString getExtra() {
-        return extra_;
-      }
-      /**
-       * <code>optional bytes extra = 3;</code>
-       */
-      public Builder setExtra(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        extra_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes extra = 3;</code>
-       */
-      public Builder clearExtra() {
-        
-        extra_ = getDefaultInstance().getExtra();
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        public boolean hasHeader() {
+            return header_ != null;
+        }
 
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        public chain.tj.model.proto.MyBlock.BlockHeader getHeader() {
+            return header_ == null ? chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
+        }
+
+        /**
+         * <code>optional .block.BlockHeader header = 1;</code>
+         */
+        public chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder() {
+            return getHeader();
+        }
+
+        public static final int TXS_FIELD_NUMBER = 2;
+        private java.util.List<com.google.protobuf.ByteString> txs_;
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        public java.util.List<com.google.protobuf.ByteString>
+        getTxsList() {
+            return txs_;
+        }
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        public int getTxsCount() {
+            return txs_.size();
+        }
+
+        /**
+         * <code>repeated bytes txs = 2;</code>
+         */
+        public com.google.protobuf.ByteString getTxs(int index) {
+            return txs_.get(index);
+        }
+
+        public static final int EXTRA_FIELD_NUMBER = 3;
+        private com.google.protobuf.ByteString extra_;
+
+        /**
+         * <code>optional bytes extra = 3;</code>
+         */
+        public com.google.protobuf.ByteString getExtra() {
+            return extra_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (header_ != null) {
+                output.writeMessage(1, getHeader());
+            }
+            for (int i = 0; i < txs_.size(); i++) {
+                output.writeBytes(2, txs_.get(i));
+            }
+            if (!extra_.isEmpty()) {
+                output.writeBytes(3, extra_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (header_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(1, getHeader());
+            }
+            {
+                int dataSize = 0;
+                for (int i = 0; i < txs_.size(); i++) {
+                    dataSize += com.google.protobuf.CodedOutputStream
+                            .computeBytesSizeNoTag(txs_.get(i));
+                }
+                size += dataSize;
+                size += 1 * getTxsList().size();
+            }
+            if (!extra_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(3, extra_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyBlock.Block)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyBlock.Block other = (chain.tj.model.proto.MyBlock.Block) obj;
+
+            boolean result = true;
+            result = result && (hasHeader() == other.hasHeader());
+            if (hasHeader()) {
+                result = result && getHeader()
+                        .equals(other.getHeader());
+            }
+            result = result && getTxsList()
+                    .equals(other.getTxsList());
+            result = result && getExtra()
+                    .equals(other.getExtra());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            if (hasHeader()) {
+                hash = (37 * hash) + HEADER_FIELD_NUMBER;
+                hash = (53 * hash) + getHeader().hashCode();
+            }
+            if (getTxsCount() > 0) {
+                hash = (37 * hash) + TXS_FIELD_NUMBER;
+                hash = (53 * hash) + getTxsList().hashCode();
+            }
+            hash = (37 * hash) + EXTRA_FIELD_NUMBER;
+            hash = (53 * hash) + getExtra().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyBlock.Block parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyBlock.Block prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code block.Block}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:block.Block)
+                chain.tj.model.proto.MyBlock.BlockOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_Block_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyBlock.Block.class, chain.tj.model.proto.MyBlock.Block.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyBlock.Block.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                if (headerBuilder_ == null) {
+                    header_ = null;
+                } else {
+                    header_ = null;
+                    headerBuilder_ = null;
+                }
+                txs_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                extra_ = com.google.protobuf.ByteString.EMPTY;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyBlock.internal_static_block_Block_descriptor;
+            }
+
+            public chain.tj.model.proto.MyBlock.Block getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyBlock.Block.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyBlock.Block build() {
+                chain.tj.model.proto.MyBlock.Block result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyBlock.Block buildPartial() {
+                chain.tj.model.proto.MyBlock.Block result = new chain.tj.model.proto.MyBlock.Block(this);
+                int from_bitField0_ = bitField0_;
+                int to_bitField0_ = 0;
+                if (headerBuilder_ == null) {
+                    result.header_ = header_;
+                } else {
+                    result.header_ = headerBuilder_.build();
+                }
+                if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                    txs_ = java.util.Collections.unmodifiableList(txs_);
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                }
+                result.txs_ = txs_;
+                result.extra_ = extra_;
+                result.bitField0_ = to_bitField0_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyBlock.Block) {
+                    return mergeFrom((chain.tj.model.proto.MyBlock.Block) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyBlock.Block other) {
+                if (other == chain.tj.model.proto.MyBlock.Block.getDefaultInstance()) return this;
+                if (other.hasHeader()) {
+                    mergeHeader(other.getHeader());
+                }
+                if (!other.txs_.isEmpty()) {
+                    if (txs_.isEmpty()) {
+                        txs_ = other.txs_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                    } else {
+                        ensureTxsIsMutable();
+                        txs_.addAll(other.txs_);
+                    }
+                    onChanged();
+                }
+                if (other.getExtra() != com.google.protobuf.ByteString.EMPTY) {
+                    setExtra(other.getExtra());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyBlock.Block parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyBlock.Block) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int bitField0_;
+
+            private chain.tj.model.proto.MyBlock.BlockHeader header_ = null;
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder> headerBuilder_;
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public boolean hasHeader() {
+                return headerBuilder_ != null || header_ != null;
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public chain.tj.model.proto.MyBlock.BlockHeader getHeader() {
+                if (headerBuilder_ == null) {
+                    return header_ == null ? chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
+                } else {
+                    return headerBuilder_.getMessage();
+                }
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public Builder setHeader(chain.tj.model.proto.MyBlock.BlockHeader value) {
+                if (headerBuilder_ == null) {
+                    if (value == null) {
+                        throw new NullPointerException();
+                    }
+                    header_ = value;
+                    onChanged();
+                } else {
+                    headerBuilder_.setMessage(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public Builder setHeader(
+                    chain.tj.model.proto.MyBlock.BlockHeader.Builder builderForValue) {
+                if (headerBuilder_ == null) {
+                    header_ = builderForValue.build();
+                    onChanged();
+                } else {
+                    headerBuilder_.setMessage(builderForValue.build());
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public Builder mergeHeader(chain.tj.model.proto.MyBlock.BlockHeader value) {
+                if (headerBuilder_ == null) {
+                    if (header_ != null) {
+                        header_ =
+                                chain.tj.model.proto.MyBlock.BlockHeader.newBuilder(header_).mergeFrom(value).buildPartial();
+                    } else {
+                        header_ = value;
+                    }
+                    onChanged();
+                } else {
+                    headerBuilder_.mergeFrom(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public Builder clearHeader() {
+                if (headerBuilder_ == null) {
+                    header_ = null;
+                    onChanged();
+                } else {
+                    header_ = null;
+                    headerBuilder_ = null;
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public chain.tj.model.proto.MyBlock.BlockHeader.Builder getHeaderBuilder() {
+
+                onChanged();
+                return getHeaderFieldBuilder().getBuilder();
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            public chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder getHeaderOrBuilder() {
+                if (headerBuilder_ != null) {
+                    return headerBuilder_.getMessageOrBuilder();
+                } else {
+                    return header_ == null ?
+                            chain.tj.model.proto.MyBlock.BlockHeader.getDefaultInstance() : header_;
+                }
+            }
+
+            /**
+             * <code>optional .block.BlockHeader header = 1;</code>
+             */
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder>
+            getHeaderFieldBuilder() {
+                if (headerBuilder_ == null) {
+                    headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                            chain.tj.model.proto.MyBlock.BlockHeader, chain.tj.model.proto.MyBlock.BlockHeader.Builder, chain.tj.model.proto.MyBlock.BlockHeaderOrBuilder>(
+                            getHeader(),
+                            getParentForChildren(),
+                            isClean());
+                    header_ = null;
+                }
+                return headerBuilder_;
+            }
+
+            private java.util.List<com.google.protobuf.ByteString> txs_ = java.util.Collections.emptyList();
+
+            private void ensureTxsIsMutable() {
+                if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+                    txs_ = new java.util.ArrayList<com.google.protobuf.ByteString>(txs_);
+                    bitField0_ |= 0x00000002;
+                }
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public java.util.List<com.google.protobuf.ByteString>
+            getTxsList() {
+                return java.util.Collections.unmodifiableList(txs_);
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public int getTxsCount() {
+                return txs_.size();
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public com.google.protobuf.ByteString getTxs(int index) {
+                return txs_.get(index);
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public Builder setTxs(
+                    int index, com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureTxsIsMutable();
+                txs_.set(index, value);
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public Builder addTxs(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureTxsIsMutable();
+                txs_.add(value);
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public Builder addAllTxs(
+                    java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+                ensureTxsIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, txs_);
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>repeated bytes txs = 2;</code>
+             */
+            public Builder clearTxs() {
+                txs_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString extra_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes extra = 3;</code>
+             */
+            public com.google.protobuf.ByteString getExtra() {
+                return extra_;
+            }
+
+            /**
+             * <code>optional bytes extra = 3;</code>
+             */
+            public Builder setExtra(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                extra_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes extra = 3;</code>
+             */
+            public Builder clearExtra() {
+
+                extra_ = getDefaultInstance().getExtra();
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
 
 
-      // @@protoc_insertion_point(builder_scope:block.Block)
-    }
+            // @@protoc_insertion_point(builder_scope:block.Block)
+        }
 
-    // @@protoc_insertion_point(class_scope:block.Block)
-    private static final chain.tj.model.proto.MyBlock.Block DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyBlock.Block();
-    }
+        // @@protoc_insertion_point(class_scope:block.Block)
+        private static final chain.tj.model.proto.MyBlock.Block DEFAULT_INSTANCE;
 
-    public static chain.tj.model.proto.MyBlock.Block getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyBlock.Block();
+        }
 
-    private static final com.google.protobuf.Parser<Block>
-        PARSER = new com.google.protobuf.AbstractParser<Block>() {
-      public Block parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Block(input, extensionRegistry);
-      }
-    };
+        public static chain.tj.model.proto.MyBlock.Block getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-    public static com.google.protobuf.Parser<Block> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Block> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyBlock.Block getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_block_BlockHeader_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_block_BlockHeader_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_block_Block_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_block_Block_fieldAccessorTable;
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    java.lang.String[] descriptorData = {
-      "\n\013block.proto\022\005block\"\233\001\n\013BlockHeader\022\017\n\007" +
-      "version\030\001 \001(\r\022\016\n\006height\030\002 \001(\004\022\021\n\ttimesta" +
-      "mp\030\003 \001(\004\022\021\n\tblockHash\030\004 \001(\014\022\024\n\014previousH" +
-      "ash\030\005 \001(\014\022\026\n\016worldStateRoot\030\006 \001(\014\022\027\n\017tra" +
-      "nsactionRoot\030\007 \001(\014\"G\n\005Block\022\"\n\006header\030\001 " +
-      "\001(\0132\022.block.BlockHeader\022\013\n\003txs\030\002 \003(\014\022\r\n\005" +
-      "extra\030\003 \001(\014B\"\n\024chain.tj.model.protoB\007MyB" +
-      "lock\210\001\001b\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+        private static final com.google.protobuf.Parser<Block>
+                PARSER = new com.google.protobuf.AbstractParser<Block>() {
+            public Block parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new Block(input, extensionRegistry);
+            }
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_block_BlockHeader_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_block_BlockHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_block_BlockHeader_descriptor,
-        new java.lang.String[] { "Version", "Height", "Timestamp", "BlockHash", "PreviousHash", "WorldStateRoot", "TransactionRoot", });
-    internal_static_block_Block_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_block_Block_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_block_Block_descriptor,
-        new java.lang.String[] { "Header", "Txs", "Extra", });
-  }
 
-  // @@protoc_insertion_point(outer_class_scope)
+        public static com.google.protobuf.Parser<Block> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<Block> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyBlock.Block getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
+    }
+
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_block_BlockHeader_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_block_BlockHeader_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_block_Block_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_block_Block_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        java.lang.String[] descriptorData = {
+                "\n\013block.proto\022\005block\"\233\001\n\013BlockHeader\022\017\n\007" +
+                        "version\030\001 \001(\r\022\016\n\006height\030\002 \001(\004\022\021\n\ttimesta" +
+                        "mp\030\003 \001(\004\022\021\n\tblockHash\030\004 \001(\014\022\024\n\014previousH" +
+                        "ash\030\005 \001(\014\022\026\n\016worldStateRoot\030\006 \001(\014\022\027\n\017tra" +
+                        "nsactionRoot\030\007 \001(\014\"G\n\005Block\022\"\n\006header\030\001 " +
+                        "\001(\0132\022.block.BlockHeader\022\013\n\003txs\030\002 \003(\014\022\r\n\005" +
+                        "extra\030\003 \001(\014B\"\n\024chain.tj.model.protoB\007MyB" +
+                        "lock\210\001\001b\006proto3"
+        };
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        }, assigner);
+        internal_static_block_BlockHeader_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_block_BlockHeader_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_block_BlockHeader_descriptor,
+                new java.lang.String[]{"Version", "Height", "Timestamp", "BlockHash", "PreviousHash", "WorldStateRoot", "TransactionRoot",});
+        internal_static_block_Block_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_block_Block_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_block_Block_descriptor,
+                new java.lang.String[]{"Header", "Txs", "Extra",});
+    }
+
+    // @@protoc_insertion_point(outer_class_scope)
 }

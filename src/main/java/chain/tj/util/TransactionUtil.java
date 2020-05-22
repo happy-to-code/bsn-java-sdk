@@ -23,6 +23,8 @@ public class TransactionUtil {
         transactionHeaderDto.setTimestamp(currentTime);
         // 默认版本
         transactionHeaderDto.setVersion(0);
+        transactionHeaderDto.setType(4);
+        transactionHeaderDto.setSubType(0);
 
         transactionDto.setTransactionHeader(transactionHeaderDto);
         return transactionDto;

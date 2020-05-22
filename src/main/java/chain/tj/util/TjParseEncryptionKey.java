@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class TjParseEncryptionKey {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         byte[] bytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
         System.out.println("bytes = " + bytes);
         for (byte aByte : bytes) {

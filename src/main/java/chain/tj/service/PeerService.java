@@ -1,7 +1,6 @@
 package chain.tj.service;
 
 import chain.tj.model.pojo.query.NewTxQueryDto;
-import org.springframework.stereotype.Service;
 
 /**
  * @Describe:

@@ -25,7 +25,7 @@ public enum SubType {
      * 值
      */
     private Integer value;
-    
+
     /**
      * 描述
      */

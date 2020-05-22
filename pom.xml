@@ -70,11 +70,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.1.7.RELEASE</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.google.protobuf</groupId>-->
-<!--            <artifactId>protobuf-java</artifactId>-->
-<!--            <version>2.6.1</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
 
         <!-- API, java.xml.bind module -->
         <dependency>

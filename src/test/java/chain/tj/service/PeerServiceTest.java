@@ -1,6 +1,7 @@
 package chain.tj.service;
 
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.service.systemtx.impl.CreateSystemPeer;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-
-import static chain.tj.util.PeerUtil.toHexString;
 
 /**
  * @Describe:
@@ -21,6 +20,9 @@ import static chain.tj.util.PeerUtil.toHexString;
 public class PeerServiceTest extends TestCase {
     @Resource
     private PeerService peerService;
+
+    @Resource
+    private CreateSystemPeer createSystemPeer;
 
     @Test
     public void testNewTransaction() {
@@ -34,6 +36,7 @@ public class PeerServiceTest extends TestCase {
         newTxQueryDto.setMemberId("QmXCme1rk8b3SG7w7JSN9JhBm1uLo8kfTXqbGcbmdc9LT3");
         newTxQueryDto.setShownName("newname");
 
-        peerService.newTransaction(newTxQueryDto);
+        createSystemPeer.newTransaction(newTxQueryDto);
+        // peerService.newTransaction(newTxQueryDto);
     }
 }

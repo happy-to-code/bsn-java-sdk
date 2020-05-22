@@ -3,7 +3,10 @@ package chain.tj.util;
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.proto.MyPeer;
 import com.google.protobuf.InvalidProtocolBufferException;
+import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 import static chain.tj.util.PeerUtil.getPeerTxDtoBytes;
@@ -16,6 +19,11 @@ import static chain.tj.util.PeerUtil.toHexString;
  */
 public class SelfTest {
     public static void main(String[] args) throws InvalidProtocolBufferException {
+        String property = System.getProperty("user.dir");
+        System.out.println("property = " + property);
+
+
+        System.out.println("-----------------------------------------------------------------");
         PeerTxDto peerTxDto = new PeerTxDto();
         peerTxDto.setOpType(0);
         peerTxDto.setPeerType(0);
@@ -55,7 +63,6 @@ public class SelfTest {
         builder.setAddr("abc");
 
 
-
         MyPeer.BalanceAddress balanceAddress = builder.build();
         System.out.println("balanceAddress = " + balanceAddress);
         System.out.println("builder = " + builder);
@@ -65,7 +72,7 @@ public class SelfTest {
 
         //反序列化
         MyPeer.BalanceAddress balanceAddress1 = MyPeer.BalanceAddress.parseFrom(balanceAddress.toByteArray());
-        System.out.println("after :" +balanceAddress1.toString());
+        System.out.println("after :" + balanceAddress1.toString());
 
 
         // 03000000 616263 03000000 646566

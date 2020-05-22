@@ -4,5274 +4,5726 @@
 package chain.tj.model.proto;
 
 public final class MyPeer {
-  private MyPeer() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  public interface PeerRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.PeerRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * 唯一标识
-     * </pre>
-     *
-     * <code>optional bytes nonce = 1;</code>
-     */
-    com.google.protobuf.ByteString getNonce();
-
-    /**
-     * <pre>
-     *数据，Request或其他结构体的序列化
-     * </pre>
-     *
-     * <code>optional bytes payload = 2;</code>
-     */
-    com.google.protobuf.ByteString getPayload();
-
-    /**
-     * <pre>
-     *发送方公钥
-     * </pre>
-     *
-     * <code>optional bytes pubkey = 3;</code>
-     */
-    com.google.protobuf.ByteString getPubkey();
-
-    /**
-     * <pre>
-     *对数据的签名
-     * </pre>
-     *
-     * <code>optional bytes sign = 4;</code>
-     */
-    com.google.protobuf.ByteString getSign();
-  }
-  /**
-   * Protobuf type {@code peer.PeerRequest}
-   */
-  public  static final class PeerRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.PeerRequest)
-      PeerRequestOrBuilder {
-    // Use PeerRequest.newBuilder() to construct.
-    private PeerRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private PeerRequest() {
-      nonce_ = com.google.protobuf.ByteString.EMPTY;
-      payload_ = com.google.protobuf.ByteString.EMPTY;
-      pubkey_ = com.google.protobuf.ByteString.EMPTY;
-      sign_ = com.google.protobuf.ByteString.EMPTY;
+    private MyPeer() {
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private PeerRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-
-              nonce_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              payload_ = input.readBytes();
-              break;
-            }
-            case 26: {
-
-              pubkey_ = input.readBytes();
-              break;
-            }
-            case 34: {
-
-              sign_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.PeerRequest.class, chain.tj.model.proto.MyPeer.PeerRequest.Builder.class);
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
     }
 
-    public static final int NONCE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString nonce_;
-    /**
-     * <pre>
-     * 唯一标识
-     * </pre>
-     *
-     * <code>optional bytes nonce = 1;</code>
-     */
-    public com.google.protobuf.ByteString getNonce() {
-      return nonce_;
+    public interface PeerRequestOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.PeerRequest)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <pre>
+         * 唯一标识
+         * </pre>
+         *
+         * <code>optional bytes nonce = 1;</code>
+         */
+        com.google.protobuf.ByteString getNonce();
+
+        /**
+         * <pre>
+         * 数据，Request或其他结构体的序列化
+         * </pre>
+         *
+         * <code>optional bytes payload = 2;</code>
+         */
+        com.google.protobuf.ByteString getPayload();
+
+        /**
+         * <pre>
+         * 发送方公钥
+         * </pre>
+         *
+         * <code>optional bytes pubkey = 3;</code>
+         */
+        com.google.protobuf.ByteString getPubkey();
+
+        /**
+         * <pre>
+         * 对数据的签名
+         * </pre>
+         *
+         * <code>optional bytes sign = 4;</code>
+         */
+        com.google.protobuf.ByteString getSign();
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString payload_;
-    /**
-     * <pre>
-     *数据，Request或其他结构体的序列化
-     * </pre>
-     *
-     * <code>optional bytes payload = 2;</code>
-     */
-    public com.google.protobuf.ByteString getPayload() {
-      return payload_;
-    }
-
-    public static final int PUBKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString pubkey_;
-    /**
-     * <pre>
-     *发送方公钥
-     * </pre>
-     *
-     * <code>optional bytes pubkey = 3;</code>
-     */
-    public com.google.protobuf.ByteString getPubkey() {
-      return pubkey_;
-    }
-
-    public static final int SIGN_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString sign_;
-    /**
-     * <pre>
-     *对数据的签名
-     * </pre>
-     *
-     * <code>optional bytes sign = 4;</code>
-     */
-    public com.google.protobuf.ByteString getSign() {
-      return sign_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!nonce_.isEmpty()) {
-        output.writeBytes(1, nonce_);
-      }
-      if (!payload_.isEmpty()) {
-        output.writeBytes(2, payload_);
-      }
-      if (!pubkey_.isEmpty()) {
-        output.writeBytes(3, pubkey_);
-      }
-      if (!sign_.isEmpty()) {
-        output.writeBytes(4, sign_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!nonce_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, nonce_);
-      }
-      if (!payload_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, payload_);
-      }
-      if (!pubkey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, pubkey_);
-      }
-      if (!sign_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, sign_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.PeerRequest)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.PeerRequest other = (chain.tj.model.proto.MyPeer.PeerRequest) obj;
-
-      boolean result = true;
-      result = result && getNonce()
-          .equals(other.getNonce());
-      result = result && getPayload()
-          .equals(other.getPayload());
-      result = result && getPubkey()
-          .equals(other.getPubkey());
-      result = result && getSign()
-          .equals(other.getSign());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + NONCE_FIELD_NUMBER;
-      hash = (53 * hash) + getNonce().hashCode();
-      hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
-      hash = (53 * hash) + getPayload().hashCode();
-      hash = (37 * hash) + PUBKEY_FIELD_NUMBER;
-      hash = (53 * hash) + getPubkey().hashCode();
-      hash = (37 * hash) + SIGN_FIELD_NUMBER;
-      hash = (53 * hash) + getSign().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.PeerRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.PeerRequest}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.PeerRequest)
-        chain.tj.model.proto.MyPeer.PeerRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.PeerRequest.class, chain.tj.model.proto.MyPeer.PeerRequest.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.PeerRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class PeerRequest extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.PeerRequest)
+            PeerRequestOrBuilder {
+        // Use PeerRequest.newBuilder() to construct.
+        private PeerRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        nonce_ = com.google.protobuf.ByteString.EMPTY;
 
-        payload_ = com.google.protobuf.ByteString.EMPTY;
-
-        pubkey_ = com.google.protobuf.ByteString.EMPTY;
-
-        sign_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.PeerRequest.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.PeerRequest build() {
-        chain.tj.model.proto.MyPeer.PeerRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private PeerRequest() {
+            nonce_ = com.google.protobuf.ByteString.EMPTY;
+            payload_ = com.google.protobuf.ByteString.EMPTY;
+            pubkey_ = com.google.protobuf.ByteString.EMPTY;
+            sign_ = com.google.protobuf.ByteString.EMPTY;
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.PeerRequest buildPartial() {
-        chain.tj.model.proto.MyPeer.PeerRequest result = new chain.tj.model.proto.MyPeer.PeerRequest(this);
-        result.nonce_ = nonce_;
-        result.payload_ = payload_;
-        result.pubkey_ = pubkey_;
-        result.sign_ = sign_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.PeerRequest) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.PeerRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.PeerRequest other) {
-        if (other == chain.tj.model.proto.MyPeer.PeerRequest.getDefaultInstance()) return this;
-        if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
-          setNonce(other.getNonce());
-        }
-        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
-          setPayload(other.getPayload());
-        }
-        if (other.getPubkey() != com.google.protobuf.ByteString.EMPTY) {
-          setPubkey(other.getPubkey());
-        }
-        if (other.getSign() != com.google.protobuf.ByteString.EMPTY) {
-          setSign(other.getSign());
-        }
-        onChanged();
-        return this;
-      }
+        private PeerRequest(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
 
-      public final boolean isInitialized() {
-        return true;
-      }
+                            nonce_ = input.readBytes();
+                            break;
+                        }
+                        case 18: {
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.PeerRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.PeerRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+                            payload_ = input.readBytes();
+                            break;
+                        }
+                        case 26: {
 
-      private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       * 唯一标识
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public com.google.protobuf.ByteString getNonce() {
-        return nonce_;
-      }
-      /**
-       * <pre>
-       * 唯一标识
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public Builder setNonce(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        nonce_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 唯一标识
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public Builder clearNonce() {
-        
-        nonce_ = getDefaultInstance().getNonce();
-        onChanged();
-        return this;
-      }
+                            pubkey_ = input.readBytes();
+                            break;
+                        }
+                        case 34: {
 
-      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       *数据，Request或其他结构体的序列化
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public com.google.protobuf.ByteString getPayload() {
-        return payload_;
-      }
-      /**
-       * <pre>
-       *数据，Request或其他结构体的序列化
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public Builder setPayload(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        payload_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *数据，Request或其他结构体的序列化
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public Builder clearPayload() {
-        
-        payload_ = getDefaultInstance().getPayload();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString pubkey_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       *发送方公钥
-       * </pre>
-       *
-       * <code>optional bytes pubkey = 3;</code>
-       */
-      public com.google.protobuf.ByteString getPubkey() {
-        return pubkey_;
-      }
-      /**
-       * <pre>
-       *发送方公钥
-       * </pre>
-       *
-       * <code>optional bytes pubkey = 3;</code>
-       */
-      public Builder setPubkey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        pubkey_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *发送方公钥
-       * </pre>
-       *
-       * <code>optional bytes pubkey = 3;</code>
-       */
-      public Builder clearPubkey() {
-        
-        pubkey_ = getDefaultInstance().getPubkey();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString sign_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       *对数据的签名
-       * </pre>
-       *
-       * <code>optional bytes sign = 4;</code>
-       */
-      public com.google.protobuf.ByteString getSign() {
-        return sign_;
-      }
-      /**
-       * <pre>
-       *对数据的签名
-       * </pre>
-       *
-       * <code>optional bytes sign = 4;</code>
-       */
-      public Builder setSign(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        sign_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *对数据的签名
-       * </pre>
-       *
-       * <code>optional bytes sign = 4;</code>
-       */
-      public Builder clearSign() {
-        
-        sign_ = getDefaultInstance().getSign();
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.PeerRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.PeerRequest)
-    private static final chain.tj.model.proto.MyPeer.PeerRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.PeerRequest();
-    }
-
-    public static chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<PeerRequest>
-        PARSER = new com.google.protobuf.AbstractParser<PeerRequest>() {
-      public PeerRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new PeerRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PeerRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PeerRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface PeerResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.PeerResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * 唯一标识，等同请求中的nonce
-     * </pre>
-     *
-     * <code>optional bytes nonce = 1;</code>
-     */
-    com.google.protobuf.ByteString getNonce();
-
-    /**
-     * <pre>
-     * Response
-     * </pre>
-     *
-     * <code>optional bytes payload = 2;</code>
-     */
-    com.google.protobuf.ByteString getPayload();
-
-    /**
-     * <code>optional bool ok = 3;</code>
-     */
-    boolean getOk();
-
-    /**
-     * <code>optional string err = 4;</code>
-     */
-    java.lang.String getErr();
-    /**
-     * <code>optional string err = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getErrBytes();
-  }
-  /**
-   * Protobuf type {@code peer.PeerResponse}
-   */
-  public  static final class PeerResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.PeerResponse)
-      PeerResponseOrBuilder {
-    // Use PeerResponse.newBuilder() to construct.
-    private PeerResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private PeerResponse() {
-      nonce_ = com.google.protobuf.ByteString.EMPTY;
-      payload_ = com.google.protobuf.ByteString.EMPTY;
-      ok_ = false;
-      err_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private PeerResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+                            sign_ = input.readBytes();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 10: {
-
-              nonce_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              payload_ = input.readBytes();
-              break;
-            }
-            case 24: {
-
-              ok_ = input.readBool();
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              err_ = s;
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
+        }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.PeerResponse.class, chain.tj.model.proto.MyPeer.PeerResponse.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.PeerRequest.class, chain.tj.model.proto.MyPeer.PeerRequest.Builder.class);
+        }
+
+        public static final int NONCE_FIELD_NUMBER = 1;
+        private com.google.protobuf.ByteString nonce_;
+
+        /**
+         * <pre>
+         * 唯一标识
+         * </pre>
+         *
+         * <code>optional bytes nonce = 1;</code>
+         */
+        public com.google.protobuf.ByteString getNonce() {
+            return nonce_;
+        }
+
+        public static final int PAYLOAD_FIELD_NUMBER = 2;
+        private com.google.protobuf.ByteString payload_;
+
+        /**
+         * <pre>
+         * 数据，Request或其他结构体的序列化
+         * </pre>
+         *
+         * <code>optional bytes payload = 2;</code>
+         */
+        public com.google.protobuf.ByteString getPayload() {
+            return payload_;
+        }
+
+        public static final int PUBKEY_FIELD_NUMBER = 3;
+        private com.google.protobuf.ByteString pubkey_;
+
+        /**
+         * <pre>
+         * 发送方公钥
+         * </pre>
+         *
+         * <code>optional bytes pubkey = 3;</code>
+         */
+        public com.google.protobuf.ByteString getPubkey() {
+            return pubkey_;
+        }
+
+        public static final int SIGN_FIELD_NUMBER = 4;
+        private com.google.protobuf.ByteString sign_;
+
+        /**
+         * <pre>
+         * 对数据的签名
+         * </pre>
+         *
+         * <code>optional bytes sign = 4;</code>
+         */
+        public com.google.protobuf.ByteString getSign() {
+            return sign_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!nonce_.isEmpty()) {
+                output.writeBytes(1, nonce_);
+            }
+            if (!payload_.isEmpty()) {
+                output.writeBytes(2, payload_);
+            }
+            if (!pubkey_.isEmpty()) {
+                output.writeBytes(3, pubkey_);
+            }
+            if (!sign_.isEmpty()) {
+                output.writeBytes(4, sign_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!nonce_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(1, nonce_);
+            }
+            if (!payload_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(2, payload_);
+            }
+            if (!pubkey_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(3, pubkey_);
+            }
+            if (!sign_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(4, sign_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.PeerRequest)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.PeerRequest other = (chain.tj.model.proto.MyPeer.PeerRequest) obj;
+
+            boolean result = true;
+            result = result && getNonce()
+                    .equals(other.getNonce());
+            result = result && getPayload()
+                    .equals(other.getPayload());
+            result = result && getPubkey()
+                    .equals(other.getPubkey());
+            result = result && getSign()
+                    .equals(other.getSign());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + NONCE_FIELD_NUMBER;
+            hash = (53 * hash) + getNonce().hashCode();
+            hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+            hash = (53 * hash) + getPayload().hashCode();
+            hash = (37 * hash) + PUBKEY_FIELD_NUMBER;
+            hash = (53 * hash) + getPubkey().hashCode();
+            hash = (37 * hash) + SIGN_FIELD_NUMBER;
+            hash = (53 * hash) + getSign().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.PeerRequest prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.PeerRequest}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.PeerRequest)
+                chain.tj.model.proto.MyPeer.PeerRequestOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.PeerRequest.class, chain.tj.model.proto.MyPeer.PeerRequest.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.PeerRequest.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                nonce_ = com.google.protobuf.ByteString.EMPTY;
+
+                payload_ = com.google.protobuf.ByteString.EMPTY;
+
+                pubkey_ = com.google.protobuf.ByteString.EMPTY;
+
+                sign_ = com.google.protobuf.ByteString.EMPTY;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerRequest_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.PeerRequest.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerRequest build() {
+                chain.tj.model.proto.MyPeer.PeerRequest result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerRequest buildPartial() {
+                chain.tj.model.proto.MyPeer.PeerRequest result = new chain.tj.model.proto.MyPeer.PeerRequest(this);
+                result.nonce_ = nonce_;
+                result.payload_ = payload_;
+                result.pubkey_ = pubkey_;
+                result.sign_ = sign_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.PeerRequest) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.PeerRequest) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.PeerRequest other) {
+                if (other == chain.tj.model.proto.MyPeer.PeerRequest.getDefaultInstance()) return this;
+                if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
+                    setNonce(other.getNonce());
+                }
+                if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
+                    setPayload(other.getPayload());
+                }
+                if (other.getPubkey() != com.google.protobuf.ByteString.EMPTY) {
+                    setPubkey(other.getPubkey());
+                }
+                if (other.getSign() != com.google.protobuf.ByteString.EMPTY) {
+                    setSign(other.getSign());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.PeerRequest parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.PeerRequest) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * 唯一标识
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public com.google.protobuf.ByteString getNonce() {
+                return nonce_;
+            }
+
+            /**
+             * <pre>
+             * 唯一标识
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public Builder setNonce(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                nonce_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 唯一标识
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public Builder clearNonce() {
+
+                nonce_ = getDefaultInstance().getNonce();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * 数据，Request或其他结构体的序列化
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public com.google.protobuf.ByteString getPayload() {
+                return payload_;
+            }
+
+            /**
+             * <pre>
+             * 数据，Request或其他结构体的序列化
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public Builder setPayload(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                payload_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 数据，Request或其他结构体的序列化
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public Builder clearPayload() {
+
+                payload_ = getDefaultInstance().getPayload();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString pubkey_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * 发送方公钥
+             * </pre>
+             *
+             * <code>optional bytes pubkey = 3;</code>
+             */
+            public com.google.protobuf.ByteString getPubkey() {
+                return pubkey_;
+            }
+
+            /**
+             * <pre>
+             * 发送方公钥
+             * </pre>
+             *
+             * <code>optional bytes pubkey = 3;</code>
+             */
+            public Builder setPubkey(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                pubkey_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 发送方公钥
+             * </pre>
+             *
+             * <code>optional bytes pubkey = 3;</code>
+             */
+            public Builder clearPubkey() {
+
+                pubkey_ = getDefaultInstance().getPubkey();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString sign_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * 对数据的签名
+             * </pre>
+             *
+             * <code>optional bytes sign = 4;</code>
+             */
+            public com.google.protobuf.ByteString getSign() {
+                return sign_;
+            }
+
+            /**
+             * <pre>
+             * 对数据的签名
+             * </pre>
+             *
+             * <code>optional bytes sign = 4;</code>
+             */
+            public Builder setSign(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                sign_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 对数据的签名
+             * </pre>
+             *
+             * <code>optional bytes sign = 4;</code>
+             */
+            public Builder clearSign() {
+
+                sign_ = getDefaultInstance().getSign();
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.PeerRequest)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.PeerRequest)
+        private static final chain.tj.model.proto.MyPeer.PeerRequest DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.PeerRequest();
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<PeerRequest>
+                PARSER = new com.google.protobuf.AbstractParser<PeerRequest>() {
+            public PeerRequest parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new PeerRequest(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<PeerRequest> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<PeerRequest> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.PeerRequest getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int NONCE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString nonce_;
-    /**
-     * <pre>
-     * 唯一标识，等同请求中的nonce
-     * </pre>
-     *
-     * <code>optional bytes nonce = 1;</code>
-     */
-    public com.google.protobuf.ByteString getNonce() {
-      return nonce_;
+    public interface PeerResponseOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.PeerResponse)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <pre>
+         * 唯一标识，等同请求中的nonce
+         * </pre>
+         *
+         * <code>optional bytes nonce = 1;</code>
+         */
+        com.google.protobuf.ByteString getNonce();
+
+        /**
+         * <pre>
+         * Response
+         * </pre>
+         *
+         * <code>optional bytes payload = 2;</code>
+         */
+        com.google.protobuf.ByteString getPayload();
+
+        /**
+         * <code>optional bool ok = 3;</code>
+         */
+        boolean getOk();
+
+        /**
+         * <code>optional string err = 4;</code>
+         */
+        java.lang.String getErr();
+
+        /**
+         * <code>optional string err = 4;</code>
+         */
+        com.google.protobuf.ByteString
+        getErrBytes();
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString payload_;
-    /**
-     * <pre>
-     * Response
-     * </pre>
-     *
-     * <code>optional bytes payload = 2;</code>
-     */
-    public com.google.protobuf.ByteString getPayload() {
-      return payload_;
-    }
-
-    public static final int OK_FIELD_NUMBER = 3;
-    private boolean ok_;
-    /**
-     * <code>optional bool ok = 3;</code>
-     */
-    public boolean getOk() {
-      return ok_;
-    }
-
-    public static final int ERR_FIELD_NUMBER = 4;
-    private volatile java.lang.Object err_;
-    /**
-     * <code>optional string err = 4;</code>
-     */
-    public java.lang.String getErr() {
-      java.lang.Object ref = err_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        err_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string err = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-        getErrBytes() {
-      java.lang.Object ref = err_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        err_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!nonce_.isEmpty()) {
-        output.writeBytes(1, nonce_);
-      }
-      if (!payload_.isEmpty()) {
-        output.writeBytes(2, payload_);
-      }
-      if (ok_ != false) {
-        output.writeBool(3, ok_);
-      }
-      if (!getErrBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, err_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!nonce_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, nonce_);
-      }
-      if (!payload_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, payload_);
-      }
-      if (ok_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, ok_);
-      }
-      if (!getErrBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, err_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.PeerResponse)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.PeerResponse other = (chain.tj.model.proto.MyPeer.PeerResponse) obj;
-
-      boolean result = true;
-      result = result && getNonce()
-          .equals(other.getNonce());
-      result = result && getPayload()
-          .equals(other.getPayload());
-      result = result && (getOk()
-          == other.getOk());
-      result = result && getErr()
-          .equals(other.getErr());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + NONCE_FIELD_NUMBER;
-      hash = (53 * hash) + getNonce().hashCode();
-      hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
-      hash = (53 * hash) + getPayload().hashCode();
-      hash = (37 * hash) + OK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getOk());
-      hash = (37 * hash) + ERR_FIELD_NUMBER;
-      hash = (53 * hash) + getErr().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.PeerResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.PeerResponse}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.PeerResponse)
-        chain.tj.model.proto.MyPeer.PeerResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.PeerResponse.class, chain.tj.model.proto.MyPeer.PeerResponse.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.PeerResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class PeerResponse extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.PeerResponse)
+            PeerResponseOrBuilder {
+        // Use PeerResponse.newBuilder() to construct.
+        private PeerResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        nonce_ = com.google.protobuf.ByteString.EMPTY;
 
-        payload_ = com.google.protobuf.ByteString.EMPTY;
-
-        ok_ = false;
-
-        err_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.PeerResponse.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.PeerResponse build() {
-        chain.tj.model.proto.MyPeer.PeerResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private PeerResponse() {
+            nonce_ = com.google.protobuf.ByteString.EMPTY;
+            payload_ = com.google.protobuf.ByteString.EMPTY;
+            ok_ = false;
+            err_ = "";
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.PeerResponse buildPartial() {
-        chain.tj.model.proto.MyPeer.PeerResponse result = new chain.tj.model.proto.MyPeer.PeerResponse(this);
-        result.nonce_ = nonce_;
-        result.payload_ = payload_;
-        result.ok_ = ok_;
-        result.err_ = err_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.PeerResponse) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.PeerResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.PeerResponse other) {
-        if (other == chain.tj.model.proto.MyPeer.PeerResponse.getDefaultInstance()) return this;
-        if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
-          setNonce(other.getNonce());
+        private PeerResponse(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
+
+                            nonce_ = input.readBytes();
+                            break;
+                        }
+                        case 18: {
+
+                            payload_ = input.readBytes();
+                            break;
+                        }
+                        case 24: {
+
+                            ok_ = input.readBool();
+                            break;
+                        }
+                        case 34: {
+                            java.lang.String s = input.readStringRequireUtf8();
+
+                            err_ = s;
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
+            }
         }
-        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
-          setPayload(other.getPayload());
+
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
         }
-        if (other.getOk() != false) {
-          setOk(other.getOk());
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.PeerResponse.class, chain.tj.model.proto.MyPeer.PeerResponse.Builder.class);
         }
-        if (!other.getErr().isEmpty()) {
-          err_ = other.err_;
-          onChanged();
+
+        public static final int NONCE_FIELD_NUMBER = 1;
+        private com.google.protobuf.ByteString nonce_;
+
+        /**
+         * <pre>
+         * 唯一标识，等同请求中的nonce
+         * </pre>
+         *
+         * <code>optional bytes nonce = 1;</code>
+         */
+        public com.google.protobuf.ByteString getNonce() {
+            return nonce_;
         }
-        onChanged();
-        return this;
-      }
 
-      public final boolean isInitialized() {
-        return true;
-      }
+        public static final int PAYLOAD_FIELD_NUMBER = 2;
+        private com.google.protobuf.ByteString payload_;
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.PeerResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.PeerResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
+        /**
+         * <pre>
+         * Response
+         * </pre>
+         *
+         * <code>optional bytes payload = 2;</code>
+         */
+        public com.google.protobuf.ByteString getPayload() {
+            return payload_;
         }
-        return this;
-      }
 
-      private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       * 唯一标识，等同请求中的nonce
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public com.google.protobuf.ByteString getNonce() {
-        return nonce_;
-      }
-      /**
-       * <pre>
-       * 唯一标识，等同请求中的nonce
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public Builder setNonce(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        nonce_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 唯一标识，等同请求中的nonce
-       * </pre>
-       *
-       * <code>optional bytes nonce = 1;</code>
-       */
-      public Builder clearNonce() {
-        
-        nonce_ = getDefaultInstance().getNonce();
-        onChanged();
-        return this;
-      }
+        public static final int OK_FIELD_NUMBER = 3;
+        private boolean ok_;
 
-      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       * Response
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public com.google.protobuf.ByteString getPayload() {
-        return payload_;
-      }
-      /**
-       * <pre>
-       * Response
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public Builder setPayload(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        payload_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Response
-       * </pre>
-       *
-       * <code>optional bytes payload = 2;</code>
-       */
-      public Builder clearPayload() {
-        
-        payload_ = getDefaultInstance().getPayload();
-        onChanged();
-        return this;
-      }
-
-      private boolean ok_ ;
-      /**
-       * <code>optional bool ok = 3;</code>
-       */
-      public boolean getOk() {
-        return ok_;
-      }
-      /**
-       * <code>optional bool ok = 3;</code>
-       */
-      public Builder setOk(boolean value) {
-        
-        ok_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool ok = 3;</code>
-       */
-      public Builder clearOk() {
-        
-        ok_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object err_ = "";
-      /**
-       * <code>optional string err = 4;</code>
-       */
-      public java.lang.String getErr() {
-        java.lang.Object ref = err_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          err_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
+        /**
+         * <code>optional bool ok = 3;</code>
+         */
+        public boolean getOk() {
+            return ok_;
         }
-      }
-      /**
-       * <code>optional string err = 4;</code>
-       */
-      public com.google.protobuf.ByteString
-          getErrBytes() {
-        java.lang.Object ref = err_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          err_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
+
+        public static final int ERR_FIELD_NUMBER = 4;
+        private volatile java.lang.Object err_;
+
+        /**
+         * <code>optional string err = 4;</code>
+         */
+        public java.lang.String getErr() {
+            java.lang.Object ref = err_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                err_ = s;
+                return s;
+            }
         }
-      }
-      /**
-       * <code>optional string err = 4;</code>
-       */
-      public Builder setErr(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        err_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string err = 4;</code>
-       */
-      public Builder clearErr() {
-        
-        err_ = getDefaultInstance().getErr();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string err = 4;</code>
-       */
-      public Builder setErrBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        err_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
 
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
+        /**
+         * <code>optional string err = 4;</code>
+         */
+        public com.google.protobuf.ByteString
+        getErrBytes() {
+            java.lang.Object ref = err_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                err_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!nonce_.isEmpty()) {
+                output.writeBytes(1, nonce_);
+            }
+            if (!payload_.isEmpty()) {
+                output.writeBytes(2, payload_);
+            }
+            if (ok_ != false) {
+                output.writeBool(3, ok_);
+            }
+            if (!getErrBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 4, err_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!nonce_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(1, nonce_);
+            }
+            if (!payload_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(2, payload_);
+            }
+            if (ok_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(3, ok_);
+            }
+            if (!getErrBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, err_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.PeerResponse)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.PeerResponse other = (chain.tj.model.proto.MyPeer.PeerResponse) obj;
+
+            boolean result = true;
+            result = result && getNonce()
+                    .equals(other.getNonce());
+            result = result && getPayload()
+                    .equals(other.getPayload());
+            result = result && (getOk()
+                    == other.getOk());
+            result = result && getErr()
+                    .equals(other.getErr());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + NONCE_FIELD_NUMBER;
+            hash = (53 * hash) + getNonce().hashCode();
+            hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+            hash = (53 * hash) + getPayload().hashCode();
+            hash = (37 * hash) + OK_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                    getOk());
+            hash = (37 * hash) + ERR_FIELD_NUMBER;
+            hash = (53 * hash) + getErr().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.PeerResponse prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.PeerResponse}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.PeerResponse)
+                chain.tj.model.proto.MyPeer.PeerResponseOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.PeerResponse.class, chain.tj.model.proto.MyPeer.PeerResponse.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.PeerResponse.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                nonce_ = com.google.protobuf.ByteString.EMPTY;
+
+                payload_ = com.google.protobuf.ByteString.EMPTY;
+
+                ok_ = false;
+
+                err_ = "";
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_PeerResponse_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.PeerResponse.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerResponse build() {
+                chain.tj.model.proto.MyPeer.PeerResponse result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.PeerResponse buildPartial() {
+                chain.tj.model.proto.MyPeer.PeerResponse result = new chain.tj.model.proto.MyPeer.PeerResponse(this);
+                result.nonce_ = nonce_;
+                result.payload_ = payload_;
+                result.ok_ = ok_;
+                result.err_ = err_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.PeerResponse) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.PeerResponse) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.PeerResponse other) {
+                if (other == chain.tj.model.proto.MyPeer.PeerResponse.getDefaultInstance()) return this;
+                if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
+                    setNonce(other.getNonce());
+                }
+                if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
+                    setPayload(other.getPayload());
+                }
+                if (other.getOk() != false) {
+                    setOk(other.getOk());
+                }
+                if (!other.getErr().isEmpty()) {
+                    err_ = other.err_;
+                    onChanged();
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.PeerResponse parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.PeerResponse) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * 唯一标识，等同请求中的nonce
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public com.google.protobuf.ByteString getNonce() {
+                return nonce_;
+            }
+
+            /**
+             * <pre>
+             * 唯一标识，等同请求中的nonce
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public Builder setNonce(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                nonce_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 唯一标识，等同请求中的nonce
+             * </pre>
+             *
+             * <code>optional bytes nonce = 1;</code>
+             */
+            public Builder clearNonce() {
+
+                nonce_ = getDefaultInstance().getNonce();
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <pre>
+             * Response
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public com.google.protobuf.ByteString getPayload() {
+                return payload_;
+            }
+
+            /**
+             * <pre>
+             * Response
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public Builder setPayload(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                payload_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Response
+             * </pre>
+             *
+             * <code>optional bytes payload = 2;</code>
+             */
+            public Builder clearPayload() {
+
+                payload_ = getDefaultInstance().getPayload();
+                onChanged();
+                return this;
+            }
+
+            private boolean ok_;
+
+            /**
+             * <code>optional bool ok = 3;</code>
+             */
+            public boolean getOk() {
+                return ok_;
+            }
+
+            /**
+             * <code>optional bool ok = 3;</code>
+             */
+            public Builder setOk(boolean value) {
+
+                ok_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bool ok = 3;</code>
+             */
+            public Builder clearOk() {
+
+                ok_ = false;
+                onChanged();
+                return this;
+            }
+
+            private java.lang.Object err_ = "";
+
+            /**
+             * <code>optional string err = 4;</code>
+             */
+            public java.lang.String getErr() {
+                java.lang.Object ref = err_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    err_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <code>optional string err = 4;</code>
+             */
+            public com.google.protobuf.ByteString
+            getErrBytes() {
+                java.lang.Object ref = err_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    err_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <code>optional string err = 4;</code>
+             */
+            public Builder setErr(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                err_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string err = 4;</code>
+             */
+            public Builder clearErr() {
+
+                err_ = getDefaultInstance().getErr();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string err = 4;</code>
+             */
+            public Builder setErrBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                err_ = value;
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
 
 
-      // @@protoc_insertion_point(builder_scope:peer.PeerResponse)
+            // @@protoc_insertion_point(builder_scope:peer.PeerResponse)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.PeerResponse)
+        private static final chain.tj.model.proto.MyPeer.PeerResponse DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.PeerResponse();
+        }
+
+        public static chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<PeerResponse>
+                PARSER = new com.google.protobuf.AbstractParser<PeerResponse>() {
+            public PeerResponse parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new PeerResponse(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<PeerResponse> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<PeerResponse> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    // @@protoc_insertion_point(class_scope:peer.PeerResponse)
-    private static final chain.tj.model.proto.MyPeer.PeerResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.PeerResponse();
-    }
+    public interface BalanceAddressOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.BalanceAddress)
+            com.google.protobuf.MessageOrBuilder {
 
-    public static chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+        /**
+         * <code>optional string addr = 1;</code>
+         */
+        java.lang.String getAddr();
 
-    private static final com.google.protobuf.Parser<PeerResponse>
-        PARSER = new com.google.protobuf.AbstractParser<PeerResponse>() {
-      public PeerResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new PeerResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PeerResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PeerResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.PeerResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BalanceAddressOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.BalanceAddress)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string addr = 1;</code>
-     */
-    java.lang.String getAddr();
-    /**
-     * <code>optional string addr = 1;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string addr = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getAddrBytes();
 
-    /**
-     * <code>optional string tokenType = 2;</code>
-     */
-    java.lang.String getTokenType();
-    /**
-     * <code>optional string tokenType = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string tokenType = 2;</code>
+         */
+        java.lang.String getTokenType();
+
+        /**
+         * <code>optional string tokenType = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getTokenTypeBytes();
-  }
-  /**
-   * Protobuf type {@code peer.BalanceAddress}
-   */
-  public  static final class BalanceAddress extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.BalanceAddress)
-      BalanceAddressOrBuilder {
-    // Use BalanceAddress.newBuilder() to construct.
-    private BalanceAddress(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BalanceAddress() {
-      addr_ = "";
-      tokenType_ = "";
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BalanceAddress(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              addr_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              tokenType_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.BalanceAddress.class, chain.tj.model.proto.MyPeer.BalanceAddress.Builder.class);
-    }
-
-    public static final int ADDR_FIELD_NUMBER = 1;
-    private volatile java.lang.Object addr_;
-    /**
-     * <code>optional string addr = 1;</code>
-     */
-    public java.lang.String getAddr() {
-      java.lang.Object ref = addr_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        addr_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string addr = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAddrBytes() {
-      java.lang.Object ref = addr_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        addr_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TOKENTYPE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object tokenType_;
-    /**
-     * <code>optional string tokenType = 2;</code>
-     */
-    public java.lang.String getTokenType() {
-      java.lang.Object ref = tokenType_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tokenType_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string tokenType = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTokenTypeBytes() {
-      java.lang.Object ref = tokenType_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tokenType_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getAddrBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, addr_);
-      }
-      if (!getTokenTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, tokenType_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getAddrBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, addr_);
-      }
-      if (!getTokenTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, tokenType_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.BalanceAddress)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.BalanceAddress other = (chain.tj.model.proto.MyPeer.BalanceAddress) obj;
-
-      boolean result = true;
-      result = result && getAddr()
-          .equals(other.getAddr());
-      result = result && getTokenType()
-          .equals(other.getTokenType());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + ADDR_FIELD_NUMBER;
-      hash = (53 * hash) + getAddr().hashCode();
-      hash = (37 * hash) + TOKENTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getTokenType().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.BalanceAddress prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.BalanceAddress}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.BalanceAddress)
-        chain.tj.model.proto.MyPeer.BalanceAddressOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.BalanceAddress.class, chain.tj.model.proto.MyPeer.BalanceAddress.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.BalanceAddress.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class BalanceAddress extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.BalanceAddress)
+            BalanceAddressOrBuilder {
+        // Use BalanceAddress.newBuilder() to construct.
+        private BalanceAddress(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        addr_ = "";
 
-        tokenType_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.BalanceAddress.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.BalanceAddress build() {
-        chain.tj.model.proto.MyPeer.BalanceAddress result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private BalanceAddress() {
+            addr_ = "";
+            tokenType_ = "";
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.BalanceAddress buildPartial() {
-        chain.tj.model.proto.MyPeer.BalanceAddress result = new chain.tj.model.proto.MyPeer.BalanceAddress(this);
-        result.addr_ = addr_;
-        result.tokenType_ = tokenType_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.BalanceAddress) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.BalanceAddress)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.BalanceAddress other) {
-        if (other == chain.tj.model.proto.MyPeer.BalanceAddress.getDefaultInstance()) return this;
-        if (!other.getAddr().isEmpty()) {
-          addr_ = other.addr_;
-          onChanged();
-        }
-        if (!other.getTokenType().isEmpty()) {
-          tokenType_ = other.tokenType_;
-          onChanged();
-        }
-        onChanged();
-        return this;
-      }
+        private BalanceAddress(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-      public final boolean isInitialized() {
-        return true;
-      }
+                            addr_ = s;
+                            break;
+                        }
+                        case 18: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.BalanceAddress parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.BalanceAddress) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object addr_ = "";
-      /**
-       * <code>optional string addr = 1;</code>
-       */
-      public java.lang.String getAddr() {
-        java.lang.Object ref = addr_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          addr_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string addr = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAddrBytes() {
-        java.lang.Object ref = addr_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          addr_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string addr = 1;</code>
-       */
-      public Builder setAddr(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        addr_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string addr = 1;</code>
-       */
-      public Builder clearAddr() {
-        
-        addr_ = getDefaultInstance().getAddr();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string addr = 1;</code>
-       */
-      public Builder setAddrBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        addr_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object tokenType_ = "";
-      /**
-       * <code>optional string tokenType = 2;</code>
-       */
-      public java.lang.String getTokenType() {
-        java.lang.Object ref = tokenType_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          tokenType_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string tokenType = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTokenTypeBytes() {
-        java.lang.Object ref = tokenType_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          tokenType_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string tokenType = 2;</code>
-       */
-      public Builder setTokenType(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        tokenType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string tokenType = 2;</code>
-       */
-      public Builder clearTokenType() {
-        
-        tokenType_ = getDefaultInstance().getTokenType();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string tokenType = 2;</code>
-       */
-      public Builder setTokenTypeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        tokenType_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.BalanceAddress)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.BalanceAddress)
-    private static final chain.tj.model.proto.MyPeer.BalanceAddress DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.BalanceAddress();
-    }
-
-    public static chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BalanceAddress>
-        PARSER = new com.google.protobuf.AbstractParser<BalanceAddress>() {
-      public BalanceAddress parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BalanceAddress(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BalanceAddress> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BalanceAddress> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BalanceOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.Balance)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-    int getResCount();
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-    boolean containsRes(
-        java.lang.String key);
-    /**
-     * Use {@link #getResMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.Long>
-    getRes();
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.Long>
-    getResMap();
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    long getResOrDefault(
-        java.lang.String key,
-        long defaultValue);
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    long getResOrThrow(
-        java.lang.String key);
-  }
-  /**
-   * Protobuf type {@code peer.Balance}
-   */
-  public  static final class Balance extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.Balance)
-      BalanceOrBuilder {
-    // Use Balance.newBuilder() to construct.
-    private Balance(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Balance() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Balance(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+                            tokenType_ = s;
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                res_ = com.google.protobuf.MapField.newMapField(
-                    ResDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-              res = input.readMessage(
-                  ResDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              res_.getMutableMap().put(res.getKey(), res.getValue());
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
+        }
 
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetRes();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.Balance.class, chain.tj.model.proto.MyPeer.Balance.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.BalanceAddress.class, chain.tj.model.proto.MyPeer.BalanceAddress.Builder.class);
+        }
+
+        public static final int ADDR_FIELD_NUMBER = 1;
+        private volatile java.lang.Object addr_;
+
+        /**
+         * <code>optional string addr = 1;</code>
+         */
+        public java.lang.String getAddr() {
+            java.lang.Object ref = addr_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                addr_ = s;
+                return s;
+            }
+        }
+
+        /**
+         * <code>optional string addr = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getAddrBytes() {
+            java.lang.Object ref = addr_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                addr_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        public static final int TOKENTYPE_FIELD_NUMBER = 2;
+        private volatile java.lang.Object tokenType_;
+
+        /**
+         * <code>optional string tokenType = 2;</code>
+         */
+        public java.lang.String getTokenType() {
+            java.lang.Object ref = tokenType_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                tokenType_ = s;
+                return s;
+            }
+        }
+
+        /**
+         * <code>optional string tokenType = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getTokenTypeBytes() {
+            java.lang.Object ref = tokenType_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                tokenType_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!getAddrBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 1, addr_);
+            }
+            if (!getTokenTypeBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 2, tokenType_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!getAddrBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, addr_);
+            }
+            if (!getTokenTypeBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, tokenType_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.BalanceAddress)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.BalanceAddress other = (chain.tj.model.proto.MyPeer.BalanceAddress) obj;
+
+            boolean result = true;
+            result = result && getAddr()
+                    .equals(other.getAddr());
+            result = result && getTokenType()
+                    .equals(other.getTokenType());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + ADDR_FIELD_NUMBER;
+            hash = (53 * hash) + getAddr().hashCode();
+            hash = (37 * hash) + TOKENTYPE_FIELD_NUMBER;
+            hash = (53 * hash) + getTokenType().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.BalanceAddress prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.BalanceAddress}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.BalanceAddress)
+                chain.tj.model.proto.MyPeer.BalanceAddressOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.BalanceAddress.class, chain.tj.model.proto.MyPeer.BalanceAddress.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.BalanceAddress.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                addr_ = "";
+
+                tokenType_ = "";
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_BalanceAddress_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.BalanceAddress.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.BalanceAddress build() {
+                chain.tj.model.proto.MyPeer.BalanceAddress result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.BalanceAddress buildPartial() {
+                chain.tj.model.proto.MyPeer.BalanceAddress result = new chain.tj.model.proto.MyPeer.BalanceAddress(this);
+                result.addr_ = addr_;
+                result.tokenType_ = tokenType_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.BalanceAddress) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.BalanceAddress) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.BalanceAddress other) {
+                if (other == chain.tj.model.proto.MyPeer.BalanceAddress.getDefaultInstance()) return this;
+                if (!other.getAddr().isEmpty()) {
+                    addr_ = other.addr_;
+                    onChanged();
+                }
+                if (!other.getTokenType().isEmpty()) {
+                    tokenType_ = other.tokenType_;
+                    onChanged();
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.BalanceAddress parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.BalanceAddress) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private java.lang.Object addr_ = "";
+
+            /**
+             * <code>optional string addr = 1;</code>
+             */
+            public java.lang.String getAddr() {
+                java.lang.Object ref = addr_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    addr_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <code>optional string addr = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getAddrBytes() {
+                java.lang.Object ref = addr_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    addr_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <code>optional string addr = 1;</code>
+             */
+            public Builder setAddr(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                addr_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string addr = 1;</code>
+             */
+            public Builder clearAddr() {
+
+                addr_ = getDefaultInstance().getAddr();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string addr = 1;</code>
+             */
+            public Builder setAddrBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                addr_ = value;
+                onChanged();
+                return this;
+            }
+
+            private java.lang.Object tokenType_ = "";
+
+            /**
+             * <code>optional string tokenType = 2;</code>
+             */
+            public java.lang.String getTokenType() {
+                java.lang.Object ref = tokenType_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    tokenType_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <code>optional string tokenType = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getTokenTypeBytes() {
+                java.lang.Object ref = tokenType_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    tokenType_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <code>optional string tokenType = 2;</code>
+             */
+            public Builder setTokenType(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                tokenType_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string tokenType = 2;</code>
+             */
+            public Builder clearTokenType() {
+
+                tokenType_ = getDefaultInstance().getTokenType();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional string tokenType = 2;</code>
+             */
+            public Builder setTokenTypeBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                tokenType_ = value;
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.BalanceAddress)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.BalanceAddress)
+        private static final chain.tj.model.proto.MyPeer.BalanceAddress DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.BalanceAddress();
+        }
+
+        public static chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<BalanceAddress>
+                PARSER = new com.google.protobuf.AbstractParser<BalanceAddress>() {
+            public BalanceAddress parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new BalanceAddress(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<BalanceAddress> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<BalanceAddress> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.BalanceAddress getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int RES_FIELD_NUMBER = 1;
-    private static final class ResDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.Long> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.Long>newDefaultInstance(
-                  chain.tj.model.proto.MyPeer.internal_static_peer_Balance_ResEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.UINT64,
-                  0L);
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.Long> res_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-    internalGetRes() {
-      if (res_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            ResDefaultEntryHolder.defaultEntry);
-      }
-      return res_;
+    public interface BalanceOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.Balance)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+        int getResCount();
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+        boolean containsRes(
+                java.lang.String key);
+
+        /**
+         * Use {@link #getResMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, java.lang.Long>
+        getRes();
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+        java.util.Map<java.lang.String, java.lang.Long>
+        getResMap();
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        long getResOrDefault(
+                java.lang.String key,
+                long defaultValue);
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        long getResOrThrow(
+                java.lang.String key);
     }
 
-    public int getResCount() {
-      return internalGetRes().getMap().size();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    public boolean containsRes(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetRes().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getResMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Long> getRes() {
-      return getResMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.Long> getResMap() {
-      return internalGetRes().getMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    public long getResOrDefault(
-        java.lang.String key,
-        long defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetRes().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; res = 1;</code>
-     */
-
-    public long getResOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetRes().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetRes().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        res = ResDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        output.writeMessage(1, res);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetRes().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        res = ResDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, res);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.Balance)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.Balance other = (chain.tj.model.proto.MyPeer.Balance) obj;
-
-      boolean result = true;
-      result = result && internalGetRes().equals(
-          other.internalGetRes());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (!internalGetRes().getMap().isEmpty()) {
-        hash = (37 * hash) + RES_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRes().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.Balance parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.Balance prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.Balance}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.Balance)
-        chain.tj.model.proto.MyPeer.BalanceOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetRes();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+    public static final class Balance extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.Balance)
+            BalanceOrBuilder {
+        // Use Balance.newBuilder() to construct.
+        private Balance(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableRes();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+
+        private Balance() {
         }
-      }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.Balance.class, chain.tj.model.proto.MyPeer.Balance.Builder.class);
-      }
 
-      // Construct using chain.tj.model.proto.MyPeer.Balance.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
-      public Builder clear() {
-        super.clear();
-        internalGetMutableRes().clear();
-        return this;
-      }
 
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.Balance getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.Balance.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.Balance build() {
-        chain.tj.model.proto.MyPeer.Balance result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public chain.tj.model.proto.MyPeer.Balance buildPartial() {
-        chain.tj.model.proto.MyPeer.Balance result = new chain.tj.model.proto.MyPeer.Balance(this);
-        int from_bitField0_ = bitField0_;
-        result.res_ = internalGetRes();
-        result.res_.makeImmutable();
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.Balance) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.Balance)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.Balance other) {
-        if (other == chain.tj.model.proto.MyPeer.Balance.getDefaultInstance()) return this;
-        internalGetMutableRes().mergeFrom(
-            other.internalGetRes());
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.Balance parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.Balance) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.Long> res_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetRes() {
-        if (res_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              ResDefaultEntryHolder.defaultEntry);
-        }
-        return res_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetMutableRes() {
-        onChanged();;
-        if (res_ == null) {
-          res_ = com.google.protobuf.MapField.newMapField(
-              ResDefaultEntryHolder.defaultEntry);
-        }
-        if (!res_.isMutable()) {
-          res_ = res_.copy();
-        }
-        return res_;
-      }
-
-      public int getResCount() {
-        return internalGetRes().getMap().size();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public boolean containsRes(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetRes().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getResMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long> getRes() {
-        return getResMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.Long> getResMap() {
-        return internalGetRes().getMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public long getResOrDefault(
-          java.lang.String key,
-          long defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetRes().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public long getResOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetRes().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRes() {
-        getMutableRes().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public Builder removeRes(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableRes().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long>
-      getMutableRes() {
-        return internalGetMutableRes().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-      public Builder putRes(
-          java.lang.String key,
-          long value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        
-        getMutableRes().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; res = 1;</code>
-       */
-
-      public Builder putAllRes(
-          java.util.Map<java.lang.String, java.lang.Long> values) {
-        getMutableRes().putAll(values);
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.Balance)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.Balance)
-    private static final chain.tj.model.proto.MyPeer.Balance DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.Balance();
-    }
-
-    public static chain.tj.model.proto.MyPeer.Balance getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Balance>
-        PARSER = new com.google.protobuf.AbstractParser<Balance>() {
-      public Balance parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Balance(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Balance> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Balance> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.Balance getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface TotalResOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.TotalRes)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-    int getIssueCount();
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-    boolean containsIssue(
-        java.lang.String key);
-    /**
-     * Use {@link #getIssueMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.Long>
-    getIssue();
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.Long>
-    getIssueMap();
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    long getIssueOrDefault(
-        java.lang.String key,
-        long defaultValue);
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    long getIssueOrThrow(
-        java.lang.String key);
-
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-    int getRecycleCount();
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-    boolean containsRecycle(
-        java.lang.String key);
-    /**
-     * Use {@link #getRecycleMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.Long>
-    getRecycle();
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.Long>
-    getRecycleMap();
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    long getRecycleOrDefault(
-        java.lang.String key,
-        long defaultValue);
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    long getRecycleOrThrow(
-        java.lang.String key);
-  }
-  /**
-   * Protobuf type {@code peer.TotalRes}
-   */
-  public  static final class TotalRes extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.TotalRes)
-      TotalResOrBuilder {
-    // Use TotalRes.newBuilder() to construct.
-    private TotalRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TotalRes() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private TotalRes(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+        private Balance(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
+                            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                                res_ = com.google.protobuf.MapField.newMapField(
+                                        ResDefaultEntryHolder.defaultEntry);
+                                mutable_bitField0_ |= 0x00000001;
+                            }
+                            com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                                    res = input.readMessage(
+                                    ResDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                            res_.getMutableMap().put(res.getKey(), res.getValue());
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                issue_ = com.google.protobuf.MapField.newMapField(
-                    IssueDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-              issue = input.readMessage(
-                  IssueDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              issue_.getMutableMap().put(issue.getKey(), issue.getValue());
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                recycle_ = com.google.protobuf.MapField.newMapField(
-                    RecycleDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000002;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-              recycle = input.readMessage(
-                  RecycleDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              recycle_.getMutableMap().put(recycle.getKey(), recycle.getValue());
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
+        }
 
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 1:
-          return internalGetIssue();
-        case 2:
-          return internalGetRecycle();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @SuppressWarnings({"rawtypes"})
+        protected com.google.protobuf.MapField internalGetMapField(
+                int number) {
+            switch (number) {
+                case 1:
+                    return internalGetRes();
+                default:
+                    throw new RuntimeException(
+                            "Invalid map field number: " + number);
+            }
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.TotalRes.class, chain.tj.model.proto.MyPeer.TotalRes.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.Balance.class, chain.tj.model.proto.MyPeer.Balance.Builder.class);
+        }
+
+        public static final int RES_FIELD_NUMBER = 1;
+
+        private static final class ResDefaultEntryHolder {
+            static final com.google.protobuf.MapEntry<
+                    java.lang.String, java.lang.Long> defaultEntry =
+                    com.google.protobuf.MapEntry
+                            .<java.lang.String, java.lang.Long>newDefaultInstance(
+                                    chain.tj.model.proto.MyPeer.internal_static_peer_Balance_ResEntry_descriptor,
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "",
+                                    com.google.protobuf.WireFormat.FieldType.UINT64,
+                                    0L);
+        }
+
+        private com.google.protobuf.MapField<
+                java.lang.String, java.lang.Long> res_;
+
+        private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+        internalGetRes() {
+            if (res_ == null) {
+                return com.google.protobuf.MapField.emptyMapField(
+                        ResDefaultEntryHolder.defaultEntry);
+            }
+            return res_;
+        }
+
+        public int getResCount() {
+            return internalGetRes().getMap().size();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        public boolean containsRes(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            return internalGetRes().getMap().containsKey(key);
+        }
+
+        /**
+         * Use {@link #getResMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.Long> getRes() {
+            return getResMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        public java.util.Map<java.lang.String, java.lang.Long> getResMap() {
+            return internalGetRes().getMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        public long getResOrDefault(
+                java.lang.String key,
+                long defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetRes().getMap();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; res = 1;</code>
+         */
+
+        public long getResOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetRes().getMap();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetRes().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        res = ResDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                output.writeMessage(1, res);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetRes().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        res = ResDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(1, res);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.Balance)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.Balance other = (chain.tj.model.proto.MyPeer.Balance) obj;
+
+            boolean result = true;
+            result = result && internalGetRes().equals(
+                    other.internalGetRes());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            if (!internalGetRes().getMap().isEmpty()) {
+                hash = (37 * hash) + RES_FIELD_NUMBER;
+                hash = (53 * hash) + internalGetRes().hashCode();
+            }
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.Balance prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.Balance}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.Balance)
+                chain.tj.model.proto.MyPeer.BalanceOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMapField(
+                    int number) {
+                switch (number) {
+                    case 1:
+                        return internalGetRes();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMutableMapField(
+                    int number) {
+                switch (number) {
+                    case 1:
+                        return internalGetMutableRes();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.Balance.class, chain.tj.model.proto.MyPeer.Balance.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.Balance.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                internalGetMutableRes().clear();
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_Balance_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.Balance getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.Balance.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.Balance build() {
+                chain.tj.model.proto.MyPeer.Balance result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.Balance buildPartial() {
+                chain.tj.model.proto.MyPeer.Balance result = new chain.tj.model.proto.MyPeer.Balance(this);
+                int from_bitField0_ = bitField0_;
+                result.res_ = internalGetRes();
+                result.res_.makeImmutable();
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.Balance) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.Balance) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.Balance other) {
+                if (other == chain.tj.model.proto.MyPeer.Balance.getDefaultInstance()) return this;
+                internalGetMutableRes().mergeFrom(
+                        other.internalGetRes());
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.Balance parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.Balance) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int bitField0_;
+
+            private com.google.protobuf.MapField<
+                    java.lang.String, java.lang.Long> res_;
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetRes() {
+                if (res_ == null) {
+                    return com.google.protobuf.MapField.emptyMapField(
+                            ResDefaultEntryHolder.defaultEntry);
+                }
+                return res_;
+            }
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetMutableRes() {
+                onChanged();
+                ;
+                if (res_ == null) {
+                    res_ = com.google.protobuf.MapField.newMapField(
+                            ResDefaultEntryHolder.defaultEntry);
+                }
+                if (!res_.isMutable()) {
+                    res_ = res_.copy();
+                }
+                return res_;
+            }
+
+            public int getResCount() {
+                return internalGetRes().getMap().size();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public boolean containsRes(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                return internalGetRes().getMap().containsKey(key);
+            }
+
+            /**
+             * Use {@link #getResMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long> getRes() {
+                return getResMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public java.util.Map<java.lang.String, java.lang.Long> getResMap() {
+                return internalGetRes().getMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public long getResOrDefault(
+                    java.lang.String key,
+                    long defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetRes().getMap();
+                return map.containsKey(key) ? map.get(key) : defaultValue;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public long getResOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetRes().getMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            public Builder clearRes() {
+                getMutableRes().clear();
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public Builder removeRes(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                getMutableRes().remove(key);
+                return this;
+            }
+
+            /**
+             * Use alternate mutation accessors instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long>
+            getMutableRes() {
+                return internalGetMutableRes().getMutableMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+            public Builder putRes(
+                    java.lang.String key,
+                    long value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+
+                getMutableRes().put(key, value);
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; res = 1;</code>
+             */
+
+            public Builder putAllRes(
+                    java.util.Map<java.lang.String, java.lang.Long> values) {
+                getMutableRes().putAll(values);
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.Balance)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.Balance)
+        private static final chain.tj.model.proto.MyPeer.Balance DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.Balance();
+        }
+
+        public static chain.tj.model.proto.MyPeer.Balance getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<Balance>
+                PARSER = new com.google.protobuf.AbstractParser<Balance>() {
+            public Balance parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new Balance(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<Balance> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<Balance> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.Balance getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int ISSUE_FIELD_NUMBER = 1;
-    private static final class IssueDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.Long> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.Long>newDefaultInstance(
-                  chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_IssueEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.UINT64,
-                  0L);
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.Long> issue_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-    internalGetIssue() {
-      if (issue_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            IssueDefaultEntryHolder.defaultEntry);
-      }
-      return issue_;
+    public interface TotalResOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.TotalRes)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+        int getIssueCount();
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+        boolean containsIssue(
+                java.lang.String key);
+
+        /**
+         * Use {@link #getIssueMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, java.lang.Long>
+        getIssue();
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+        java.util.Map<java.lang.String, java.lang.Long>
+        getIssueMap();
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        long getIssueOrDefault(
+                java.lang.String key,
+                long defaultValue);
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        long getIssueOrThrow(
+                java.lang.String key);
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+        int getRecycleCount();
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+        boolean containsRecycle(
+                java.lang.String key);
+
+        /**
+         * Use {@link #getRecycleMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, java.lang.Long>
+        getRecycle();
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+        java.util.Map<java.lang.String, java.lang.Long>
+        getRecycleMap();
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        long getRecycleOrDefault(
+                java.lang.String key,
+                long defaultValue);
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        long getRecycleOrThrow(
+                java.lang.String key);
     }
 
-    public int getIssueCount() {
-      return internalGetIssue().getMap().size();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    public boolean containsIssue(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetIssue().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getIssueMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Long> getIssue() {
-      return getIssueMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.Long> getIssueMap() {
-      return internalGetIssue().getMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    public long getIssueOrDefault(
-        java.lang.String key,
-        long defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetIssue().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; issue = 1;</code>
-     */
-
-    public long getIssueOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetIssue().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    public static final int RECYCLE_FIELD_NUMBER = 2;
-    private static final class RecycleDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.Long> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.Long>newDefaultInstance(
-                  chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_RecycleEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.UINT64,
-                  0L);
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.Long> recycle_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-    internalGetRecycle() {
-      if (recycle_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            RecycleDefaultEntryHolder.defaultEntry);
-      }
-      return recycle_;
-    }
-
-    public int getRecycleCount() {
-      return internalGetRecycle().getMap().size();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    public boolean containsRecycle(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetRecycle().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getRecycleMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Long> getRecycle() {
-      return getRecycleMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.Long> getRecycleMap() {
-      return internalGetRecycle().getMap();
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    public long getRecycleOrDefault(
-        java.lang.String key,
-        long defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetRecycle().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-     */
-
-    public long getRecycleOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Long> map =
-          internalGetRecycle().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetIssue().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        issue = IssueDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        output.writeMessage(1, issue);
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetRecycle().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        recycle = RecycleDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        output.writeMessage(2, recycle);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetIssue().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        issue = IssueDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, issue);
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
-           : internalGetRecycle().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-        recycle = RecycleDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, recycle);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.TotalRes)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.TotalRes other = (chain.tj.model.proto.MyPeer.TotalRes) obj;
-
-      boolean result = true;
-      result = result && internalGetIssue().equals(
-          other.internalGetIssue());
-      result = result && internalGetRecycle().equals(
-          other.internalGetRecycle());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (!internalGetIssue().getMap().isEmpty()) {
-        hash = (37 * hash) + ISSUE_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetIssue().hashCode();
-      }
-      if (!internalGetRecycle().getMap().isEmpty()) {
-        hash = (37 * hash) + RECYCLE_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetRecycle().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.TotalRes prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.TotalRes}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.TotalRes)
-        chain.tj.model.proto.MyPeer.TotalResOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
-      }
-
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetIssue();
-          case 2:
-            return internalGetRecycle();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+    public static final class TotalRes extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.TotalRes)
+            TotalResOrBuilder {
+        // Use TotalRes.newBuilder() to construct.
+        private TotalRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 1:
-            return internalGetMutableIssue();
-          case 2:
-            return internalGetMutableRecycle();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+
+        private TotalRes() {
         }
-      }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.TotalRes.class, chain.tj.model.proto.MyPeer.TotalRes.Builder.class);
-      }
 
-      // Construct using chain.tj.model.proto.MyPeer.TotalRes.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
-      public Builder clear() {
-        super.clear();
-        internalGetMutableIssue().clear();
-        internalGetMutableRecycle().clear();
-        return this;
-      }
 
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.TotalRes getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.TotalRes.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.TotalRes build() {
-        chain.tj.model.proto.MyPeer.TotalRes result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public chain.tj.model.proto.MyPeer.TotalRes buildPartial() {
-        chain.tj.model.proto.MyPeer.TotalRes result = new chain.tj.model.proto.MyPeer.TotalRes(this);
-        int from_bitField0_ = bitField0_;
-        result.issue_ = internalGetIssue();
-        result.issue_.makeImmutable();
-        result.recycle_ = internalGetRecycle();
-        result.recycle_.makeImmutable();
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.TotalRes) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.TotalRes)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.TotalRes other) {
-        if (other == chain.tj.model.proto.MyPeer.TotalRes.getDefaultInstance()) return this;
-        internalGetMutableIssue().mergeFrom(
-            other.internalGetIssue());
-        internalGetMutableRecycle().mergeFrom(
-            other.internalGetRecycle());
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.TotalRes parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.TotalRes) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.Long> issue_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetIssue() {
-        if (issue_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              IssueDefaultEntryHolder.defaultEntry);
-        }
-        return issue_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetMutableIssue() {
-        onChanged();;
-        if (issue_ == null) {
-          issue_ = com.google.protobuf.MapField.newMapField(
-              IssueDefaultEntryHolder.defaultEntry);
-        }
-        if (!issue_.isMutable()) {
-          issue_ = issue_.copy();
-        }
-        return issue_;
-      }
-
-      public int getIssueCount() {
-        return internalGetIssue().getMap().size();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public boolean containsIssue(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetIssue().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getIssueMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long> getIssue() {
-        return getIssueMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.Long> getIssueMap() {
-        return internalGetIssue().getMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public long getIssueOrDefault(
-          java.lang.String key,
-          long defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetIssue().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public long getIssueOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetIssue().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearIssue() {
-        getMutableIssue().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public Builder removeIssue(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableIssue().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long>
-      getMutableIssue() {
-        return internalGetMutableIssue().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-      public Builder putIssue(
-          java.lang.String key,
-          long value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        
-        getMutableIssue().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; issue = 1;</code>
-       */
-
-      public Builder putAllIssue(
-          java.util.Map<java.lang.String, java.lang.Long> values) {
-        getMutableIssue().putAll(values);
-        return this;
-      }
-
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.Long> recycle_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetRecycle() {
-        if (recycle_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              RecycleDefaultEntryHolder.defaultEntry);
-        }
-        return recycle_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetMutableRecycle() {
-        onChanged();;
-        if (recycle_ == null) {
-          recycle_ = com.google.protobuf.MapField.newMapField(
-              RecycleDefaultEntryHolder.defaultEntry);
-        }
-        if (!recycle_.isMutable()) {
-          recycle_ = recycle_.copy();
-        }
-        return recycle_;
-      }
-
-      public int getRecycleCount() {
-        return internalGetRecycle().getMap().size();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public boolean containsRecycle(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetRecycle().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getRecycleMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long> getRecycle() {
-        return getRecycleMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.Long> getRecycleMap() {
-        return internalGetRecycle().getMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public long getRecycleOrDefault(
-          java.lang.String key,
-          long defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetRecycle().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public long getRecycleOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Long> map =
-            internalGetRecycle().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearRecycle() {
-        getMutableRecycle().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public Builder removeRecycle(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableRecycle().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Long>
-      getMutableRecycle() {
-        return internalGetMutableRecycle().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-      public Builder putRecycle(
-          java.lang.String key,
-          long value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        
-        getMutableRecycle().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, uint64&gt; recycle = 2;</code>
-       */
-
-      public Builder putAllRecycle(
-          java.util.Map<java.lang.String, java.lang.Long> values) {
-        getMutableRecycle().putAll(values);
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.TotalRes)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.TotalRes)
-    private static final chain.tj.model.proto.MyPeer.TotalRes DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.TotalRes();
-    }
-
-    public static chain.tj.model.proto.MyPeer.TotalRes getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TotalRes>
-        PARSER = new com.google.protobuf.AbstractParser<TotalRes>() {
-      public TotalRes parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new TotalRes(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TotalRes> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TotalRes> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.TotalRes getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface QueryTimeOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.QueryTime)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional uint64 startTime = 1;</code>
-     */
-    long getStartTime();
-
-    /**
-     * <code>optional uint64 endTime = 2;</code>
-     */
-    long getEndTime();
-  }
-  /**
-   * Protobuf type {@code peer.QueryTime}
-   */
-  public  static final class QueryTime extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.QueryTime)
-      QueryTimeOrBuilder {
-    // Use QueryTime.newBuilder() to construct.
-    private QueryTime(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private QueryTime() {
-      startTime_ = 0L;
-      endTime_ = 0L;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private QueryTime(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+        private TotalRes(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
+                            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                                issue_ = com.google.protobuf.MapField.newMapField(
+                                        IssueDefaultEntryHolder.defaultEntry);
+                                mutable_bitField0_ |= 0x00000001;
+                            }
+                            com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                                    issue = input.readMessage(
+                                    IssueDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                            issue_.getMutableMap().put(issue.getKey(), issue.getValue());
+                            break;
+                        }
+                        case 18: {
+                            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                                recycle_ = com.google.protobuf.MapField.newMapField(
+                                        RecycleDefaultEntryHolder.defaultEntry);
+                                mutable_bitField0_ |= 0x00000002;
+                            }
+                            com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                                    recycle = input.readMessage(
+                                    RecycleDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                            recycle_.getMutableMap().put(recycle.getKey(), recycle.getValue());
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 8: {
-
-              startTime_ = input.readUInt64();
-              break;
-            }
-            case 16: {
-
-              endTime_ = input.readUInt64();
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
+        }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @SuppressWarnings({"rawtypes"})
+        protected com.google.protobuf.MapField internalGetMapField(
+                int number) {
+            switch (number) {
+                case 1:
+                    return internalGetIssue();
+                case 2:
+                    return internalGetRecycle();
+                default:
+                    throw new RuntimeException(
+                            "Invalid map field number: " + number);
+            }
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.QueryTime.class, chain.tj.model.proto.MyPeer.QueryTime.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.TotalRes.class, chain.tj.model.proto.MyPeer.TotalRes.Builder.class);
+        }
+
+        public static final int ISSUE_FIELD_NUMBER = 1;
+
+        private static final class IssueDefaultEntryHolder {
+            static final com.google.protobuf.MapEntry<
+                    java.lang.String, java.lang.Long> defaultEntry =
+                    com.google.protobuf.MapEntry
+                            .<java.lang.String, java.lang.Long>newDefaultInstance(
+                                    chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_IssueEntry_descriptor,
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "",
+                                    com.google.protobuf.WireFormat.FieldType.UINT64,
+                                    0L);
+        }
+
+        private com.google.protobuf.MapField<
+                java.lang.String, java.lang.Long> issue_;
+
+        private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+        internalGetIssue() {
+            if (issue_ == null) {
+                return com.google.protobuf.MapField.emptyMapField(
+                        IssueDefaultEntryHolder.defaultEntry);
+            }
+            return issue_;
+        }
+
+        public int getIssueCount() {
+            return internalGetIssue().getMap().size();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        public boolean containsIssue(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            return internalGetIssue().getMap().containsKey(key);
+        }
+
+        /**
+         * Use {@link #getIssueMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.Long> getIssue() {
+            return getIssueMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        public java.util.Map<java.lang.String, java.lang.Long> getIssueMap() {
+            return internalGetIssue().getMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        public long getIssueOrDefault(
+                java.lang.String key,
+                long defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetIssue().getMap();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; issue = 1;</code>
+         */
+
+        public long getIssueOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetIssue().getMap();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        public static final int RECYCLE_FIELD_NUMBER = 2;
+
+        private static final class RecycleDefaultEntryHolder {
+            static final com.google.protobuf.MapEntry<
+                    java.lang.String, java.lang.Long> defaultEntry =
+                    com.google.protobuf.MapEntry
+                            .<java.lang.String, java.lang.Long>newDefaultInstance(
+                                    chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_RecycleEntry_descriptor,
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "",
+                                    com.google.protobuf.WireFormat.FieldType.UINT64,
+                                    0L);
+        }
+
+        private com.google.protobuf.MapField<
+                java.lang.String, java.lang.Long> recycle_;
+
+        private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+        internalGetRecycle() {
+            if (recycle_ == null) {
+                return com.google.protobuf.MapField.emptyMapField(
+                        RecycleDefaultEntryHolder.defaultEntry);
+            }
+            return recycle_;
+        }
+
+        public int getRecycleCount() {
+            return internalGetRecycle().getMap().size();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        public boolean containsRecycle(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            return internalGetRecycle().getMap().containsKey(key);
+        }
+
+        /**
+         * Use {@link #getRecycleMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.Long> getRecycle() {
+            return getRecycleMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        public java.util.Map<java.lang.String, java.lang.Long> getRecycleMap() {
+            return internalGetRecycle().getMap();
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        public long getRecycleOrDefault(
+                java.lang.String key,
+                long defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetRecycle().getMap();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+         */
+
+        public long getRecycleOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Long> map =
+                    internalGetRecycle().getMap();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetIssue().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        issue = IssueDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                output.writeMessage(1, issue);
+            }
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetRecycle().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        recycle = RecycleDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                output.writeMessage(2, recycle);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetIssue().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        issue = IssueDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(1, issue);
+            }
+            for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+                    : internalGetRecycle().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                        recycle = RecycleDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(2, recycle);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.TotalRes)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.TotalRes other = (chain.tj.model.proto.MyPeer.TotalRes) obj;
+
+            boolean result = true;
+            result = result && internalGetIssue().equals(
+                    other.internalGetIssue());
+            result = result && internalGetRecycle().equals(
+                    other.internalGetRecycle());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            if (!internalGetIssue().getMap().isEmpty()) {
+                hash = (37 * hash) + ISSUE_FIELD_NUMBER;
+                hash = (53 * hash) + internalGetIssue().hashCode();
+            }
+            if (!internalGetRecycle().getMap().isEmpty()) {
+                hash = (37 * hash) + RECYCLE_FIELD_NUMBER;
+                hash = (53 * hash) + internalGetRecycle().hashCode();
+            }
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.TotalRes prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.TotalRes}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.TotalRes)
+                chain.tj.model.proto.MyPeer.TotalResOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMapField(
+                    int number) {
+                switch (number) {
+                    case 1:
+                        return internalGetIssue();
+                    case 2:
+                        return internalGetRecycle();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMutableMapField(
+                    int number) {
+                switch (number) {
+                    case 1:
+                        return internalGetMutableIssue();
+                    case 2:
+                        return internalGetMutableRecycle();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.TotalRes.class, chain.tj.model.proto.MyPeer.TotalRes.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.TotalRes.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                internalGetMutableIssue().clear();
+                internalGetMutableRecycle().clear();
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TotalRes_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.TotalRes getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.TotalRes.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.TotalRes build() {
+                chain.tj.model.proto.MyPeer.TotalRes result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.TotalRes buildPartial() {
+                chain.tj.model.proto.MyPeer.TotalRes result = new chain.tj.model.proto.MyPeer.TotalRes(this);
+                int from_bitField0_ = bitField0_;
+                result.issue_ = internalGetIssue();
+                result.issue_.makeImmutable();
+                result.recycle_ = internalGetRecycle();
+                result.recycle_.makeImmutable();
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.TotalRes) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.TotalRes) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.TotalRes other) {
+                if (other == chain.tj.model.proto.MyPeer.TotalRes.getDefaultInstance()) return this;
+                internalGetMutableIssue().mergeFrom(
+                        other.internalGetIssue());
+                internalGetMutableRecycle().mergeFrom(
+                        other.internalGetRecycle());
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.TotalRes parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.TotalRes) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int bitField0_;
+
+            private com.google.protobuf.MapField<
+                    java.lang.String, java.lang.Long> issue_;
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetIssue() {
+                if (issue_ == null) {
+                    return com.google.protobuf.MapField.emptyMapField(
+                            IssueDefaultEntryHolder.defaultEntry);
+                }
+                return issue_;
+            }
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetMutableIssue() {
+                onChanged();
+                ;
+                if (issue_ == null) {
+                    issue_ = com.google.protobuf.MapField.newMapField(
+                            IssueDefaultEntryHolder.defaultEntry);
+                }
+                if (!issue_.isMutable()) {
+                    issue_ = issue_.copy();
+                }
+                return issue_;
+            }
+
+            public int getIssueCount() {
+                return internalGetIssue().getMap().size();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public boolean containsIssue(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                return internalGetIssue().getMap().containsKey(key);
+            }
+
+            /**
+             * Use {@link #getIssueMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long> getIssue() {
+                return getIssueMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public java.util.Map<java.lang.String, java.lang.Long> getIssueMap() {
+                return internalGetIssue().getMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public long getIssueOrDefault(
+                    java.lang.String key,
+                    long defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetIssue().getMap();
+                return map.containsKey(key) ? map.get(key) : defaultValue;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public long getIssueOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetIssue().getMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            public Builder clearIssue() {
+                getMutableIssue().clear();
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public Builder removeIssue(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                getMutableIssue().remove(key);
+                return this;
+            }
+
+            /**
+             * Use alternate mutation accessors instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long>
+            getMutableIssue() {
+                return internalGetMutableIssue().getMutableMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+            public Builder putIssue(
+                    java.lang.String key,
+                    long value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+
+                getMutableIssue().put(key, value);
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; issue = 1;</code>
+             */
+
+            public Builder putAllIssue(
+                    java.util.Map<java.lang.String, java.lang.Long> values) {
+                getMutableIssue().putAll(values);
+                return this;
+            }
+
+            private com.google.protobuf.MapField<
+                    java.lang.String, java.lang.Long> recycle_;
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetRecycle() {
+                if (recycle_ == null) {
+                    return com.google.protobuf.MapField.emptyMapField(
+                            RecycleDefaultEntryHolder.defaultEntry);
+                }
+                return recycle_;
+            }
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
+            internalGetMutableRecycle() {
+                onChanged();
+                ;
+                if (recycle_ == null) {
+                    recycle_ = com.google.protobuf.MapField.newMapField(
+                            RecycleDefaultEntryHolder.defaultEntry);
+                }
+                if (!recycle_.isMutable()) {
+                    recycle_ = recycle_.copy();
+                }
+                return recycle_;
+            }
+
+            public int getRecycleCount() {
+                return internalGetRecycle().getMap().size();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public boolean containsRecycle(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                return internalGetRecycle().getMap().containsKey(key);
+            }
+
+            /**
+             * Use {@link #getRecycleMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long> getRecycle() {
+                return getRecycleMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public java.util.Map<java.lang.String, java.lang.Long> getRecycleMap() {
+                return internalGetRecycle().getMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public long getRecycleOrDefault(
+                    java.lang.String key,
+                    long defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetRecycle().getMap();
+                return map.containsKey(key) ? map.get(key) : defaultValue;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public long getRecycleOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Long> map =
+                        internalGetRecycle().getMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            public Builder clearRecycle() {
+                getMutableRecycle().clear();
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public Builder removeRecycle(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                getMutableRecycle().remove(key);
+                return this;
+            }
+
+            /**
+             * Use alternate mutation accessors instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Long>
+            getMutableRecycle() {
+                return internalGetMutableRecycle().getMutableMap();
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+            public Builder putRecycle(
+                    java.lang.String key,
+                    long value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+
+                getMutableRecycle().put(key, value);
+                return this;
+            }
+
+            /**
+             * <code>map&lt;string, uint64&gt; recycle = 2;</code>
+             */
+
+            public Builder putAllRecycle(
+                    java.util.Map<java.lang.String, java.lang.Long> values) {
+                getMutableRecycle().putAll(values);
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.TotalRes)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.TotalRes)
+        private static final chain.tj.model.proto.MyPeer.TotalRes DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.TotalRes();
+        }
+
+        public static chain.tj.model.proto.MyPeer.TotalRes getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<TotalRes>
+                PARSER = new com.google.protobuf.AbstractParser<TotalRes>() {
+            public TotalRes parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new TotalRes(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<TotalRes> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<TotalRes> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.TotalRes getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int STARTTIME_FIELD_NUMBER = 1;
-    private long startTime_;
-    /**
-     * <code>optional uint64 startTime = 1;</code>
-     */
-    public long getStartTime() {
-      return startTime_;
+    public interface QueryTimeOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.QueryTime)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional uint64 startTime = 1;</code>
+         */
+        long getStartTime();
+
+        /**
+         * <code>optional uint64 endTime = 2;</code>
+         */
+        long getEndTime();
     }
 
-    public static final int ENDTIME_FIELD_NUMBER = 2;
-    private long endTime_;
-    /**
-     * <code>optional uint64 endTime = 2;</code>
-     */
-    public long getEndTime() {
-      return endTime_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (startTime_ != 0L) {
-        output.writeUInt64(1, startTime_);
-      }
-      if (endTime_ != 0L) {
-        output.writeUInt64(2, endTime_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (startTime_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, startTime_);
-      }
-      if (endTime_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(2, endTime_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.QueryTime)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.QueryTime other = (chain.tj.model.proto.MyPeer.QueryTime) obj;
-
-      boolean result = true;
-      result = result && (getStartTime()
-          == other.getStartTime());
-      result = result && (getEndTime()
-          == other.getEndTime());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + STARTTIME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getStartTime());
-      hash = (37 * hash) + ENDTIME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getEndTime());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.QueryTime prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.QueryTime}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.QueryTime)
-        chain.tj.model.proto.MyPeer.QueryTimeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.QueryTime.class, chain.tj.model.proto.MyPeer.QueryTime.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.QueryTime.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class QueryTime extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.QueryTime)
+            QueryTimeOrBuilder {
+        // Use QueryTime.newBuilder() to construct.
+        private QueryTime(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        startTime_ = 0L;
 
-        endTime_ = 0L;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.QueryTime getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.QueryTime.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.QueryTime build() {
-        chain.tj.model.proto.MyPeer.QueryTime result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private QueryTime() {
+            startTime_ = 0L;
+            endTime_ = 0L;
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.QueryTime buildPartial() {
-        chain.tj.model.proto.MyPeer.QueryTime result = new chain.tj.model.proto.MyPeer.QueryTime(this);
-        result.startTime_ = startTime_;
-        result.endTime_ = endTime_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.QueryTime) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.QueryTime)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.QueryTime other) {
-        if (other == chain.tj.model.proto.MyPeer.QueryTime.getDefaultInstance()) return this;
-        if (other.getStartTime() != 0L) {
-          setStartTime(other.getStartTime());
-        }
-        if (other.getEndTime() != 0L) {
-          setEndTime(other.getEndTime());
-        }
-        onChanged();
-        return this;
-      }
+        private QueryTime(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 8: {
 
-      public final boolean isInitialized() {
-        return true;
-      }
+                            startTime_ = input.readUInt64();
+                            break;
+                        }
+                        case 16: {
 
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.QueryTime parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.QueryTime) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private long startTime_ ;
-      /**
-       * <code>optional uint64 startTime = 1;</code>
-       */
-      public long getStartTime() {
-        return startTime_;
-      }
-      /**
-       * <code>optional uint64 startTime = 1;</code>
-       */
-      public Builder setStartTime(long value) {
-        
-        startTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 startTime = 1;</code>
-       */
-      public Builder clearStartTime() {
-        
-        startTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long endTime_ ;
-      /**
-       * <code>optional uint64 endTime = 2;</code>
-       */
-      public long getEndTime() {
-        return endTime_;
-      }
-      /**
-       * <code>optional uint64 endTime = 2;</code>
-       */
-      public Builder setEndTime(long value) {
-        
-        endTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 endTime = 2;</code>
-       */
-      public Builder clearEndTime() {
-        
-        endTime_ = 0L;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.QueryTime)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.QueryTime)
-    private static final chain.tj.model.proto.MyPeer.QueryTime DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.QueryTime();
-    }
-
-    public static chain.tj.model.proto.MyPeer.QueryTime getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<QueryTime>
-        PARSER = new com.google.protobuf.AbstractParser<QueryTime>() {
-      public QueryTime parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new QueryTime(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<QueryTime> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<QueryTime> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.QueryTime getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface TxIdOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.TxId)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bytes hash = 1;</code>
-     */
-    com.google.protobuf.ByteString getHash();
-  }
-  /**
-   * Protobuf type {@code peer.TxId}
-   */
-  public  static final class TxId extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.TxId)
-      TxIdOrBuilder {
-    // Use TxId.newBuilder() to construct.
-    private TxId(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TxId() {
-      hash_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private TxId(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+                            endTime_ = input.readUInt64();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 10: {
-
-              hash_ = input.readBytes();
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
+        }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.TxId.class, chain.tj.model.proto.MyPeer.TxId.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.QueryTime.class, chain.tj.model.proto.MyPeer.QueryTime.Builder.class);
+        }
+
+        public static final int STARTTIME_FIELD_NUMBER = 1;
+        private long startTime_;
+
+        /**
+         * <code>optional uint64 startTime = 1;</code>
+         */
+        public long getStartTime() {
+            return startTime_;
+        }
+
+        public static final int ENDTIME_FIELD_NUMBER = 2;
+        private long endTime_;
+
+        /**
+         * <code>optional uint64 endTime = 2;</code>
+         */
+        public long getEndTime() {
+            return endTime_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (startTime_ != 0L) {
+                output.writeUInt64(1, startTime_);
+            }
+            if (endTime_ != 0L) {
+                output.writeUInt64(2, endTime_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (startTime_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(1, startTime_);
+            }
+            if (endTime_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(2, endTime_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.QueryTime)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.QueryTime other = (chain.tj.model.proto.MyPeer.QueryTime) obj;
+
+            boolean result = true;
+            result = result && (getStartTime()
+                    == other.getStartTime());
+            result = result && (getEndTime()
+                    == other.getEndTime());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + STARTTIME_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getStartTime());
+            hash = (37 * hash) + ENDTIME_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getEndTime());
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.QueryTime prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.QueryTime}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.QueryTime)
+                chain.tj.model.proto.MyPeer.QueryTimeOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.QueryTime.class, chain.tj.model.proto.MyPeer.QueryTime.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.QueryTime.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                startTime_ = 0L;
+
+                endTime_ = 0L;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_QueryTime_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.QueryTime getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.QueryTime.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.QueryTime build() {
+                chain.tj.model.proto.MyPeer.QueryTime result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.QueryTime buildPartial() {
+                chain.tj.model.proto.MyPeer.QueryTime result = new chain.tj.model.proto.MyPeer.QueryTime(this);
+                result.startTime_ = startTime_;
+                result.endTime_ = endTime_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.QueryTime) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.QueryTime) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.QueryTime other) {
+                if (other == chain.tj.model.proto.MyPeer.QueryTime.getDefaultInstance()) return this;
+                if (other.getStartTime() != 0L) {
+                    setStartTime(other.getStartTime());
+                }
+                if (other.getEndTime() != 0L) {
+                    setEndTime(other.getEndTime());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.QueryTime parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.QueryTime) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private long startTime_;
+
+            /**
+             * <code>optional uint64 startTime = 1;</code>
+             */
+            public long getStartTime() {
+                return startTime_;
+            }
+
+            /**
+             * <code>optional uint64 startTime = 1;</code>
+             */
+            public Builder setStartTime(long value) {
+
+                startTime_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional uint64 startTime = 1;</code>
+             */
+            public Builder clearStartTime() {
+
+                startTime_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            private long endTime_;
+
+            /**
+             * <code>optional uint64 endTime = 2;</code>
+             */
+            public long getEndTime() {
+                return endTime_;
+            }
+
+            /**
+             * <code>optional uint64 endTime = 2;</code>
+             */
+            public Builder setEndTime(long value) {
+
+                endTime_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional uint64 endTime = 2;</code>
+             */
+            public Builder clearEndTime() {
+
+                endTime_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.QueryTime)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.QueryTime)
+        private static final chain.tj.model.proto.MyPeer.QueryTime DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.QueryTime();
+        }
+
+        public static chain.tj.model.proto.MyPeer.QueryTime getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<QueryTime>
+                PARSER = new com.google.protobuf.AbstractParser<QueryTime>() {
+            public QueryTime parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new QueryTime(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<QueryTime> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<QueryTime> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.QueryTime getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int HASH_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString hash_;
-    /**
-     * <code>optional bytes hash = 1;</code>
-     */
-    public com.google.protobuf.ByteString getHash() {
-      return hash_;
+    public interface TxIdOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.TxId)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional bytes hash = 1;</code>
+         */
+        com.google.protobuf.ByteString getHash();
     }
 
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!hash_.isEmpty()) {
-        output.writeBytes(1, hash_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!hash_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, hash_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.TxId)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.TxId other = (chain.tj.model.proto.MyPeer.TxId) obj;
-
-      boolean result = true;
-      result = result && getHash()
-          .equals(other.getHash());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + HASH_FIELD_NUMBER;
-      hash = (53 * hash) + getHash().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.TxId parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.TxId prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.TxId}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.TxId)
-        chain.tj.model.proto.MyPeer.TxIdOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.TxId.class, chain.tj.model.proto.MyPeer.TxId.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.TxId.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class TxId extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.TxId)
+            TxIdOrBuilder {
+        // Use TxId.newBuilder() to construct.
+        private TxId(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        hash_ = com.google.protobuf.ByteString.EMPTY;
 
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.TxId getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.TxId.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.TxId build() {
-        chain.tj.model.proto.MyPeer.TxId result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private TxId() {
+            hash_ = com.google.protobuf.ByteString.EMPTY;
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.TxId buildPartial() {
-        chain.tj.model.proto.MyPeer.TxId result = new chain.tj.model.proto.MyPeer.TxId(this);
-        result.hash_ = hash_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.TxId) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.TxId)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.TxId other) {
-        if (other == chain.tj.model.proto.MyPeer.TxId.getDefaultInstance()) return this;
-        if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
-          setHash(other.getHash());
-        }
-        onChanged();
-        return this;
-      }
+        private TxId(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 10: {
 
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.TxId parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.TxId) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>optional bytes hash = 1;</code>
-       */
-      public com.google.protobuf.ByteString getHash() {
-        return hash_;
-      }
-      /**
-       * <code>optional bytes hash = 1;</code>
-       */
-      public Builder setHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        hash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bytes hash = 1;</code>
-       */
-      public Builder clearHash() {
-        
-        hash_ = getDefaultInstance().getHash();
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:peer.TxId)
-    }
-
-    // @@protoc_insertion_point(class_scope:peer.TxId)
-    private static final chain.tj.model.proto.MyPeer.TxId DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.TxId();
-    }
-
-    public static chain.tj.model.proto.MyPeer.TxId getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TxId>
-        PARSER = new com.google.protobuf.AbstractParser<TxId>() {
-      public TxId parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new TxId(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TxId> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TxId> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.TxId getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface OnChainOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:peer.OnChain)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool on = 1;</code>
-     */
-    boolean getOn();
-  }
-  /**
-   * Protobuf type {@code peer.OnChain}
-   */
-  public  static final class OnChain extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:peer.OnChain)
-      OnChainOrBuilder {
-    // Use OnChain.newBuilder() to construct.
-    private OnChain(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private OnChain() {
-      on_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private OnChain(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
+                            hash_ = input.readBytes();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
             }
-            case 8: {
-
-              on_ = input.readBool();
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
-    }
+            return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
+        }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              chain.tj.model.proto.MyPeer.OnChain.class, chain.tj.model.proto.MyPeer.OnChain.Builder.class);
+            return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.TxId.class, chain.tj.model.proto.MyPeer.TxId.Builder.class);
+        }
+
+        public static final int HASH_FIELD_NUMBER = 1;
+        private com.google.protobuf.ByteString hash_;
+
+        /**
+         * <code>optional bytes hash = 1;</code>
+         */
+        public com.google.protobuf.ByteString getHash() {
+            return hash_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!hash_.isEmpty()) {
+                output.writeBytes(1, hash_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!hash_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBytesSize(1, hash_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.TxId)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.TxId other = (chain.tj.model.proto.MyPeer.TxId) obj;
+
+            boolean result = true;
+            result = result && getHash()
+                    .equals(other.getHash());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + HASH_FIELD_NUMBER;
+            hash = (53 * hash) + getHash().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.TxId prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.TxId}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.TxId)
+                chain.tj.model.proto.MyPeer.TxIdOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.TxId.class, chain.tj.model.proto.MyPeer.TxId.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.TxId.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                hash_ = com.google.protobuf.ByteString.EMPTY;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_TxId_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.TxId getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.TxId.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.TxId build() {
+                chain.tj.model.proto.MyPeer.TxId result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.TxId buildPartial() {
+                chain.tj.model.proto.MyPeer.TxId result = new chain.tj.model.proto.MyPeer.TxId(this);
+                result.hash_ = hash_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.TxId) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.TxId) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.TxId other) {
+                if (other == chain.tj.model.proto.MyPeer.TxId.getDefaultInstance()) return this;
+                if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
+                    setHash(other.getHash());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.TxId parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.TxId) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
+
+            /**
+             * <code>optional bytes hash = 1;</code>
+             */
+            public com.google.protobuf.ByteString getHash() {
+                return hash_;
+            }
+
+            /**
+             * <code>optional bytes hash = 1;</code>
+             */
+            public Builder setHash(com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                hash_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bytes hash = 1;</code>
+             */
+            public Builder clearHash() {
+
+                hash_ = getDefaultInstance().getHash();
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:peer.TxId)
+        }
+
+        // @@protoc_insertion_point(class_scope:peer.TxId)
+        private static final chain.tj.model.proto.MyPeer.TxId DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.TxId();
+        }
+
+        public static chain.tj.model.proto.MyPeer.TxId getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<TxId>
+                PARSER = new com.google.protobuf.AbstractParser<TxId>() {
+            public TxId parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new TxId(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<TxId> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<TxId> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.TxId getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int ON_FIELD_NUMBER = 1;
-    private boolean on_;
-    /**
-     * <code>optional bool on = 1;</code>
-     */
-    public boolean getOn() {
-      return on_;
+    public interface OnChainOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:peer.OnChain)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional bool on = 1;</code>
+         */
+        boolean getOn();
     }
 
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (on_ != false) {
-        output.writeBool(1, on_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (on_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, on_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof chain.tj.model.proto.MyPeer.OnChain)) {
-        return super.equals(obj);
-      }
-      chain.tj.model.proto.MyPeer.OnChain other = (chain.tj.model.proto.MyPeer.OnChain) obj;
-
-      boolean result = true;
-      result = result && (getOn()
-          == other.getOn());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + ON_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getOn());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(chain.tj.model.proto.MyPeer.OnChain prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code peer.OnChain}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:peer.OnChain)
-        chain.tj.model.proto.MyPeer.OnChainOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                chain.tj.model.proto.MyPeer.OnChain.class, chain.tj.model.proto.MyPeer.OnChain.Builder.class);
-      }
-
-      // Construct using chain.tj.model.proto.MyPeer.OnChain.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+    public static final class OnChain extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:peer.OnChain)
+            OnChainOrBuilder {
+        // Use OnChain.newBuilder() to construct.
+        private OnChain(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      public Builder clear() {
-        super.clear();
-        on_ = false;
 
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
-      }
-
-      public chain.tj.model.proto.MyPeer.OnChain getDefaultInstanceForType() {
-        return chain.tj.model.proto.MyPeer.OnChain.getDefaultInstance();
-      }
-
-      public chain.tj.model.proto.MyPeer.OnChain build() {
-        chain.tj.model.proto.MyPeer.OnChain result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private OnChain() {
+            on_ = false;
         }
-        return result;
-      }
 
-      public chain.tj.model.proto.MyPeer.OnChain buildPartial() {
-        chain.tj.model.proto.MyPeer.OnChain result = new chain.tj.model.proto.MyPeer.OnChain(this);
-        result.on_ = on_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof chain.tj.model.proto.MyPeer.OnChain) {
-          return mergeFrom((chain.tj.model.proto.MyPeer.OnChain)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
         }
-      }
 
-      public Builder mergeFrom(chain.tj.model.proto.MyPeer.OnChain other) {
-        if (other == chain.tj.model.proto.MyPeer.OnChain.getDefaultInstance()) return this;
-        if (other.getOn() != false) {
-          setOn(other.getOn());
+        private OnChain(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            int mutable_bitField0_ = 0;
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        default: {
+                            if (!input.skipField(tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                        case 8: {
+
+                            on_ = input.readBool();
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                makeExtensionsImmutable();
+            }
         }
-        onChanged();
-        return this;
-      }
 
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        chain.tj.model.proto.MyPeer.OnChain parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (chain.tj.model.proto.MyPeer.OnChain) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
         }
-        return this;
-      }
 
-      private boolean on_ ;
-      /**
-       * <code>optional bool on = 1;</code>
-       */
-      public boolean getOn() {
-        return on_;
-      }
-      /**
-       * <code>optional bool on = 1;</code>
-       */
-      public Builder setOn(boolean value) {
-        
-        on_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool on = 1;</code>
-       */
-      public Builder clearOn() {
-        
-        on_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            chain.tj.model.proto.MyPeer.OnChain.class, chain.tj.model.proto.MyPeer.OnChain.Builder.class);
+        }
 
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
+        public static final int ON_FIELD_NUMBER = 1;
+        private boolean on_;
+
+        /**
+         * <code>optional bool on = 1;</code>
+         */
+        public boolean getOn() {
+            return on_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (on_ != false) {
+                output.writeBool(1, on_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (on_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(1, on_);
+            }
+            memoizedSize = size;
+            return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof chain.tj.model.proto.MyPeer.OnChain)) {
+                return super.equals(obj);
+            }
+            chain.tj.model.proto.MyPeer.OnChain other = (chain.tj.model.proto.MyPeer.OnChain) obj;
+
+            boolean result = true;
+            result = result && (getOn()
+                    == other.getOn());
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptorForType().hashCode();
+            hash = (37 * hash) + ON_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                    getOn());
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static chain.tj.model.proto.MyPeer.OnChain parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(chain.tj.model.proto.MyPeer.OnChain prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code peer.OnChain}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:peer.OnChain)
+                chain.tj.model.proto.MyPeer.OnChainOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
+            }
+
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                chain.tj.model.proto.MyPeer.OnChain.class, chain.tj.model.proto.MyPeer.OnChain.Builder.class);
+            }
+
+            // Construct using chain.tj.model.proto.MyPeer.OnChain.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            public Builder clear() {
+                super.clear();
+                on_ = false;
+
+                return this;
+            }
+
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return chain.tj.model.proto.MyPeer.internal_static_peer_OnChain_descriptor;
+            }
+
+            public chain.tj.model.proto.MyPeer.OnChain getDefaultInstanceForType() {
+                return chain.tj.model.proto.MyPeer.OnChain.getDefaultInstance();
+            }
+
+            public chain.tj.model.proto.MyPeer.OnChain build() {
+                chain.tj.model.proto.MyPeer.OnChain result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            public chain.tj.model.proto.MyPeer.OnChain buildPartial() {
+                chain.tj.model.proto.MyPeer.OnChain result = new chain.tj.model.proto.MyPeer.OnChain(this);
+                result.on_ = on_;
+                onBuilt();
+                return result;
+            }
+
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof chain.tj.model.proto.MyPeer.OnChain) {
+                    return mergeFrom((chain.tj.model.proto.MyPeer.OnChain) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(chain.tj.model.proto.MyPeer.OnChain other) {
+                if (other == chain.tj.model.proto.MyPeer.OnChain.getDefaultInstance()) return this;
+                if (other.getOn() != false) {
+                    setOn(other.getOn());
+                }
+                onChanged();
+                return this;
+            }
+
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                chain.tj.model.proto.MyPeer.OnChain parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (chain.tj.model.proto.MyPeer.OnChain) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private boolean on_;
+
+            /**
+             * <code>optional bool on = 1;</code>
+             */
+            public boolean getOn() {
+                return on_;
+            }
+
+            /**
+             * <code>optional bool on = 1;</code>
+             */
+            public Builder setOn(boolean value) {
+
+                on_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>optional bool on = 1;</code>
+             */
+            public Builder clearOn() {
+
+                on_ = false;
+                onChanged();
+                return this;
+            }
+
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
+
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return this;
+            }
 
 
-      // @@protoc_insertion_point(builder_scope:peer.OnChain)
-    }
+            // @@protoc_insertion_point(builder_scope:peer.OnChain)
+        }
 
-    // @@protoc_insertion_point(class_scope:peer.OnChain)
-    private static final chain.tj.model.proto.MyPeer.OnChain DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.OnChain();
-    }
+        // @@protoc_insertion_point(class_scope:peer.OnChain)
+        private static final chain.tj.model.proto.MyPeer.OnChain DEFAULT_INSTANCE;
 
-    public static chain.tj.model.proto.MyPeer.OnChain getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+        static {
+            DEFAULT_INSTANCE = new chain.tj.model.proto.MyPeer.OnChain();
+        }
 
-    private static final com.google.protobuf.Parser<OnChain>
-        PARSER = new com.google.protobuf.AbstractParser<OnChain>() {
-      public OnChain parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new OnChain(input, extensionRegistry);
-      }
-    };
+        public static chain.tj.model.proto.MyPeer.OnChain getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-    public static com.google.protobuf.Parser<OnChain> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<OnChain> getParserForType() {
-      return PARSER;
-    }
-
-    public chain.tj.model.proto.MyPeer.OnChain getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_PeerRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_PeerRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_PeerResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_PeerResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_BalanceAddress_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_BalanceAddress_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_Balance_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_Balance_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_Balance_ResEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_Balance_ResEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_TotalRes_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_TotalRes_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_TotalRes_IssueEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_TotalRes_IssueEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_TotalRes_RecycleEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_TotalRes_RecycleEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_QueryTime_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_QueryTime_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_TxId_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_TxId_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_peer_OnChain_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_peer_OnChain_fieldAccessorTable;
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    java.lang.String[] descriptorData = {
-      "\n\npeer.proto\022\004peer\"K\n\013PeerRequest\022\r\n\005non" +
-      "ce\030\001 \001(\014\022\017\n\007payload\030\002 \001(\014\022\016\n\006pubkey\030\003 \001(" +
-      "\014\022\014\n\004sign\030\004 \001(\014\"G\n\014PeerResponse\022\r\n\005nonce" +
-      "\030\001 \001(\014\022\017\n\007payload\030\002 \001(\014\022\n\n\002ok\030\003 \001(\010\022\013\n\003e" +
-      "rr\030\004 \001(\t\"1\n\016BalanceAddress\022\014\n\004addr\030\001 \001(\t" +
-      "\022\021\n\ttokenType\030\002 \001(\t\"Z\n\007Balance\022#\n\003res\030\001 " +
-      "\003(\0132\026.peer.Balance.ResEntry\032*\n\010ResEntry\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\004:\0028\001\"\300\001\n\010Tota" +
-      "lRes\022(\n\005issue\030\001 \003(\0132\031.peer.TotalRes.Issu" +
-      "eEntry\022,\n\007recycle\030\002 \003(\0132\033.peer.TotalRes.",
-      "RecycleEntry\032,\n\nIssueEntry\022\013\n\003key\030\001 \001(\t\022" +
-      "\r\n\005value\030\002 \001(\004:\0028\001\032.\n\014RecycleEntry\022\013\n\003ke" +
-      "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\004:\0028\001\"/\n\tQueryTime\022" +
-      "\021\n\tstartTime\030\001 \001(\004\022\017\n\007endTime\030\002 \001(\004\"\024\n\004T" +
-      "xId\022\014\n\004hash\030\001 \001(\014\"\025\n\007OnChain\022\n\n\002on\030\001 \001(\010" +
-      "2\340\t\n\004Peer\0229\n\016NewTransaction\022\021.peer.PeerR" +
-      "equest\032\022.peer.PeerResponse\"\000\022>\n\023NewQuery" +
-      "Transaction\022\021.peer.PeerRequest\032\022.peer.Pe" +
-      "erResponse\"\000\022>\n\023BlockchainGetHeight\022\021.pe" +
-      "er.PeerRequest\032\022.peer.PeerResponse\"\000\022C\n\030",
-      "BlockchainGetBlockByHash\022\021.peer.PeerRequ" +
-      "est\032\022.peer.PeerResponse\"\000\022E\n\032BlockchainG" +
-      "etBlockByHeight\022\021.peer.PeerRequest\032\022.pee" +
-      "r.PeerResponse\"\000\022C\n\030BlockchainGetTransac" +
-      "tion\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
-      "nse\"\000\022H\n\035BlockchainGetTransactionIndex\022\021" +
-      ".peer.PeerRequest\032\022.peer.PeerResponse\"\000\022" +
-      "H\n\035BlockchainGetTransactionBlock\022\021.peer." +
-      "PeerRequest\032\022.peer.PeerResponse\"\000\0228\n\rGet" +
-      "MemberList\022\021.peer.PeerRequest\032\022.peer.Pee",
-      "rResponse\"\000\022=\n\022GetPeerPermissions\022\021.peer" +
-      ".PeerRequest\032\022.peer.PeerResponse\"\000\0221\n\006Se" +
-      "arch\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
-      "nse\"\000\0221\n\006GetNtx\022\021.peer.PeerRequest\032\022.pee" +
-      "r.PeerResponse\"\000\0226\n\013GetPeerInfo\022\021.peer.P" +
-      "eerRequest\032\022.peer.PeerResponse\"\000\022<\n\021GetP" +
-      "eerHealthData\022\021.peer.PeerRequest\032\022.peer." +
-      "PeerResponse\"\000\0229\n\016GetPeerVersion\022\021.peer." +
-      "PeerRequest\032\022.peer.PeerResponse\"\000\0223\n\nGet" +
-      "Balance\022\024.peer.BalanceAddress\032\r.peer.Bal",
-      "ance\"\000\022-\n\010GetTotal\022\017.peer.QueryTime\032\016.pe" +
-      "er.TotalRes\"\000\0228\n\rSaveFirstConn\022\021.peer.Pe" +
-      "erRequest\032\022.peer.PeerResponse\"\000\022(\n\tIsOnC" +
-      "hain\022\n.peer.TxId\032\r.peer.OnChain\"\000\0222\n\007Led" +
-      "gers\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
-      "nse\"\000\022,\n\003GDI\022\021.peer.PeerRequest\032\022.peer.P" +
-      "eerResponseB\036\n\024chain.tj.model.protoB\006MyP" +
-      "eerb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+        private static final com.google.protobuf.Parser<OnChain>
+                PARSER = new com.google.protobuf.AbstractParser<OnChain>() {
+            public OnChain parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new OnChain(input, extensionRegistry);
+            }
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_peer_PeerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_peer_PeerRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_PeerRequest_descriptor,
-        new java.lang.String[] { "Nonce", "Payload", "Pubkey", "Sign", });
-    internal_static_peer_PeerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_peer_PeerResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_PeerResponse_descriptor,
-        new java.lang.String[] { "Nonce", "Payload", "Ok", "Err", });
-    internal_static_peer_BalanceAddress_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_peer_BalanceAddress_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_BalanceAddress_descriptor,
-        new java.lang.String[] { "Addr", "TokenType", });
-    internal_static_peer_Balance_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_peer_Balance_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_Balance_descriptor,
-        new java.lang.String[] { "Res", });
-    internal_static_peer_Balance_ResEntry_descriptor =
-      internal_static_peer_Balance_descriptor.getNestedTypes().get(0);
-    internal_static_peer_Balance_ResEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_Balance_ResEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_peer_TotalRes_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_peer_TotalRes_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_TotalRes_descriptor,
-        new java.lang.String[] { "Issue", "Recycle", });
-    internal_static_peer_TotalRes_IssueEntry_descriptor =
-      internal_static_peer_TotalRes_descriptor.getNestedTypes().get(0);
-    internal_static_peer_TotalRes_IssueEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_TotalRes_IssueEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_peer_TotalRes_RecycleEntry_descriptor =
-      internal_static_peer_TotalRes_descriptor.getNestedTypes().get(1);
-    internal_static_peer_TotalRes_RecycleEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_TotalRes_RecycleEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_peer_QueryTime_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_peer_QueryTime_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_QueryTime_descriptor,
-        new java.lang.String[] { "StartTime", "EndTime", });
-    internal_static_peer_TxId_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_peer_TxId_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_TxId_descriptor,
-        new java.lang.String[] { "Hash", });
-    internal_static_peer_OnChain_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_peer_OnChain_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_peer_OnChain_descriptor,
-        new java.lang.String[] { "On", });
-  }
 
-  // @@protoc_insertion_point(outer_class_scope)
+        public static com.google.protobuf.Parser<OnChain> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<OnChain> getParserForType() {
+            return PARSER;
+        }
+
+        public chain.tj.model.proto.MyPeer.OnChain getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
+    }
+
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_PeerRequest_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_PeerRequest_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_PeerResponse_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_PeerResponse_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_BalanceAddress_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_BalanceAddress_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_Balance_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_Balance_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_Balance_ResEntry_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_Balance_ResEntry_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_TotalRes_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_TotalRes_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_TotalRes_IssueEntry_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_TotalRes_IssueEntry_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_TotalRes_RecycleEntry_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_TotalRes_RecycleEntry_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_QueryTime_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_QueryTime_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_TxId_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_TxId_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_peer_OnChain_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_peer_OnChain_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        java.lang.String[] descriptorData = {
+                "\n\npeer.proto\022\004peer\"K\n\013PeerRequest\022\r\n\005non" +
+                        "ce\030\001 \001(\014\022\017\n\007payload\030\002 \001(\014\022\016\n\006pubkey\030\003 \001(" +
+                        "\014\022\014\n\004sign\030\004 \001(\014\"G\n\014PeerResponse\022\r\n\005nonce" +
+                        "\030\001 \001(\014\022\017\n\007payload\030\002 \001(\014\022\n\n\002ok\030\003 \001(\010\022\013\n\003e" +
+                        "rr\030\004 \001(\t\"1\n\016BalanceAddress\022\014\n\004addr\030\001 \001(\t" +
+                        "\022\021\n\ttokenType\030\002 \001(\t\"Z\n\007Balance\022#\n\003res\030\001 " +
+                        "\003(\0132\026.peer.Balance.ResEntry\032*\n\010ResEntry\022" +
+                        "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\004:\0028\001\"\300\001\n\010Tota" +
+                        "lRes\022(\n\005issue\030\001 \003(\0132\031.peer.TotalRes.Issu" +
+                        "eEntry\022,\n\007recycle\030\002 \003(\0132\033.peer.TotalRes.",
+                "RecycleEntry\032,\n\nIssueEntry\022\013\n\003key\030\001 \001(\t\022" +
+                        "\r\n\005value\030\002 \001(\004:\0028\001\032.\n\014RecycleEntry\022\013\n\003ke" +
+                        "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\004:\0028\001\"/\n\tQueryTime\022" +
+                        "\021\n\tstartTime\030\001 \001(\004\022\017\n\007endTime\030\002 \001(\004\"\024\n\004T" +
+                        "xId\022\014\n\004hash\030\001 \001(\014\"\025\n\007OnChain\022\n\n\002on\030\001 \001(\010" +
+                        "2\340\t\n\004Peer\0229\n\016NewTransaction\022\021.peer.PeerR" +
+                        "equest\032\022.peer.PeerResponse\"\000\022>\n\023NewQuery" +
+                        "Transaction\022\021.peer.PeerRequest\032\022.peer.Pe" +
+                        "erResponse\"\000\022>\n\023BlockchainGetHeight\022\021.pe" +
+                        "er.PeerRequest\032\022.peer.PeerResponse\"\000\022C\n\030",
+                "BlockchainGetBlockByHash\022\021.peer.PeerRequ" +
+                        "est\032\022.peer.PeerResponse\"\000\022E\n\032BlockchainG" +
+                        "etBlockByHeight\022\021.peer.PeerRequest\032\022.pee" +
+                        "r.PeerResponse\"\000\022C\n\030BlockchainGetTransac" +
+                        "tion\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
+                        "nse\"\000\022H\n\035BlockchainGetTransactionIndex\022\021" +
+                        ".peer.PeerRequest\032\022.peer.PeerResponse\"\000\022" +
+                        "H\n\035BlockchainGetTransactionBlock\022\021.peer." +
+                        "PeerRequest\032\022.peer.PeerResponse\"\000\0228\n\rGet" +
+                        "MemberList\022\021.peer.PeerRequest\032\022.peer.Pee",
+                "rResponse\"\000\022=\n\022GetPeerPermissions\022\021.peer" +
+                        ".PeerRequest\032\022.peer.PeerResponse\"\000\0221\n\006Se" +
+                        "arch\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
+                        "nse\"\000\0221\n\006GetNtx\022\021.peer.PeerRequest\032\022.pee" +
+                        "r.PeerResponse\"\000\0226\n\013GetPeerInfo\022\021.peer.P" +
+                        "eerRequest\032\022.peer.PeerResponse\"\000\022<\n\021GetP" +
+                        "eerHealthData\022\021.peer.PeerRequest\032\022.peer." +
+                        "PeerResponse\"\000\0229\n\016GetPeerVersion\022\021.peer." +
+                        "PeerRequest\032\022.peer.PeerResponse\"\000\0223\n\nGet" +
+                        "Balance\022\024.peer.BalanceAddress\032\r.peer.Bal",
+                "ance\"\000\022-\n\010GetTotal\022\017.peer.QueryTime\032\016.pe" +
+                        "er.TotalRes\"\000\0228\n\rSaveFirstConn\022\021.peer.Pe" +
+                        "erRequest\032\022.peer.PeerResponse\"\000\022(\n\tIsOnC" +
+                        "hain\022\n.peer.TxId\032\r.peer.OnChain\"\000\0222\n\007Led" +
+                        "gers\022\021.peer.PeerRequest\032\022.peer.PeerRespo" +
+                        "nse\"\000\022,\n\003GDI\022\021.peer.PeerRequest\032\022.peer.P" +
+                        "eerResponseB\036\n\024chain.tj.model.protoB\006MyP" +
+                        "eerb\006proto3"
+        };
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        }, assigner);
+        internal_static_peer_PeerRequest_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_peer_PeerRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_PeerRequest_descriptor,
+                new java.lang.String[]{"Nonce", "Payload", "Pubkey", "Sign",});
+        internal_static_peer_PeerResponse_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_peer_PeerResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_PeerResponse_descriptor,
+                new java.lang.String[]{"Nonce", "Payload", "Ok", "Err",});
+        internal_static_peer_BalanceAddress_descriptor =
+                getDescriptor().getMessageTypes().get(2);
+        internal_static_peer_BalanceAddress_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_BalanceAddress_descriptor,
+                new java.lang.String[]{"Addr", "TokenType",});
+        internal_static_peer_Balance_descriptor =
+                getDescriptor().getMessageTypes().get(3);
+        internal_static_peer_Balance_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_Balance_descriptor,
+                new java.lang.String[]{"Res",});
+        internal_static_peer_Balance_ResEntry_descriptor =
+                internal_static_peer_Balance_descriptor.getNestedTypes().get(0);
+        internal_static_peer_Balance_ResEntry_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_Balance_ResEntry_descriptor,
+                new java.lang.String[]{"Key", "Value",});
+        internal_static_peer_TotalRes_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_peer_TotalRes_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_TotalRes_descriptor,
+                new java.lang.String[]{"Issue", "Recycle",});
+        internal_static_peer_TotalRes_IssueEntry_descriptor =
+                internal_static_peer_TotalRes_descriptor.getNestedTypes().get(0);
+        internal_static_peer_TotalRes_IssueEntry_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_TotalRes_IssueEntry_descriptor,
+                new java.lang.String[]{"Key", "Value",});
+        internal_static_peer_TotalRes_RecycleEntry_descriptor =
+                internal_static_peer_TotalRes_descriptor.getNestedTypes().get(1);
+        internal_static_peer_TotalRes_RecycleEntry_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_TotalRes_RecycleEntry_descriptor,
+                new java.lang.String[]{"Key", "Value",});
+        internal_static_peer_QueryTime_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_peer_QueryTime_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_QueryTime_descriptor,
+                new java.lang.String[]{"StartTime", "EndTime",});
+        internal_static_peer_TxId_descriptor =
+                getDescriptor().getMessageTypes().get(6);
+        internal_static_peer_TxId_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_TxId_descriptor,
+                new java.lang.String[]{"Hash",});
+        internal_static_peer_OnChain_descriptor =
+                getDescriptor().getMessageTypes().get(7);
+        internal_static_peer_OnChain_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_peer_OnChain_descriptor,
+                new java.lang.String[]{"On",});
+    }
+
+    // @@protoc_insertion_point(outer_class_scope)
 }

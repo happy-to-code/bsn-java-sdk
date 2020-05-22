@@ -1,7 +1,11 @@
 package chain.tj.util;
 
 import chain.tj.model.pojo.dto.PeerTxDto;
+import chain.tj.model.proto.PeerGrpc;
 import com.google.protobuf.ByteString;
+import io.grpc.ManagedChannel;
+import io.grpc.netty.NegotiationType;
+import io.grpc.netty.NettyChannelBuilder;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.codec.binary.Hex;
@@ -16,7 +20,6 @@ import java.nio.charset.CharsetDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class PeerUtil {
@@ -117,13 +120,15 @@ public class PeerUtil {
      * @param
      * @return
      */
-    // public static PeerGrpc.PeerBlockingStub getBlockingStubByIpAndPort(String host, int port) {
-    //     ManagedChannel channel = NettyChannelBuilder.forAddress(host, port)
-    //             .negotiationType(NegotiationType.PLAINTEXT)
-    //             .build();
-    //
-    //     return PeerGrpc.newBlockingStub(channel);
-    // }
+    public static PeerGrpc.PeerBlockingStub getStubByIpAndPort(String ip, Integer port) {
+        ManagedChannel channel = NettyChannelBuilder.forAddress("10.1.3.150", 9008)
+                .negotiationType(NegotiationType.PLAINTEXT)
+                .build();
+
+        return PeerGrpc.newBlockingStub(channel);
+    }
+
+
     public static String bytesToString(ByteString src, String charSet) {
         if (StringUtils.isEmpty(charSet)) {
             charSet = "GB2312";
