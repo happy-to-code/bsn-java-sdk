@@ -2,6 +2,8 @@ package chain.tj.model.pojo.query;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Describe:
  * @Author: zhangyifei
@@ -56,6 +58,23 @@ public class NewTxQueryDto {
      * 展示的名称
      */
     private String shownName;
+
+    //==========================================
+    /**
+     * 子链名称
+     */
+    private String subPeerName;
+
+    /**
+     * rpc地址 (default "10.1.3.157:9000")
+     */
+    private String rpcAddr;
+
+    /**
+     * 修改权限
+     */
+    private List<Integer> permission;
+
 
 
     public NewTxQueryDto() {

@@ -24,6 +24,7 @@ import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
 import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 import static chain.tj.util.TransactionUtil.getTransactionDto;
+import static chain.tj.util.TransactionUtil.serialTransactionDto;
 
 /**
  * @Describe:节点变更
@@ -45,7 +46,7 @@ public class CreateSystemPeer implements SystemTx {
 
         // 获取当前时间戳
         long currentTime = System.currentTimeMillis() / 1000;
-        // long currentTime = 1590050482;
+        // long currentTime = 1590386346;
 
         // 根据subType获取TransactionDto
         TransactionDto transactionDto = getTransactionDtoBySubType(currentTime, newTxQueryDto);
@@ -122,61 +123,6 @@ public class CreateSystemPeer implements SystemTx {
                 .build();
     }
 
-    /**
-     * 序列化 TransactionDto
-     *
-     * @param transactionDto
-     * @return
-     */
-    private byte[] serialTransactionDto(TransactionDto transactionDto) {
-        System.out.println("transactionDto = " + transactionDto);
-        ByteBuf buf = Unpooled.buffer();
-
-        if (null != transactionDto.getTransactionHeader()) {
-            if (null != transactionDto.getTransactionHeader().getVersion()) {
-                buf.writeBytes(int2Bytes(transactionDto.getTransactionHeader().getVersion()));
-            }
-            if (null != transactionDto.getTransactionHeader().getType()) {
-                buf.writeBytes(int2Bytes(transactionDto.getTransactionHeader().getType()));
-            }
-            if (null != transactionDto.getTransactionHeader().getSubType()) {
-                buf.writeBytes(int2Bytes(transactionDto.getTransactionHeader().getSubType()));
-            }
-            if (null != transactionDto.getTransactionHeader().getTimestamp()) {
-                buf.writeBytes(long2Bytes(transactionDto.getTransactionHeader().getTimestamp()));
-            }
-        }
-
-        if (null != transactionDto.getData()) {
-            buf.writeBytes(int2Bytes(transactionDto.getData().length));
-            buf.writeBytes(transactionDto.getData());
-        } else {
-            buf.writeInt(0);
-        }
-
-        if (null != transactionDto.getExtra()) {
-            buf.writeBytes(int2Bytes(transactionDto.getExtra().length));
-            buf.writeBytes(transactionDto.getExtra());
-        } else {
-            buf.writeInt(0);
-        }
-
-        if (null != transactionDto.getPubKey()) {
-            buf.writeBytes(int2Bytes(transactionDto.getPubKey().length));
-            buf.writeBytes(transactionDto.getPubKey());
-        } else {
-            buf.writeInt(0);
-        }
-        buf.writeInt(0);
-
-        byte[] bytes1 = new byte[buf.writerIndex()];
-
-        byte[] array = buf.array();
-        for (int i = 0; i < bytes1.length; i++) {
-            bytes1[i] = array[i];
-        }
-        return bytes1;
-    }
 
     /**
      * 序列化PeerDto,并且给transactionDto赋值

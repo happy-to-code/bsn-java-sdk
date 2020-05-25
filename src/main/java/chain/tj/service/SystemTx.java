@@ -11,7 +11,7 @@ import chain.tj.model.pojo.query.NewTxQueryDto;
 public interface SystemTx {
 
     /**
-     * 创建交易
+     * 创建相关
      *
      * @param newTxQueryDto
      * @return
