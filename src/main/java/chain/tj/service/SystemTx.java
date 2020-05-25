@@ -1,4 +1,4 @@
-package chain.tj.service.systemtx;
+package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.query.NewTxQueryDto;

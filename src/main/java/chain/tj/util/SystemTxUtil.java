@@ -2,7 +2,7 @@ package chain.tj.util;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.query.NewTxQueryDto;
-import chain.tj.service.systemtx.SystemTx;
+import chain.tj.service.SystemTx;
 import org.springframework.stereotype.Component;
 
 /**

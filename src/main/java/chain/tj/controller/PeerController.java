@@ -2,8 +2,8 @@ package chain.tj.controller;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.query.NewTxQueryDto;
-import chain.tj.service.systemtx.SystemTx;
-import chain.tj.service.systemtx.impl.CreateSystemPeer;
+import chain.tj.service.SystemTx;
+import chain.tj.service.systemtx.CreateSystemPeer;
 import chain.tj.util.SystemTxUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

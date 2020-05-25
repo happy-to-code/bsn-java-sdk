@@ -1,4 +1,4 @@
-package chain.tj.service.systemtx.impl;
+package chain.tj.service.systemtx;
 
 import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
@@ -8,7 +8,7 @@ import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.MyTransaction;
 import chain.tj.model.proto.PeerGrpc;
-import chain.tj.service.systemtx.SystemTx;
+import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

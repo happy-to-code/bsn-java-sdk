@@ -1,7 +1,7 @@
 package chain.tj.service;
 
 import chain.tj.model.pojo.query.NewTxQueryDto;
-import chain.tj.service.systemtx.impl.CreateSystemPeer;
+import chain.tj.service.systemtx.CreateSystemPeer;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
