@@ -1,5 +1,6 @@
 package chain.tj.model.pojo.query;
 
+import chain.tj.model.pojo.dto.SubLedgerTxDto;
 import lombok.Data;
 
 import java.util.List;
@@ -75,6 +76,8 @@ public class NewTxQueryDto {
      */
     private List<Integer> permission;
 
+    //==========================================
+    private SubLedgerTxDto subLedgerTxDto;
 
 
     public NewTxQueryDto() {

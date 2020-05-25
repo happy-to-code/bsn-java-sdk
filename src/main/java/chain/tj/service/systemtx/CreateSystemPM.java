@@ -7,7 +7,6 @@ import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.dto.TransactionHeaderDto;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
-import chain.tj.model.proto.MyTransaction;
 import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
@@ -24,6 +23,7 @@ import static chain.tj.util.GmUtils.sm2Sign;
 import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
 import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
+import static chain.tj.util.TransactionUtil.getPeerRequest;
 import static chain.tj.util.TransactionUtil.serialTransactionDto;
 
 /**
@@ -57,7 +57,7 @@ public class CreateSystemPM implements SystemTx {
         // long currentTime = 1590390219;
 
         // 创建交易参数对象
-        TransactionDto transactionDto = createTransactionDto(currentTime, newTxQueryDto);
+        TransactionDto transactionDto = createTransactionDto(currentTime);
         transactionDto.setPubKey(peerPubKey.toByteArray());
 
         // 构建 PermissionTxDto 对象
@@ -110,35 +110,6 @@ public class CreateSystemPM implements SystemTx {
         }
 
         return RestResponse.failure("权限变更失败", StatusCode.SERVER_500000.value());
-    }
-
-    /**
-     * 封装请求对象
-     *
-     * @param transactionDto
-     * @param peerPubKey     链上的公钥
-     * @return MyPeer.PeerRequest
-     */
-    private MyPeer.PeerRequest getPeerRequest(TransactionDto transactionDto, ByteString peerPubKey) {
-        MyTransaction.TransactionHeader transactionHeader = MyTransaction.TransactionHeader.newBuilder()
-                .setVersion(transactionDto.getTransactionHeader().getVersion())
-                .setType(transactionDto.getTransactionHeader().getType())
-                .setSubType(transactionDto.getTransactionHeader().getSubType())
-                .setTimestamp(transactionDto.getTransactionHeader().getTimestamp())
-                .setTransactionHash(ByteString.copyFrom(transactionDto.getTransactionHeader().getTransactionHash()))
-                .build();
-
-        MyTransaction.Transaction transaction = MyTransaction.Transaction.newBuilder()
-                .setHeader(transactionHeader)
-                .setPubkey(peerPubKey)
-                .setData(ByteString.copyFrom(transactionDto.getData()))
-                .setSign(ByteString.copyFrom(transactionDto.getSign()))
-                .build();
-
-        return MyPeer.PeerRequest.newBuilder()
-                .setPubkey(peerPubKey)
-                .setPayload(transaction.toByteString())
-                .build();
     }
 
 
@@ -240,10 +211,9 @@ public class CreateSystemPM implements SystemTx {
      * 创建交易参数对象
      *
      * @param currentTime
-     * @param newTxQueryDto
      * @return
      */
-    private TransactionDto createTransactionDto(long currentTime, NewTxQueryDto newTxQueryDto) {
+    private TransactionDto createTransactionDto(long currentTime) {
         TransactionDto transactionDto = new TransactionDto();
 
 

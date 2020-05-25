@@ -2,6 +2,9 @@ package chain.tj.util;
 
 import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.dto.TransactionHeaderDto;
+import chain.tj.model.proto.MyPeer;
+import chain.tj.model.proto.MyTransaction;
+import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -89,4 +92,34 @@ public class TransactionUtil {
         }
         return bytesReturn;
     }
+
+    /**
+     * 封装请求对象
+     *
+     * @param transactionDto
+     * @param peerPubKey     链上的公钥
+     * @return MyPeer.PeerRequest
+     */
+    public static MyPeer.PeerRequest getPeerRequest(TransactionDto transactionDto, ByteString peerPubKey) {
+        MyTransaction.TransactionHeader transactionHeader = MyTransaction.TransactionHeader.newBuilder()
+                .setVersion(transactionDto.getTransactionHeader().getVersion())
+                .setType(transactionDto.getTransactionHeader().getType())
+                .setSubType(transactionDto.getTransactionHeader().getSubType())
+                .setTimestamp(transactionDto.getTransactionHeader().getTimestamp())
+                .setTransactionHash(ByteString.copyFrom(transactionDto.getTransactionHeader().getTransactionHash()))
+                .build();
+
+        MyTransaction.Transaction transaction = MyTransaction.Transaction.newBuilder()
+                .setHeader(transactionHeader)
+                .setPubkey(peerPubKey)
+                .setData(ByteString.copyFrom(transactionDto.getData()))
+                .setSign(ByteString.copyFrom(transactionDto.getSign()))
+                .build();
+
+        return MyPeer.PeerRequest.newBuilder()
+                .setPubkey(peerPubKey)
+                .setPayload(transaction.toByteString())
+                .build();
+    }
+
 }

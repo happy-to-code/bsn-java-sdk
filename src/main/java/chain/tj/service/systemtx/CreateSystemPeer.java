@@ -6,12 +6,9 @@ import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
-import chain.tj.model.proto.MyTransaction;
 import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,8 +20,7 @@ import static chain.tj.util.GmUtils.sm2Sign;
 import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
 import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
-import static chain.tj.util.TransactionUtil.getTransactionDto;
-import static chain.tj.util.TransactionUtil.serialTransactionDto;
+import static chain.tj.util.TransactionUtil.*;
 
 /**
  * @Describe:节点变更
@@ -92,35 +88,6 @@ public class CreateSystemPeer implements SystemTx {
         }
 
         return RestResponse.failure("节点变更失败", StatusCode.SERVER_500000.value());
-    }
-
-    /**
-     * 封装请求对象
-     *
-     * @param transactionDto
-     * @param peerPubKey     链上的公钥
-     * @return MyPeer.PeerRequest
-     */
-    private MyPeer.PeerRequest getPeerRequest(TransactionDto transactionDto, ByteString peerPubKey) {
-        MyTransaction.TransactionHeader transactionHeader = MyTransaction.TransactionHeader.newBuilder()
-                .setVersion(transactionDto.getTransactionHeader().getVersion())
-                .setType(transactionDto.getTransactionHeader().getType())
-                .setSubType(transactionDto.getTransactionHeader().getSubType())
-                .setTimestamp(transactionDto.getTransactionHeader().getTimestamp())
-                .setTransactionHash(ByteString.copyFrom(transactionDto.getTransactionHeader().getTransactionHash()))
-                .build();
-
-        MyTransaction.Transaction transaction = MyTransaction.Transaction.newBuilder()
-                .setHeader(transactionHeader)
-                .setPubkey(peerPubKey)
-                .setData(ByteString.copyFrom(transactionDto.getData()))
-                .setSign(ByteString.copyFrom(transactionDto.getSign()))
-                .build();
-
-        return MyPeer.PeerRequest.newBuilder()
-                .setPubkey(peerPubKey)
-                .setPayload(transaction.toByteString())
-                .build();
     }
 
 
