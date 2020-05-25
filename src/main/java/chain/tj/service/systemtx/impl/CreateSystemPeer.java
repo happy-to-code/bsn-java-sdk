@@ -84,6 +84,7 @@ public class CreateSystemPeer implements SystemTx {
         PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
         // 调用接口
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
+        log.info("peerResponse--->{}", peerResponse);
 
         if (peerResponse.getOk()) {
             return RestResponse.success();

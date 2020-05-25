@@ -2,7 +2,6 @@ package chain.tj.controller;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.query.NewTxQueryDto;
-import chain.tj.service.PeerService;
 import chain.tj.service.systemtx.SystemTx;
 import chain.tj.service.systemtx.impl.CreateSystemPeer;
 import chain.tj.util.SystemTxUtil;
@@ -20,15 +19,12 @@ import javax.annotation.Resource;
 @RequestMapping("/")
 public class PeerController {
 
-    @Resource
-    private PeerService peerService;
+
     @Resource
     private SystemTxUtil systemTxUtil;
 
     /**
      * 创建交易
-     *
-     * @param newTxQueryDto
      */
     @RequestMapping("newTx")
     public RestResponse newTx() {

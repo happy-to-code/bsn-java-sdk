@@ -18,8 +18,6 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PeerServiceTest extends TestCase {
-    @Resource
-    private PeerService peerService;
 
     @Resource
     private CreateSystemPeer createSystemPeer;
@@ -29,7 +27,6 @@ public class PeerServiceTest extends TestCase {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
         newTxQueryDto.setPeerType(0);
         newTxQueryDto.setSubType(0);
-        // newTxQueryDto.setType(4);
         newTxQueryDto.setOpType(0);
         newTxQueryDto.setAddr("/ip4/10.1.13.150/tcp/60005");
         newTxQueryDto.setRpcPort(9008);
@@ -37,6 +34,5 @@ public class PeerServiceTest extends TestCase {
         newTxQueryDto.setShownName("newname");
 
         createSystemPeer.newTransaction(newTxQueryDto);
-        // peerService.newTransaction(newTxQueryDto);
     }
 }
