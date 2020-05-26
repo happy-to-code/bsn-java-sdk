@@ -75,7 +75,6 @@ public class CreateSystemSubLeadger implements SystemTx {
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         log.info("peerResponse--->{}", peerResponse);
 
-
         return null;
     }
 
