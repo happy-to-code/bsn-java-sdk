@@ -1,5 +1,6 @@
 package chain.tj.model.pojo.query;
 
+import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.pojo.dto.SubLedgerTxDto;
 import chain.tj.model.pojo.dto.SysContractStatusTxDto;
 import lombok.Data;
@@ -78,6 +79,8 @@ public class NewTxQueryDto {
     private List<Integer> permission;
 
     //==========================================
+    private PeerTxDto peerTxDto;
+
     private SubLedgerTxDto subLedgerTxDto;
 
     private SysContractStatusTxDto sysContractStatusTxDto;

@@ -13,13 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Arrays;
 
-import static chain.tj.util.GmUtils.sm2Sign;
-import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 import static chain.tj.util.TransactionUtil.*;
 
 /**
@@ -42,7 +38,6 @@ public class CreateSystemPeer implements SystemTx {
 
         // 获取当前时间戳
         long currentTime = System.currentTimeMillis() / 1000;
-        // long currentTime = 1590386346;
 
         // 根据subType获取TransactionDto
         TransactionDto transactionDto = getTransactionDtoBySubType(currentTime, newTxQueryDto);
@@ -50,35 +45,14 @@ public class CreateSystemPeer implements SystemTx {
         // 序列化PeerDto,并且给transactionDto赋值
         serialPeerTxDto(newTxQueryDto, peerPubKey, transactionDto);
 
-        // 序列化transactionDto
-        byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
-        // sm3加密
-        byte[] hashVal = sm3Hash(transactionDtoBytes);
-
-        log.info("hashVal的十六进制：{}", toHexString(hashVal));
-
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] signBytes = new byte[0];
-        try {
-            signBytes = sm2Sign(priKeyBytes, transactionDtoBytes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        transactionDto.getTransactionHeader().setTransactionHash(hashVal);
-        transactionDto.setSign(signBytes);
+        // 给TransactionDto对象赋值
+        setValueForTransactionDto(transactionDto);
 
         // PeerRequest: Transaction, PeerResponse:PeerResponse
         // 封装请求对象
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getPeerTxDto().getRpcPort());
         // 调用接口
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         log.info("peerResponse--->{}", peerResponse);
@@ -101,13 +75,13 @@ public class CreateSystemPeer implements SystemTx {
     private void serialPeerTxDto(NewTxQueryDto newTxQueryDto, ByteString peerPubKey, TransactionDto transactionDto) {
         PeerTxDto peerTxDto = new PeerTxDto();
 
-        peerTxDto.setOpType(newTxQueryDto.getOpType());
-        peerTxDto.setPeerType(newTxQueryDto.getPeerType());
-        peerTxDto.setId(newTxQueryDto.getMemberId());
-        peerTxDto.setShownName(newTxQueryDto.getShownName());
-        peerTxDto.setLanAddrs(Arrays.asList(newTxQueryDto.getAddr()));
-        peerTxDto.setWlanAddrs(Arrays.asList(newTxQueryDto.getAddr()));
-        peerTxDto.setRpcPort(newTxQueryDto.getRpcPort());
+        peerTxDto.setOpType(newTxQueryDto.getPeerTxDto().getOpType());
+        peerTxDto.setPeerType(newTxQueryDto.getPeerTxDto().getPeerType());
+        peerTxDto.setId(newTxQueryDto.getPeerTxDto().getId());
+        peerTxDto.setShownName(newTxQueryDto.getPeerTxDto().getShownName());
+        peerTxDto.setLanAddrs(newTxQueryDto.getPeerTxDto().getLanAddrs());
+        peerTxDto.setWlanAddrs(newTxQueryDto.getPeerTxDto().getWlanAddrs());
+        peerTxDto.setRpcPort(newTxQueryDto.getPeerTxDto().getRpcPort());
 
         // 获取peerTxDtoBytes
         byte[] peerTxDtoBytes = getPeerTxDtoBytes(peerTxDto);
@@ -131,7 +105,7 @@ public class CreateSystemPeer implements SystemTx {
     private TransactionDto getTransactionDtoBySubType(long currentTime, NewTxQueryDto newTxQueryDto) {
         TransactionDto transactionDto = getTransactionDto(currentTime);
 
-        Integer opType = newTxQueryDto.getOpType();
+        Integer opType = newTxQueryDto.getPeerTxDto().getOpType();
         if (opType == 0) {
             transactionDto.getTransactionHeader().setSubType(0);
         } else {

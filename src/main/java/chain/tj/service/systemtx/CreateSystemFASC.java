@@ -16,13 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
-import static chain.tj.util.GmUtils.sm2Sign;
-import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.PeerUtil.int2Bytes;
-import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 import static chain.tj.util.TransactionUtil.*;
 
 /**
@@ -65,28 +59,8 @@ public class CreateSystemFASC implements SystemTx {
         // sysData字节数组set进transactionDto对象
         transactionDto.setData(sysData);
 
-        // 序列化transactionDto
-        byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
-
-        // sm3加密
-        byte[] hashVal = sm3Hash(transactionDtoBytes);
-
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] signBytes = new byte[0];
-        try {
-            signBytes = sm2Sign(priKeyBytes, transactionDtoBytes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        transactionDto.getTransactionHeader().setTransactionHash(hashVal);
-        transactionDto.setSign(signBytes);
+        // 给TransactionDto对象赋值
+        setValueForTransactionDto(transactionDto);
 
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
@@ -95,11 +69,9 @@ public class CreateSystemFASC implements SystemTx {
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         log.info("peerResponse--->{}", peerResponse);
 
-
-
-
         return null;
     }
+
 
     /**
      * 获取sysData字节数组

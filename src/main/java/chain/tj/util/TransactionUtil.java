@@ -8,8 +8,13 @@ import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
+import java.io.IOException;
+
+import static chain.tj.util.GmUtils.sm2Sign;
+import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.int2Bytes;
 import static chain.tj.util.PeerUtil.long2Bytes;
+import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 
 /**
  * @Describe:
@@ -136,5 +141,36 @@ public class TransactionUtil {
                 .setPayload(transaction.toByteString())
                 .build();
     }
+
+    /**
+     * 给TransactionDto对象赋值
+     *
+     * @param transactionDto
+     */
+    public static void setValueForTransactionDto(TransactionDto transactionDto) {
+        // 序列化transactionDto
+        byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
+
+        // sm3加密
+        byte[] hashVal = sm3Hash(transactionDtoBytes);
+
+        byte[] priKeyBytes = new byte[0];
+        try {
+            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        byte[] signBytes = new byte[0];
+        try {
+            signBytes = sm2Sign(priKeyBytes, transactionDtoBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        transactionDto.getTransactionHeader().setTransactionHash(hashVal);
+        transactionDto.setSign(signBytes);
+    }
+
 
 }

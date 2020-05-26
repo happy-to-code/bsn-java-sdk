@@ -16,15 +16,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
-import static chain.tj.util.GmUtils.sm2Sign;
-import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.PeerUtil.int2Bytes;
-import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 import static chain.tj.util.TransactionUtil.getPeerRequest;
-import static chain.tj.util.TransactionUtil.serialTransactionDto;
+import static chain.tj.util.TransactionUtil.setValueForTransactionDto;
 
 /**
  * @Describe:子链变更
@@ -71,30 +65,8 @@ public class CreateSystemSubLeadger implements SystemTx {
         // 给transactionDto 赋值
         transactionDto.setData(sysData);
 
-        // 序列化transactionDto
-        byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
-
-        // sm3加密
-        byte[] hashVal = sm3Hash(transactionDtoBytes);
-
-        log.info("hashVal的十六进制：{}", toHexString(hashVal));
-
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] signBytes = new byte[0];
-        try {
-            signBytes = sm2Sign(priKeyBytes, transactionDtoBytes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        transactionDto.getTransactionHeader().setTransactionHash(hashVal);
-        transactionDto.setSign(signBytes);
+        // 给TransactionDto对象赋值
+        setValueForTransactionDto(transactionDto);
 
         // 构建grpc参数
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);

@@ -17,14 +17,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
-import static chain.tj.util.GmUtils.sm2Sign;
-import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 import static chain.tj.util.TransactionUtil.getPeerRequest;
-import static chain.tj.util.TransactionUtil.serialTransactionDto;
+import static chain.tj.util.TransactionUtil.setValueForTransactionDto;
 
 /**
  * @Describe:权限变更
@@ -69,34 +64,11 @@ public class CreateSystemPM implements SystemTx {
 
         // 获取sysData
         byte[] sysData = systxEncode(peerPubKey, permissionTxDtoBytes);
+        transactionDto.setData(sysData);
         log.info("sysData的十六进制：{}", toHexString(sysData));
 
-        transactionDto.setData(sysData);
-
-        // 序列化transactionDto
-        byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
-
-        // sm3加密
-        byte[] hashVal = sm3Hash(transactionDtoBytes);
-
-        log.info("hashVal的十六进制：{}", toHexString(hashVal));
-
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] signBytes = new byte[0];
-        try {
-            signBytes = sm2Sign(priKeyBytes, transactionDtoBytes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        transactionDto.getTransactionHeader().setTransactionHash(hashVal);
-        transactionDto.setSign(signBytes);
+        // 给TransactionDto对象赋值
+        setValueForTransactionDto(transactionDto);
 
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
