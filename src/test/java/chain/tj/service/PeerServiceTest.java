@@ -1,7 +1,9 @@
 package chain.tj.service;
 
 import chain.tj.model.pojo.dto.SubLedgerTxDto;
+import chain.tj.model.pojo.dto.SysContractStatusTxDto;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.service.systemtx.CreateSystemFASC;
 import chain.tj.service.systemtx.CreateSystemPM;
 import chain.tj.service.systemtx.CreateSystemPeer;
 import chain.tj.service.systemtx.CreateSystemSubLeadger;
@@ -31,6 +33,9 @@ public class PeerServiceTest extends TestCase {
 
     @Resource
     private CreateSystemSubLeadger createSystemSubLeadger;
+
+    @Resource
+    private CreateSystemFASC createSystemFASC;
 
     @Test
     public void testNewTransaction() {
@@ -69,5 +74,18 @@ public class PeerServiceTest extends TestCase {
         newTxQueryDto.setSubLedgerTxDto(subLedgerTxDto);
 
         createSystemSubLeadger.newTransaction(newTxQueryDto);
+    }
+    @Test
+    public void testCreateSystemFASC() {
+        NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
+        SysContractStatusTxDto statusTxDto = new SysContractStatusTxDto();
+        statusTxDto.setName("aads");
+        statusTxDto.setVersion("0");
+        statusTxDto.setOp("F");
+
+
+        newTxQueryDto.setSysContractStatusTxDto(statusTxDto);
+
+        createSystemFASC.newTransaction(newTxQueryDto);
     }
 }

@@ -1,6 +1,7 @@
 package chain.tj.model.pojo.query;
 
 import chain.tj.model.pojo.dto.SubLedgerTxDto;
+import chain.tj.model.pojo.dto.SysContractStatusTxDto;
 import lombok.Data;
 
 import java.util.List;
@@ -78,6 +79,8 @@ public class NewTxQueryDto {
 
     //==========================================
     private SubLedgerTxDto subLedgerTxDto;
+
+    private SysContractStatusTxDto sysContractStatusTxDto;
 
 
     public NewTxQueryDto() {

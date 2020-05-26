@@ -38,6 +38,21 @@ public class TransactionUtil {
         return transactionDto;
     }
 
+    /**
+     * 转换buf
+     *
+     * @param buf
+     * @return
+     */
+    public static byte[] convertBuf(ByteBuf buf) {
+        byte[] bytes1 = new byte[buf.writerIndex()];
+
+        byte[] array = buf.array();
+        for (int i = 0; i < bytes1.length; i++) {
+            bytes1[i] = array[i];
+        }
+        return bytes1;
+    }
 
     /**
      * 序列化transactionDto
