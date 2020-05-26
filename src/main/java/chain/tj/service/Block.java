@@ -15,4 +15,13 @@ public interface Block {
      * @return
      */
     RestResponse blockHeight();
+
+    /**
+     * 根据区块高度区块信息
+     *
+     * @param height
+     * @return
+     */
+    RestResponse getBlockByHeight(Integer height);
+
 }

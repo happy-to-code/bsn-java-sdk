@@ -2,7 +2,6 @@ package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.service.block.BlockInfo;
-import chain.tj.service.memberinfo.MemberInfo;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,10 +23,17 @@ public class BlockInfoTest extends TestCase {
     private BlockInfo blockInfo;
 
     @Test
-    public void testMemberInfo() {
+    public void testBlockHeight() {
 
         RestResponse height = blockInfo.blockHeight();
         System.out.println("height = " + height);
+    }
+
+    @Test
+    public void testGetBlockByHeight() {
+        RestResponse block = blockInfo.getBlockByHeight(14);
+
+        System.out.println("block = " + block);
     }
 
 

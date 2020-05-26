@@ -400,6 +400,16 @@ public class PeerUtil {
         return obj;
     }
 
+    /**
+     * byte数组转化为16进制字符串
+     *
+     * @param arr 数组
+     * @return
+     */
+    public static String arr2HexStr(byte[] arr) {
+        return Hex.encodeHexString(arr);
+    }
+
     public static void main(String[] args) {
         PeerTxDto peerTxDto = new PeerTxDto();
         peerTxDto.setOpType(0);

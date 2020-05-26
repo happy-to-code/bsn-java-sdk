@@ -2,13 +2,16 @@ package chain.tj.service.block;
 
 import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
+import chain.tj.model.pojo.vo.BlockHeaderVo;
 import chain.tj.model.proto.Msg;
+import chain.tj.model.proto.MyBlock;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.Block;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +61,68 @@ public class BlockInfo implements Block {
         }
 
         return RestResponse.success().setData(blockchainNumber.getNumber());
+    }
+
+    /**
+     * 根据区块高度区块信息
+     *
+     * @param height
+     * @return
+     */
+    @Override
+    public RestResponse getBlockByHeight(Integer height) {
+        if (null == height || height <= 0) {
+            height = 0;
+        }
+
+        // 将16进制的pubKey转换成ByteString
+        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+
+        // 封装请求对象
+        Msg.BlockchainNumber blockchainNumber = Msg.BlockchainNumber.newBuilder().setNumber(height).build();
+        MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
+                .setPubkey(peerPubKey)
+                .setPayload(blockchainNumber.toByteString())
+                .build();
+
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
+
+        MyBlock.Block block;
+        try {
+            block = MyBlock.Block.parseFrom(peerResponse.getPayload());
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+            return RestResponse.failure("解析区块出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
+        }
+
+        if (null == block.getHeader()) {
+            return RestResponse.failure("区块头信息为空！", StatusCode.SERVER_500000.value());
+        }
+
+        // 转换区块头信息
+        BlockHeaderVo blockHeaderVo = convertBlockHead(block.getHeader());
+
+        return RestResponse.success().setData(blockHeaderVo);
+    }
+
+    /**
+     * 转换区块头信息
+     *
+     * @param header
+     * @return
+     */
+    private BlockHeaderVo convertBlockHead(MyBlock.BlockHeader header) {
+        BlockHeaderVo blockHeaderVo = new BlockHeaderVo();
+
+        blockHeaderVo.setHeight(header.getHeight());
+        blockHeaderVo.setVersion(header.getVersion());
+        blockHeaderVo.setTimestamp(header.getTimestamp());
+        blockHeaderVo.setBlockHash(arr2HexStr(header.getBlockHash().toByteArray()));
+        blockHeaderVo.setPreviousHash(arr2HexStr(header.getPreviousHash().toByteArray()));
+        blockHeaderVo.setWorldStateRoot(arr2HexStr(header.getWorldStateRoot().toByteArray()));
+        blockHeaderVo.setTransactionRoot(arr2HexStr(header.getTransactionRoot().toByteArray()));
+
+        return blockHeaderVo;
     }
 }
