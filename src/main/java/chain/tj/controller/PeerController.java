@@ -9,7 +9,6 @@ import chain.tj.util.SystemTxUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 
 /**
@@ -20,11 +19,6 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/")
 public class PeerController {
-
-
-    @Resource
-    private SystemTxUtil systemTxUtil;
-
     /**
      * 创建交易
      */
@@ -43,7 +37,7 @@ public class PeerController {
         peerTxDto.setShownName("myName");
 
         newTxQueryDto.setPeerTxDto(peerTxDto);
-        return systemTxUtil.newSysTransaction(systemTx, newTxQueryDto);
+        return SystemTxUtil.newSysTransaction(systemTx, newTxQueryDto);
 
     }
 }
