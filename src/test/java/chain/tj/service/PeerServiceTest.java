@@ -1,6 +1,7 @@
 package chain.tj.service;
 
 import chain.tj.model.pojo.dto.PeerTxDto;
+import chain.tj.model.pojo.dto.PermissionTxDto;
 import chain.tj.model.pojo.dto.SubLedgerTxDto;
 import chain.tj.model.pojo.dto.SysContractStatusTxDto;
 import chain.tj.model.pojo.query.NewTxQueryDto;
@@ -59,9 +60,17 @@ public class PeerServiceTest extends TestCase {
     @Test
     public void testCreateSystemPM() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
-        newTxQueryDto.setPermission(Arrays.asList(0, 1, 2, 10));
-        newTxQueryDto.setRpcAddr("10.1.3.150:9008");
-        newTxQueryDto.setShownName("myname");
+
+        PermissionTxDto permissionTxDto = new PermissionTxDto();
+        permissionTxDto.setShownName("myname");
+        permissionTxDto.setPm(Arrays.asList(0, 1, 2, 10));
+        permissionTxDto.setPeerId("123");
+
+        newTxQueryDto.setPermissionTxDto(permissionTxDto);
+
+        // newTxQueryDto.setPermission(Arrays.asList(0, 1, 2, 10));
+        // newTxQueryDto.setRpcAddr("10.1.3.150:9008");
+        // newTxQueryDto.setShownName("myname");
 
         createSystemPM.newTransaction(newTxQueryDto);
     }

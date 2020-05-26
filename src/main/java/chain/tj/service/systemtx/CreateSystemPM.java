@@ -18,8 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.TransactionUtil.getPeerRequest;
-import static chain.tj.util.TransactionUtil.setValueForTransactionDto;
+import static chain.tj.util.TransactionUtil.*;
 
 /**
  * @Describe:权限变更
@@ -104,13 +103,7 @@ public class CreateSystemPM implements SystemTx {
         buf.writeBytes(int2Bytes(permissionTxDtoBytes.length));
         buf.writeBytes(permissionTxDtoBytes);
 
-        byte[] bytes1 = new byte[buf.writerIndex()];
-
-        byte[] array = buf.array();
-        for (int i = 0; i < bytes1.length; i++) {
-            bytes1[i] = array[i];
-        }
-        return bytes1;
+        return convertBuf(buf);
     }
 
     /**
@@ -122,8 +115,8 @@ public class CreateSystemPM implements SystemTx {
     private byte[] serialPermissionTxDto(PermissionTxDto permissionTxDto) {
         ByteBuf buf = Unpooled.buffer();
 
-        buf.writeBytes(int2Bytes(permissionTxDto.getPeerId().length));
-        buf.writeBytes(permissionTxDto.getPeerId());
+        buf.writeBytes(int2Bytes(permissionTxDto.getPeerId().getBytes().length));
+        buf.writeBytes(permissionTxDto.getPeerId().getBytes());
 
         if (null != permissionTxDto.getPm() && permissionTxDto.getPm().size() > 0) {
             buf.writeBytes(int2Bytes(permissionTxDto.getPm().size()));
@@ -141,13 +134,7 @@ public class CreateSystemPM implements SystemTx {
             buf.writeBytes(permissionTxDto.getShownName().getBytes());
         }
 
-        byte[] bytes1 = new byte[buf.writerIndex()];
-
-        byte[] array = buf.array();
-        for (int i = 0; i < bytes1.length; i++) {
-            bytes1[i] = array[i];
-        }
-        return bytes1;
+        return convertBuf(buf);
     }
 
     /**
@@ -160,22 +147,15 @@ public class CreateSystemPM implements SystemTx {
     private PermissionTxDto getPermissionDto(NewTxQueryDto newTxQueryDto, ByteString peerPubKey) {
         PermissionTxDto permissionTxDto = new PermissionTxDto();
 
-        permissionTxDto.setPeerId(peerPubKey.toByteArray());
-        if (null != newTxQueryDto.getPermission() && newTxQueryDto.getPermission().size() > 0) {
-            permissionTxDto.setPm(newTxQueryDto.getPermission());
+        permissionTxDto.setPeerId(String.valueOf(peerPubKey));
+        if (null != newTxQueryDto.getPermissionTxDto() &&
+                null != newTxQueryDto.getPermissionTxDto().getPm() && newTxQueryDto.getPermissionTxDto().getPm().size() > 0) {
+            permissionTxDto.setPm(newTxQueryDto.getPermissionTxDto().getPm());
+        }
+        if (StringUtils.isNoneBlank(newTxQueryDto.getPermissionTxDto().getShownName())) {
+            permissionTxDto.setShownName(newTxQueryDto.getPermissionTxDto().getShownName());
         }
 
-        if (StringUtils.isNoneBlank(newTxQueryDto.getShownName())) {
-            permissionTxDto.setShownName(newTxQueryDto.getShownName());
-        }
-
-        if (StringUtils.isNoneBlank(newTxQueryDto.getSubPeerName())) {
-            permissionTxDto.setSubPeerName(newTxQueryDto.getSubPeerName());
-        }
-
-        if (StringUtils.isNoneBlank(newTxQueryDto.getRpcAddr())) {
-            permissionTxDto.setRpcAddr(newTxQueryDto.getRpcAddr());
-        }
         return permissionTxDto;
     }
 
@@ -188,7 +168,6 @@ public class CreateSystemPM implements SystemTx {
     private TransactionDto createTransactionDto(long currentTime) {
         TransactionDto transactionDto = new TransactionDto();
 
-
         TransactionHeaderDto transactionHeader = new TransactionHeaderDto();
         // 默认版本
         transactionHeader.setVersion(0);
@@ -198,7 +177,6 @@ public class CreateSystemPM implements SystemTx {
 
         // transactionDto 设置头对象
         transactionDto.setTransactionHeader(transactionHeader);
-
 
         return transactionDto;
     }

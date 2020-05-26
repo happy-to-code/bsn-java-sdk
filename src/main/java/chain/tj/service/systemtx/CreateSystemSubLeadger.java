@@ -17,8 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.TransactionUtil.getPeerRequest;
-import static chain.tj.util.TransactionUtil.setValueForTransactionDto;
+import static chain.tj.util.TransactionUtil.*;
 
 /**
  * @Describe:子链变更
@@ -107,13 +106,7 @@ public class CreateSystemSubLeadger implements SystemTx {
         buf.writeBytes(int2Bytes(subLedgerTxDtoBytes.length));
         buf.writeBytes(subLedgerTxDtoBytes);
 
-        byte[] bytesReturn = new byte[buf.writerIndex()];
-
-        byte[] array = buf.array();
-        for (int i = 0; i < bytesReturn.length; i++) {
-            bytesReturn[i] = array[i];
-        }
-        return bytesReturn;
+        return convertBuf(buf);
     }
 
     /**
@@ -163,13 +156,7 @@ public class CreateSystemSubLeadger implements SystemTx {
 
         buf.writeBytes(long2Bytes(subLedgerTxDto.getTimeStamp()));
 
-        byte[] bytesReturn = new byte[buf.writerIndex()];
-
-        byte[] array = buf.array();
-        for (int i = 0; i < bytesReturn.length; i++) {
-            bytesReturn[i] = array[i];
-        }
-        return bytesReturn;
+        return convertBuf(buf);
     }
 
     /**
