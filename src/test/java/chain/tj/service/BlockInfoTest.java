@@ -24,15 +24,19 @@ public class BlockInfoTest extends TestCase {
 
     @Test
     public void testBlockHeight() {
-
         RestResponse height = blockInfo.blockHeight();
         System.out.println("height = " + height);
     }
 
     @Test
     public void testGetBlockByHeight() {
-        RestResponse block = blockInfo.getBlockByHeight(14);
+        RestResponse block = blockInfo.getBlockByHeight(0);
+        System.out.println("block = " + block);
+    }
 
+    @Test
+    public void testGetBlockByHash() {
+        RestResponse block = blockInfo.getBlockByHash("0");
         System.out.println("block = " + block);
     }
 

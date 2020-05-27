@@ -24,4 +24,12 @@ public interface Block {
      */
     RestResponse getBlockByHeight(Integer height);
 
+    /**
+     * 根据hash值查询区块信息
+     *
+     * @param hash
+     * @return
+     */
+    RestResponse getBlockByHash(String hash);
+
 }

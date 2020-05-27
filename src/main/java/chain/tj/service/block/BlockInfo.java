@@ -2,7 +2,7 @@ package chain.tj.service.block;
 
 import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
-import chain.tj.model.pojo.vo.BlockHeaderVo;
+import chain.tj.model.pojo.vo.BlockInfoVo;
 import chain.tj.model.proto.Msg;
 import chain.tj.model.proto.MyBlock;
 import chain.tj.model.proto.MyPeer;
@@ -11,9 +11,11 @@ import chain.tj.service.Block;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static chain.tj.util.PeerUtil.*;
 
@@ -96,33 +98,82 @@ public class BlockInfo implements Block {
             return RestResponse.failure("解析区块出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
         }
 
-        if (null == block.getHeader()) {
-            return RestResponse.failure("区块头信息为空！", StatusCode.SERVER_500000.value());
+        // 转换区块头信息
+        BlockInfoVo blockInfoVo = convertBlockHead(block);
+
+        return RestResponse.success().setData(blockInfoVo);
+    }
+
+    /**
+     * 根据hash值查询区块信息
+     *
+     * @param hash
+     * @return
+     */
+    @Override
+    public RestResponse getBlockByHash(String hash) {
+        // 将16进制的pubKey转换成ByteString
+        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+
+        //PeerRequest: BlockchainHash, PeerResponse:Block
+        // rpc BlockchainGetBlockByHash(PeerRequest) returns(PeerResponse){};
+
+        Msg.BlockchainHash blockchainHash = Msg.BlockchainHash.newBuilder().setHashData(ByteString.copyFromUtf8(hash)).build();
+        MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
+                .setPubkey(peerPubKey)
+                .setPayload(blockchainHash.toByteString())
+                .build();
+
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
+
+        System.out.println("peerResponse = " + peerResponse);
+
+        MyBlock.Block block;
+        try {
+            block = MyBlock.Block.parseFrom(peerResponse.getPayload());
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+            return RestResponse.failure("解析区块信息出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
         }
 
         // 转换区块头信息
-        BlockHeaderVo blockHeaderVo = convertBlockHead(block.getHeader());
+        BlockInfoVo blockInfoVo = convertBlockHead(block);
 
-        return RestResponse.success().setData(blockHeaderVo);
+        return RestResponse.success().setData(blockInfoVo);
     }
 
     /**
      * 转换区块头信息
      *
-     * @param header
+     * @param block
      * @return
      */
-    private BlockHeaderVo convertBlockHead(MyBlock.BlockHeader header) {
-        BlockHeaderVo blockHeaderVo = new BlockHeaderVo();
+    private BlockInfoVo convertBlockHead(MyBlock.Block block) {
+        BlockInfoVo blockInfoVo = new BlockInfoVo();
 
-        blockHeaderVo.setHeight(header.getHeight());
-        blockHeaderVo.setVersion(header.getVersion());
-        blockHeaderVo.setTimestamp(header.getTimestamp());
-        blockHeaderVo.setBlockHash(arr2HexStr(header.getBlockHash().toByteArray()));
-        blockHeaderVo.setPreviousHash(arr2HexStr(header.getPreviousHash().toByteArray()));
-        blockHeaderVo.setWorldStateRoot(arr2HexStr(header.getWorldStateRoot().toByteArray()));
-        blockHeaderVo.setTransactionRoot(arr2HexStr(header.getTransactionRoot().toByteArray()));
+        if (null != block.getHeader()) {
+            blockInfoVo.setHeight(block.getHeader().getHeight());
+            blockInfoVo.setVersion(block.getHeader().getVersion());
+            blockInfoVo.setTimestamp(block.getHeader().getTimestamp());
+            blockInfoVo.setBlockHash(arr2HexStr(block.getHeader().getBlockHash().toByteArray()));
+            blockInfoVo.setPreviousHash(arr2HexStr(block.getHeader().getPreviousHash().toByteArray()));
+            blockInfoVo.setWorldStateRoot(arr2HexStr(block.getHeader().getWorldStateRoot().toByteArray()));
+            blockInfoVo.setTransactionRoot(arr2HexStr(block.getHeader().getTransactionRoot().toByteArray()));
+        }
 
-        return blockHeaderVo;
+        if (null != block.getExtra() && block.getExtra().toByteArray() != null) {
+            blockInfoVo.setExtra(arr2HexStr(block.getExtra().toByteArray()));
+        }
+
+        if (null != block.getTxsList() && block.getTxsList().size() > 0) {
+            List<String> txList = new ArrayList<>(block.getTxsList().size());
+            for (ByteString bytes : block.getTxsList()) {
+                txList.add(arr2HexStr(bytes.toByteArray()));
+            }
+            blockInfoVo.setTxs(txList);
+        }
+
+        return blockInfoVo;
     }
 }
