@@ -28,15 +28,5 @@ public class PermissionTxDto implements Serializable {
      */
     private String shownName;
 
-    /**
-     * 子链名称
-     */
-    // private String subPeerName;
-
-    /**
-     * rpc地址 (default "10.1.3.157:9000")
-     */
-    // private String rpcAddr;
-
 
 }

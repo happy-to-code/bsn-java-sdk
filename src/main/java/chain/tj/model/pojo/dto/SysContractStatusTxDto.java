@@ -28,6 +28,4 @@ public class SysContractStatusTxDto implements Serializable {
      */
     private String op;
 
-
-    private String rpcAddr;
 }
