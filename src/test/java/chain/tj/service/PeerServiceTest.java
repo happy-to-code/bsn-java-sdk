@@ -42,6 +42,10 @@ public class PeerServiceTest extends TestCase {
     @Test
     public void testNewTransaction() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
+        newTxQueryDto.setAddr("10.1.3.150");
+        newTxQueryDto.setRpcPort(9008);
+        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
 
         PeerTxDto peerTxDto = new PeerTxDto();
         peerTxDto.setPeerType(0);
@@ -60,6 +64,11 @@ public class PeerServiceTest extends TestCase {
     @Test
     public void testCreateSystemPM() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
+        newTxQueryDto.setAddr("10.1.3.150");
+        newTxQueryDto.setRpcPort(9008);
+        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+
 
         PermissionTxDto permissionTxDto = new PermissionTxDto();
         permissionTxDto.setShownName("myname");
@@ -78,6 +87,11 @@ public class PeerServiceTest extends TestCase {
     @Test
     public void testCreateSystemSubLeadger() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
+        newTxQueryDto.setAddr("10.1.3.150");
+        newTxQueryDto.setRpcPort(9008);
+        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+
         SubLedgerTxDto subLedgerTxDto = new SubLedgerTxDto();
         subLedgerTxDto.setOpType(0);
         subLedgerTxDto.setWord("genessisTX");
@@ -92,6 +106,11 @@ public class PeerServiceTest extends TestCase {
     @Test
     public void testCreateSystemFASC() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
+        newTxQueryDto.setAddr("10.1.3.150");
+        newTxQueryDto.setRpcPort(9008);
+        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+
         SysContractStatusTxDto statusTxDto = new SysContractStatusTxDto();
         statusTxDto.setName("aads");
         statusTxDto.setVersion("0");

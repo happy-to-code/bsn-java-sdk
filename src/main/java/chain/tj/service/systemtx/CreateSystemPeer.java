@@ -4,6 +4,7 @@ import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.pojo.dto.TransactionDto;
+import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.PeerGrpc;
@@ -30,29 +31,26 @@ public class CreateSystemPeer implements SystemTx {
 
     @Override
     public RestResponse newTransaction(NewTxQueryDto newTxQueryDto) {
-        // 将16进制的pubKey转换成ByteString
-        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+        // 获取交易基本对象
+        BasicTxObj basicTxObj = getBasicTxObj(newTxQueryDto);
+        ByteString peerPubKey = basicTxObj.getPubKey();
         log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
 
-        // 获取当前时间戳
-        long currentTime = System.currentTimeMillis() / 1000;
-
         // 根据subType获取TransactionDto
-        TransactionDto transactionDto = getTransactionDtoBySubType(currentTime, newTxQueryDto);
+        TransactionDto transactionDto = getTransactionDtoBySubType(basicTxObj.getCurrentTime(), newTxQueryDto);
 
         // 序列化PeerDto,并且给transactionDto赋值
         serialPeerTxDto(newTxQueryDto, peerPubKey, transactionDto);
 
         // 给TransactionDto对象赋值
-        setValueForTransactionDto(transactionDto);
+        setValueForTransactionDto(transactionDto, newTxQueryDto.getPriKeyPath());
 
         // PeerRequest: Transaction, PeerResponse:PeerResponse
         // 封装请求对象
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getPeerTxDto().getRpcPort());
         // 调用接口
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
+        MyPeer.PeerResponse peerResponse = basicTxObj.getStub().newTransaction(request);
         log.info("peerResponse--->{}", peerResponse);
 
         if (peerResponse.getOk()) {

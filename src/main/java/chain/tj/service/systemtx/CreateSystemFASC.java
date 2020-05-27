@@ -4,6 +4,7 @@ import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.SysContractStatusTxDto;
 import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.dto.TransactionHeaderDto;
+import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.PeerGrpc;
@@ -40,15 +41,13 @@ public class CreateSystemFASC implements SystemTx {
      */
     @Override
     public RestResponse newTransaction(NewTxQueryDto newTxQueryDto) {
-        // 将16进制的pubKey转换成ByteString
-        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+        // 获取交易基本对象
+        BasicTxObj basicTxObj = getBasicTxObj(newTxQueryDto);
+        ByteString peerPubKey = basicTxObj.getPubKey();
         log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
 
-        // 获取当前时间戳
-        long currentTime = System.currentTimeMillis() / 1000;
-
         // 构建TransactionDto对象
-        TransactionDto transactionDto = createTransactionDto(peerPubKey, currentTime, newTxQueryDto.getSysContractStatusTxDto());
+        TransactionDto transactionDto = createTransactionDto(peerPubKey, basicTxObj.getCurrentTime(), newTxQueryDto.getSysContractStatusTxDto());
 
         // 获取SysContractStatusTxDto对象的字节对象
         byte[] sysContractStatusTxDtoBytes = getSysContractStatusTxDtoBytes(newTxQueryDto.getSysContractStatusTxDto());
@@ -60,13 +59,12 @@ public class CreateSystemFASC implements SystemTx {
         transactionDto.setData(sysData);
 
         // 给TransactionDto对象赋值
-        setValueForTransactionDto(transactionDto);
+        setValueForTransactionDto(transactionDto, newTxQueryDto.getPriKeyPath());
 
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
         // 调用接口
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
+        MyPeer.PeerResponse peerResponse = basicTxObj.getStub().newTransaction(request);
         log.info("peerResponse--->{}", peerResponse);
 
         return null;

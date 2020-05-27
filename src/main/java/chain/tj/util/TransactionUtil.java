@@ -1,19 +1,25 @@
 package chain.tj.util;
 
+import chain.tj.common.StatusCode;
+import chain.tj.common.exception.ServiceException;
+import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.dto.TransactionHeaderDto;
+import chain.tj.model.pojo.query.BasicTxObj;
+import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.MyTransaction;
+import chain.tj.model.proto.PeerGrpc;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 
 import static chain.tj.util.GmUtils.sm2Sign;
 import static chain.tj.util.GmUtils.sm3Hash;
-import static chain.tj.util.PeerUtil.int2Bytes;
-import static chain.tj.util.PeerUtil.long2Bytes;
+import static chain.tj.util.PeerUtil.*;
 import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 
 /**
@@ -147,7 +153,7 @@ public class TransactionUtil {
      *
      * @param transactionDto
      */
-    public static void setValueForTransactionDto(TransactionDto transactionDto) {
+    public static void setValueForTransactionDto(TransactionDto transactionDto, String priKeyPath) {
         // 序列化transactionDto
         byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
 
@@ -156,7 +162,7 @@ public class TransactionUtil {
 
         byte[] priKeyBytes = new byte[0];
         try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+            priKeyBytes = readKeyFromPem(priKeyPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,6 +176,47 @@ public class TransactionUtil {
 
         transactionDto.getTransactionHeader().setTransactionHash(hashVal);
         transactionDto.setSign(signBytes);
+    }
+
+    /**
+     * 获取交易基本对象
+     *
+     * @param newTxQueryDto
+     * @return
+     */
+    public static BasicTxObj getBasicTxObj(NewTxQueryDto newTxQueryDto) {
+        // 验证参数
+        if (StringUtils.isBlank(newTxQueryDto.getAddr())) {
+            throw new ServiceException(StatusCode.CLIENT_410001.value(), "ip地址不可以为空！");
+        }
+        if (null == newTxQueryDto.getRpcPort() || newTxQueryDto.getRpcPort() <= 0) {
+            throw new ServiceException(StatusCode.CLIENT_4100301.value(), "端口不可以为空，并且要大于0");
+        }
+        if (StringUtils.isBlank(newTxQueryDto.getPubKeyPath())) {
+            throw new ServiceException(StatusCode.CLIENT_410001.value(), "公钥地址不可以为空！");
+        }
+        if (StringUtils.isBlank(newTxQueryDto.getPriKeyPath())) {
+            throw new ServiceException(StatusCode.CLIENT_410001.value(), "私钥地址不可以为空！");
+        }
+
+
+        // 读取PubKey
+        String pubkeyStr = readFile(newTxQueryDto.getPubKeyPath());
+        if (StringUtils.isBlank(pubkeyStr)) {
+            throw new ServiceException("获取公钥失败或者公钥文件内容为空！");
+        }
+        // 将16进制的pubKey转换成ByteString
+        ByteString pubKey = convertPubKeyToByteString(pubkeyStr);
+
+        // 获取grpc连接stub对象
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
+
+        BasicTxObj obj = new BasicTxObj();
+        obj.setPubKey(pubKey);
+        obj.setStub(stub);
+        obj.setCurrentTime(System.currentTimeMillis() / 1000);
+
+        return obj;
     }
 
 

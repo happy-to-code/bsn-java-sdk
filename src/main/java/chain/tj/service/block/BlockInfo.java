@@ -115,9 +115,6 @@ public class BlockInfo implements Block {
         // 将16进制的pubKey转换成ByteString
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
 
-        //PeerRequest: BlockchainHash, PeerResponse:Block
-        // rpc BlockchainGetBlockByHash(PeerRequest) returns(PeerResponse){};
-
         Msg.BlockchainHash blockchainHash = Msg.BlockchainHash.newBuilder().setHashData(ByteString.copyFromUtf8(hash)).build();
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
                 .setPubkey(peerPubKey)

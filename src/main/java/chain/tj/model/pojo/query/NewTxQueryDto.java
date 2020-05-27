@@ -25,6 +25,16 @@ public class NewTxQueryDto {
     private Integer rpcPort;
 
     /**
+     * 公钥地址
+     */
+    private String pubKeyPath;
+
+    /**
+     * 私钥地址
+     */
+    private String priKeyPath;
+
+    /**
      * 节点变更参数对象
      */
     private PeerTxDto peerTxDto;

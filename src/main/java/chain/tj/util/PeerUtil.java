@@ -121,7 +121,7 @@ public class PeerUtil {
      * @return
      */
     public static PeerGrpc.PeerBlockingStub getStubByIpAndPort(String ip, Integer port) {
-        ManagedChannel channel = NettyChannelBuilder.forAddress("10.1.3.150", 9008)
+        ManagedChannel channel = NettyChannelBuilder.forAddress(ip, port)
                 .negotiationType(NegotiationType.PLAINTEXT)
                 .build();
 
@@ -408,6 +408,27 @@ public class PeerUtil {
      */
     public static String arr2HexStr(byte[] arr) {
         return Hex.encodeHexString(arr);
+    }
+
+    /**
+     * 根据路径读取文件
+     *
+     * @param filePath
+     * @return
+     */
+    public static String readFile(String filePath) {
+        StringBuilder result = new StringBuilder();
+        try {
+            BufferedReader bfr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filePath)), "UTF-8"));
+            String lineTxt;
+            while ((lineTxt = bfr.readLine()) != null) {
+                result.append(lineTxt);
+            }
+            bfr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result.toString();
     }
 
     public static void main(String[] args) {
