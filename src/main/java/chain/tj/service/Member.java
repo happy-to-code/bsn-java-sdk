@@ -13,7 +13,10 @@ public interface Member {
     /**
      * 获取节点信息
      *
+     * @param addr       ip地址
+     * @param rpcPort    端口
+     * @param pubKeyPath 公钥文件路径地址
      * @return
      */
-    RestResponse getMemberList() throws InvalidProtocolBufferException;
+    RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) throws InvalidProtocolBufferException;
 }

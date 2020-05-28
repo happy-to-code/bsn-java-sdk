@@ -8,17 +8,16 @@ import chain.tj.model.pojo.dto.TransactionHeaderDto;
 import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
-import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import static chain.tj.util.PeerUtil.*;
+import static chain.tj.util.PeerUtil.int2Bytes;
+import static chain.tj.util.PeerUtil.toHexString;
 import static chain.tj.util.TransactionUtil.*;
 
 /**
@@ -29,11 +28,6 @@ import static chain.tj.util.TransactionUtil.*;
 @Service
 @Slf4j
 public class CreateSystemPM implements SystemTx {
-
-    @Value("${peer.pubKey}")
-    // private String pubKey = "7408b0d5577d5be240afbf0712397e5b19df9213f4d7c2cfa98d0d545fa9fc013a2a8fc4046c62e4b8fc00c524a92cd66d54cd2fc8c88c834d06ba7a951eea73";
-    private String pubKey = "2c7f6f353d828e99692bb8bf960186f218674581495b399db753c00dd636c4f0583f7a833ce67d352e7d32be5d6e3fc899d7004efe1f450fc1a078ee856a8b75";
-
 
     /**
      * 权限变更

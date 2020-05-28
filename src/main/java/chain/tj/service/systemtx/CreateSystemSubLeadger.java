@@ -7,14 +7,12 @@ import chain.tj.model.pojo.dto.TransactionHeaderDto;
 import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
 import chain.tj.model.proto.MyPeer;
-import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static chain.tj.util.PeerUtil.*;
@@ -28,10 +26,6 @@ import static chain.tj.util.TransactionUtil.*;
 @Slf4j
 @Service
 public class CreateSystemSubLeadger implements SystemTx {
-
-    @Value("${peer.pubKey}")
-    private String pubKey = "2c7f6f353d828e99692bb8bf960186f218674581495b399db753c00dd636c4f0583f7a833ce67d352e7d32be5d6e3fc899d7004efe1f450fc1a078ee856a8b75";
-
 
     /**
      * 子链变更

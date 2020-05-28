@@ -219,5 +219,25 @@ public class TransactionUtil {
         return obj;
     }
 
+    /**
+     * 验证参数
+     *
+     * @param addr
+     * @param rpcPort
+     * @param pubKeyPath
+     */
+    public static void checkParam(String addr, Integer rpcPort, String pubKeyPath) {
+
+        if (StringUtils.isBlank(addr)) {
+            throw new ServiceException(StatusCode.CLIENT_410001.value(), "ip地址不可以为空！");
+        }
+        if (null == rpcPort || rpcPort <= 0) {
+            throw new ServiceException(StatusCode.CLIENT_4100301.value(), "端口不可以为空，并且要大于0");
+        }
+        if (StringUtils.isBlank(pubKeyPath)) {
+            throw new ServiceException(StatusCode.CLIENT_410001.value(), "公钥地址不可以为空！");
+        }
+    }
+
 
 }

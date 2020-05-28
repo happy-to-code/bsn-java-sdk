@@ -9,10 +9,10 @@ import chain.tj.service.Member;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static chain.tj.util.PeerUtil.*;
+import static chain.tj.util.TransactionUtil.checkParam;
 
 /**
  * @Describe:
@@ -23,17 +23,21 @@ import static chain.tj.util.PeerUtil.*;
 @Service
 public class MemberInfo implements Member {
 
-    @Value("${peer.pubKey}")
-    private String pubKey = "2c7f6f353d828e99692bb8bf960186f218674581495b399db753c00dd636c4f0583f7a833ce67d352e7d32be5d6e3fc899d7004efe1f450fc1a078ee856a8b75";
-
-
     /**
      * 获取节点信息
      *
+     * @param addr       ip地址
+     * @param rpcPort    端口
+     * @param pubKeyPath 公钥文件路径地址
      * @return
      */
     @Override
-    public RestResponse getMemberList() {
+    public RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) {
+        // 验证参数
+        checkParam(addr, rpcPort, pubKeyPath);
+
+        // 读取PubKey
+        String pubKey = readFile(pubKeyPath);
         // 将16进制的pubKey转换成ByteString
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
         log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
@@ -43,7 +47,7 @@ public class MemberInfo implements Member {
                 .setPubkey(peerPubKey)
                 .build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
         // 调用接口
         MyPeer.PeerResponse peerResponse = stub.getMemberList(peerRequest);
         log.info("peerResponse--->{}", peerResponse);
