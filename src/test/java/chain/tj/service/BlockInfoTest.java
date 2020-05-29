@@ -24,19 +24,19 @@ public class BlockInfoTest extends TestCase {
 
     @Test
     public void testBlockHeight() {
-        RestResponse height = blockInfo.blockHeight();
+        RestResponse height = blockInfo.blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
         System.out.println("height = " + height);
     }
 
     @Test
     public void testGetBlockByHeight() {
-        RestResponse block = blockInfo.getBlockByHeight(0);
+        RestResponse block = blockInfo.getBlockByHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem", 17);
         System.out.println("block = " + block);
     }
 
     @Test
     public void testGetBlockByHash() {
-        RestResponse block = blockInfo.getBlockByHash("0");
+        RestResponse block = blockInfo.getBlockByHash("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem", "0");
         System.out.println("block = " + block);
     }
 

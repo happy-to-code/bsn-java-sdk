@@ -2,6 +2,7 @@ package chain.tj.util;
 
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.proto.PeerGrpc;
+import cn.hutool.http.webservice.SoapUtil;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NegotiationType;
@@ -431,66 +432,64 @@ public class PeerUtil {
         return result.toString();
     }
 
+
+    /**
+     * 生成随机数组
+     *
+     * @param len
+     * @param max
+     * @return
+     */
+    public static int[] gennerateArray(int len, int max) {
+        int[] arr = new int[len];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * max);
+        }
+        return arr;
+    }
+
+    /**
+     * 生成随机字符串
+     *
+     * @return
+     */
+    public static String getRandomStr() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int[] ints = gennerateArray(32, 256);
+        for (int anInt : ints) {
+            stringBuilder.append((byte) anInt);
+        }
+        String s1 = stringBuilder.toString().replaceAll("-", "13");
+        if (s1.length() > 78) {
+            String substring = s1.substring(0, 78);
+            return substring;
+        }
+
+        return s1;
+
+    }
+
+
     public static void main(String[] args) {
-        PeerTxDto peerTxDto = new PeerTxDto();
-        peerTxDto.setOpType(0);
-        peerTxDto.setPeerType(0);
-        peerTxDto.setId("abc");
-        peerTxDto.setShownName("newName");
-        peerTxDto.setLanAddrs(Arrays.asList("10.1.3.150"));
-        peerTxDto.setWlanAddrs(Arrays.asList("10.1.3.150"));
-        peerTxDto.setRpcPort(9999);
+        String s = "112131726444759362052555576971475452203323108726981633540253770691901702812637";
+        System.out.println("s.length() = " + s.length());
 
-        System.out.println("peerTxDto = " + peerTxDto);
-
-        byte[] bytes = toByteArray(peerTxDto);
-        for (byte aByte : bytes) {
-            System.out.print(aByte);
+        for (int i = 0; i < 50; i++) {
+            System.out.println("iiiiiiiiiiiiiiiiiiiii:" + i);
+            StringBuilder stringBuilder = new StringBuilder();
+            int[] ints = gennerateArray(32, 256);
+            for (int anInt : ints) {
+                stringBuilder.append((byte) anInt);
+            }
+            System.out.println("stringBuilder.toString():::" + stringBuilder.toString().length());
+            String s1 = stringBuilder.toString().replaceAll("-", "13");
+            System.out.println(s1);
+            System.out.println(s1.length());
+            if (s1.length() > 78) {
+                String substring = s1.substring(0, 78);
+                System.out.println("substring = " + substring);
+                System.out.println("substring = " + substring.length());
+            }
         }
-        System.out.println("----->" + toHexString(bytes));
-
-        byte[] peerTxDtoBytes = getPeerTxDtoBytes(peerTxDto);
-
-        for (byte peerTxDtoByte : peerTxDtoBytes) {
-            System.out.print(peerTxDtoByte);
-        }
-        System.out.println("peerTxDtoBytes = " + peerTxDtoBytes);
-        System.out.println("peerTxDtoBytes十六进制：" + toHexString(peerTxDtoBytes));
-
-        // 将byte数组序列化成对象
-        // Object o = toObject(toByteArray(peerTxDto));
-        // System.out.println("o = " + (PeerTxDto) o);
-
-        // System.out.println(getRandomByteStr(3));
-        //
-        //
-        // // byte[] random = getRandomByte(16);
-        // // for (byte b : random) {
-        // //     System.out.print(b + " ");
-        // // }
-        //
-        //
-        // String sha256Str = getSHA256Str("123");
-        // System.out.println("sha256Str = " + sha256Str);
-        // byte[] bytes = int2Bytes(200, 4);
-        // for (byte aByte : bytes) {
-        //     System.out.print(aByte + " ");
-        // }
-        // System.out.println("----------");
-        // byte[] bytes1 = int2Bytes(200);
-        // for (byte b : bytes1) {
-        //     System.out.print(b + " ");
-        // }
-        // System.out.println("----------");
-        // byte[] bytes2 = longToBytes(200L);
-        // for (byte b : bytes2) {
-        //     System.out.print(b + " ");
-        // }
-        // String s = "2c7f6f353d828e99692bb8bf960186f218674581495b399db753c00dd636c4f0583f7a833ce67d352e7d32be5d6e3fc899d7004efe1f450fc1a078ee856a8b75";
-        // byte[] bytes = hexToByteArray(s, 16);
-        // for (byte aByte : bytes) {
-        //
-        //     System.out.println("bytes = " + aByte);
-        // }
     }
 }

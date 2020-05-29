@@ -3,7 +3,11 @@ package chain.tj.util;
 import com.tjfoc.gmsm.*;
 import org.bouncycastle.math.ec.ECPoint;
 
+import java.io.IOException;
 import java.math.BigInteger;
+
+import static chain.tj.util.PeerUtil.toHexString;
+import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 
 
 public class GmUtils {
@@ -85,12 +89,29 @@ public class GmUtils {
         return cipherBytes;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         byte[] bytes = new byte[2];
         bytes[0] = 1;
         bytes[1] = 2;
-        byte[] bytes1 = sm3Hash(bytes);
-        System.out.println(bytes1);
+        // byte[] bytes1 = sm3Hash(bytes);
+        // System.out.println(bytes1);
+        String s = toHexString(bytes);
+        System.out.println("s = " + s);
 
+        byte[] prikey = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+
+        byte[] pubKey = priToPubKey(prikey);
+        System.out.println("pubKey = " + pubKey);
+
+
+        // public static byte[] sm2Encrypt(byte[] publicKey, byte[] data)
+        byte[] enc = sm2Encrypt(pubKey, bytes);
+        String encryptStr = toHexString(enc);
+        System.out.println("encryptStr = " + encryptStr);
+
+        // sm2Decrypt(byte[] privateKey, byte[] ciphertext)
+        byte[] bytes1 = sm2Decrypt(prikey, enc);
+        String decryptStr = toHexString(bytes1);
+        System.out.println("decryptStr = " + decryptStr);
     }
 }

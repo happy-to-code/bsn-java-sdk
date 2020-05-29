@@ -49,7 +49,7 @@ public class BlockInfo implements Block {
         // 封装请求对象
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder().setPubkey(peerPubKey).build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
 
         // 获取高度
         MyPeer.PeerResponse response = stub.blockchainGetHeight(request);
@@ -97,7 +97,7 @@ public class BlockInfo implements Block {
                 .setPayload(blockchainNumber.toByteString())
                 .build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
         MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
 
         MyBlock.Block block;
@@ -138,7 +138,7 @@ public class BlockInfo implements Block {
                 .setPayload(blockchainHash.toByteString())
                 .build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("", 1);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
         MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
 
         System.out.println("peerResponse = " + peerResponse);
