@@ -61,11 +61,10 @@ public class SmartContract implements Contract {
         // 用私钥获取公钥
         byte[] pubKey = priToPubKey(priKeyBytes);
 
-        byte[] b = new byte[1];
-        b[0] = 1;
+
         byte[] signBytes = new byte[0];
         try {
-            signBytes = sm2Sign(priKeyBytes, b);
+            signBytes = sm2Sign(priKeyBytes, "ownersign".getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,50 +165,73 @@ public class SmartContract implements Contract {
             if (null != arg.getMethod()) {
                 buf.writeBytes(int2Bytes(arg.getMethod().getBytes().length));
                 buf.writeBytes(arg.getMethod().getBytes());
+            } else {
+                buf.writeInt(0);
             }
 
             if (null != arg.getGas()) {
                 buf.writeBytes(int2Bytes(arg.getGas()));
+            } else {
+                buf.writeInt(0);
             }
 
             if (null != arg.getCaller()) {
                 buf.writeBytes(int2Bytes(arg.getCaller().length));
                 buf.writeBytes(arg.getCaller());
+            } else {
+                buf.writeInt(0);
             }
 
             if (null != arg.getVersion()) {
                 buf.writeBytes(int2Bytes(arg.getVersion().getBytes().length));
                 buf.writeBytes(arg.getVersion().getBytes());
+            } else {
+                buf.writeInt(0);
             }
         }
-        // 将arg.getArgs() 转换成json串
-        String jsonString = JSONObject.toJSONString(arg.getArgs());
-        buf.writeBytes(int2Bytes(jsonString.length()));
-        buf.writeBytes(jsonString.getBytes());
+
+        if (arg.getArgs() != null && arg.getArgs().size() > 0) {
+            // 将arg.getArgs() 转换成json串
+            String jsonString = JSONObject.toJSONString(arg.getArgs());
+            buf.writeBytes(int2Bytes(jsonString.length()));
+            buf.writeBytes(jsonString.getBytes());
+        } else {
+            buf.writeInt(0);
+        }
 
         if (null != wvmContractTx.getName()) {
             buf.writeBytes(int2Bytes(wvmContractTx.getName().getBytes().length));
             buf.writeBytes(wvmContractTx.getName().getBytes());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != wvmContractTx.getOwner()) {
             buf.writeBytes(int2Bytes(wvmContractTx.getOwner().length));
             buf.writeBytes(wvmContractTx.getOwner());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != wvmContractTx.getRandom()) {
             buf.writeBytes(int2Bytes(wvmContractTx.getRandom().length));
             buf.writeBytes(wvmContractTx.getRandom());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != wvmContractTx.getSrc()) {
             buf.writeBytes(int2Bytes(wvmContractTx.getSrc().length));
             buf.writeBytes(wvmContractTx.getSrc());
+        } else {
+            buf.writeInt(0);
         }
 
         if (null != wvmContractTx.getSign()) {
             buf.writeBytes(int2Bytes(wvmContractTx.getSign().length));
             buf.writeBytes(wvmContractTx.getSign());
+        } else {
+            buf.writeInt(0);
         }
 
         return convertBuf(buf);

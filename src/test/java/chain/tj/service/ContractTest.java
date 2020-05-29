@@ -26,6 +26,7 @@ public class ContractTest {
     @Test
     public void testSmartContract() {
         ContractReq c = new ContractReq();
+        c.setCategory("wvm");
 
         RestResponse restResponse = smartContract.installSmartContract(c);
         System.out.println(restResponse);
