@@ -2,6 +2,7 @@ package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.ContractReq;
+import chain.tj.model.pojo.dto.InvokeSmartContractReq;
 
 /**
  * @Describe:合约相关
@@ -26,5 +27,13 @@ public interface Contract {
      * @return
      */
     RestResponse destorySmartContract(ContractReq contractReq);
+
+    /**
+     * 调用合约
+     *
+     * @param invokeSmartContractReq
+     * @return
+     */
+    RestResponse invokeSmartContract(InvokeSmartContractReq invokeSmartContractReq);
 
 }
