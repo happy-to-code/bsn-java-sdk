@@ -17,4 +17,14 @@ public interface Contract {
      * @return
      */
     RestResponse installSmartContract(ContractReq contractReq);
+
+
+    /**
+     * 销毁合约
+     *
+     * @param contractReq
+     * @return
+     */
+    RestResponse destorySmartContract(ContractReq contractReq);
+
 }

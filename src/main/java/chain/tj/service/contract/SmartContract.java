@@ -1,5 +1,6 @@
 package chain.tj.service.contract;
 
+import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.ContractReq;
 import chain.tj.model.pojo.dto.contract.ContractCallArg;
@@ -42,7 +43,35 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse installSmartContract(ContractReq contractReq) {
-        String fileBase64 = "Ly/lkIjnuqbnpLrkvosKY29udHJhY3QgVHJhbnNmZXIgewoJLy/liJ3lp4vljJbkuIDkuKrotKbmiLcKCXB1YmxpYyBzdHJpbmcgaW5pdCgpewoJCWRiX3NldCgiYm9iIiwxMDAwMCkKICAgICAgICBkYl9zZXQoImppbSIsMTAwMDApCiAgICAgICAgcmV0dXJuICJzdWNjZXNzIgoJfQoJCgkvL+i9rOi0puaTjeS9nAoJcHVibGljIHN0cmluZyB0cmFuc2ZlcihzdHJpbmcgZnJvbSwgc3RyaW5nIHRvLCBpbnQgYW1vdW50KSB7CgkJaW50IGJhbEEgPSBkYl9nZXQ8aW50Pihmcm9tKQoJCWludCBiYWxCID0gZGJfZ2V0PGludD4odG8pCgkJYmFsQSA9IGJhbEEtYW1vdW50CgkJaWYgKGJhbEE+MCl7CgkJCWJhbEIgPSBiYWxCK2Ftb3VudAoJCQlkYl9zZXQoZnJvbSwgYmFsQSkKCQkJZGJfc2V0KHRvLCBiYWxCKQoJCX1lbHNlewogICAgICAgICAgICByZXR1cm4gImluc3VmZmljaWVudCBiYWxhbmNlIgogICAgICAgIH0KCQlyZXR1cm4gInN1Y2Nlc3MiCgl9CgoJLy/mn6Xor6LotKbmiLfkvZnpop0KCXB1YmxpYyBpbnQgZ2V0QmFsYW5jZShzdHJpbmcgYWNjb3VudCl7CgkJcmV0dXJuIGRiX2dldDxpbnQ+KGFjY291bnQpCgl9Cn0=";
+        String fileBase64 = "//合约示例\n" +
+                "contract Transfer {\n" +
+                "\t//初始化一个账户\n" +
+                "\tpublic string init(){\n" +
+                "\t\tdb_set(\"bob\",10000)\n" +
+                "        db_set(\"jim\",10000)\n" +
+                "        return \"success\"\n" +
+                "\t}\n" +
+                "\t\n" +
+                "\t//转账操作\n" +
+                "\tpublic string transfer(string from, string to, int amount) {\n" +
+                "\t\tint balA = db_get<int>(from)\n" +
+                "\t\tint balB = db_get<int>(to)\n" +
+                "\t\tbalA = balA-amount\n" +
+                "\t\tif (balA>0){\n" +
+                "\t\t\tbalB = balB+amount\n" +
+                "\t\t\tdb_set(from, balA)\n" +
+                "\t\t\tdb_set(to, balB)\n" +
+                "\t\t}else{\n" +
+                "            return \"insufficient balance\"\n" +
+                "        }\n" +
+                "\t\treturn \"success\"\n" +
+                "\t}\n" +
+                "\n" +
+                "\t//查询账户余额\n" +
+                "\tpublic int getBalance(string account){\n" +
+                "\t\treturn db_get<int>(account)\n" +
+                "\t}\n" +
+                "}";
         ByteBuf buf = Unpooled.buffer();
         buf.writeBytes(fileBase64.getBytes());
         byte[] content = convertBuf(buf);
@@ -58,8 +87,11 @@ public class SmartContract implements Contract {
             e.printStackTrace();
         }
 
+        log.info("私钥16进制形式{}", toHexString(priKeyBytes));
+
         // 用私钥获取公钥
         byte[] pubKey = priToPubKey(priKeyBytes);
+        log.info("公钥16进制形式{}", toHexString(pubKey));
 
 
         byte[] signBytes = new byte[0];
@@ -68,6 +100,7 @@ public class SmartContract implements Contract {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        log.info("签名16进制形式{}", toHexString(signBytes));
 
 
         ContractCallArg contractCallArg = new ContractCallArg();
@@ -84,13 +117,25 @@ public class SmartContract implements Contract {
         // 序列化 wvmContractTx
         byte[] wvmContractTxBytes = serialWvmContractTx(wvmContractTx);
 
-        invokeTransaction(contractReq.getLedger(), wvmContractTxBytes, pubKey, priKeyBytes);
+        return invokeTransaction(contractReq.getLedger(), wvmContractTxBytes, pubKey, priKeyBytes);
+
+
+    }
+
+    /**
+     * 销毁合约
+     *
+     * @param contractReq
+     * @return
+     */
+    @Override
+    public RestResponse destorySmartContract(ContractReq contractReq) {
 
 
         return null;
     }
 
-    private void invokeTransaction(String ledger, byte[] wvmContractTxBytes, byte[] pubKey, byte[] priKeyBytes) {
+    private RestResponse invokeTransaction(String ledger, byte[] wvmContractTxBytes, byte[] pubKey, byte[] priKeyBytes) {
 
         long currentTime = System.currentTimeMillis() / 1000;
 
@@ -113,6 +158,7 @@ public class SmartContract implements Contract {
         byte[] bytes = convertBuf(buf);
 
         byte[] hashData = sm3Hash(bytes);
+        log.info("hashData 16进制形式{}", toHexString(hashData));
 
         // 获取签名
         byte[] signBytes = new byte[0];
@@ -149,6 +195,11 @@ public class SmartContract implements Contract {
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         System.out.println("peerResponse = " + peerResponse);
 
+        if (peerResponse.getOk()) {
+            return RestResponse.success();
+        }
+
+        return RestResponse.failure("创建合约失败！", StatusCode.SERVER_500000.value());
     }
 
     /**
