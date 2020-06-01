@@ -2,6 +2,9 @@ package chain.tj.service.contract;
 
 import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
+import chain.tj.model.ienum.FateSubType;
+import chain.tj.model.ienum.TransactionType;
+import chain.tj.model.ienum.Version;
 import chain.tj.model.pojo.dto.ContractReq;
 import chain.tj.model.pojo.dto.contract.ContractCallArg;
 import chain.tj.model.pojo.dto.contract.WVMContractTx;
@@ -15,9 +18,12 @@ import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 import static chain.tj.util.GmUtils.*;
 import static chain.tj.util.PeerUtil.*;
@@ -43,6 +49,12 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse installSmartContract(ContractReq contractReq) {
+        // 获取密钥对和签名
+        Map<String, byte[]> keyPair = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        if (keyPair.isEmpty()) {
+            return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
+        }
+
         String fileBase64 = "//合约示例\n" +
                 "contract Transfer {\n" +
                 "\t//初始化一个账户\n" +
@@ -79,47 +91,33 @@ public class SmartContract implements Contract {
         // 获取随机字符串
         String randomStr = getRandomStr();
 
-        // 获取私钥
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        log.info("私钥16进制形式{}", toHexString(priKeyBytes));
-
-        // 用私钥获取公钥
-        byte[] pubKey = priToPubKey(priKeyBytes);
-        log.info("公钥16进制形式{}", toHexString(pubKey));
-
-
-        byte[] signBytes = new byte[0];
-        try {
-            signBytes = sm2Sign(priKeyBytes, "ownersign".getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        log.info("签名16进制形式{}", toHexString(signBytes));
-
-
         ContractCallArg contractCallArg = new ContractCallArg();
         contractCallArg.setVersion("2");
         contractCallArg.setGas(10000000);
 
         WVMContractTx wvmContractTx = new WVMContractTx();
         wvmContractTx.setArg(contractCallArg);
-        wvmContractTx.setOwner(pubKey);
+        wvmContractTx.setOwner(keyPair.get("pubKey"));
         wvmContractTx.setRandom(randomStr.getBytes());
         wvmContractTx.setSrc(content);
-        wvmContractTx.setSign(signBytes);
+        wvmContractTx.setSign(keyPair.get("sign"));
 
         // 序列化 wvmContractTx
         byte[] wvmContractTxBytes = serialWvmContractTx(wvmContractTx);
 
-        return invokeTransaction(contractReq.getLedger(), wvmContractTxBytes, pubKey, priKeyBytes);
+        // 获取请求体
+        MyPeer.PeerRequest request = getRequest(contractReq.getLedger(), Version.VersionTwo.getValue(), TransactionType.SCWVM.getValue(), FateSubType.WVMSCInstall.getValue(), wvmContractTxBytes, keyPair.get("pubKey"), keyPair.get("priKey"));
 
+        // 获取stub
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        // 发送请求
+        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
 
+        if (peerResponse.getOk()) {
+            return RestResponse.success();
+        }
+
+        return RestResponse.failure("创建合约失败！", StatusCode.SERVER_500000.value());
     }
 
     /**
@@ -130,37 +128,78 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse destorySmartContract(ContractReq contractReq) {
+        if (StringUtils.isBlank(contractReq.getName())) {
+            return RestResponse.failure("合约名称不可以为空！", StatusCode.CLIENT_410001.value());
+        }
 
+        // 使用正则验证名称
+        String name = contractReq.getName();
+        String pattern = "^[a-z0-9]+(?:[._-][a-z0-9]+)*$";
 
-        return null;
+        boolean isMatch = Pattern.matches(pattern, name);
+        if (!isMatch) {
+            return RestResponse.failure("合约名称不合法！", StatusCode.CLIENT_410002.value());
+        }
+
+        // 获取密钥对和签名
+        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        if (keyPairAndSign.isEmpty()) {
+            return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
+        }
+
+        // 获取数据字节码
+        byte[] bodyByte = getBodyByte(name);
+
+        // 获取请求体
+        MyPeer.PeerRequest request = getRequest(contractReq.getLedger(), Version.VersionTwo.getValue(), TransactionType.SCWVM.getValue(), FateSubType.WVMSCDest.getValue(), bodyByte, keyPairAndSign.get("pubKey"), keyPairAndSign.get("priKey"));
+        // 获取stub
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        // 发送请求
+        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
+        if (peerResponse.getOk()) {
+            return RestResponse.success();
+        }
+
+        return RestResponse.failure("删除合约失败！", StatusCode.SERVER_500000.value());
     }
 
-    private RestResponse invokeTransaction(String ledger, byte[] wvmContractTxBytes, byte[] pubKey, byte[] priKeyBytes) {
+    /**
+     * 获取数据字节码
+     * contractReq.getName()
+     *
+     * @param name
+     * @return
+     */
+    private byte[] getBodyByte(String name) {
+        WVMContractTx wvmContractTx = new WVMContractTx();
+        wvmContractTx.setName(name);
+
+        return serialWvmContractTx(wvmContractTx);
+    }
+
+    /**
+     * 获取请求体
+     *
+     * @param ledger
+     * @param version            版本
+     * @param txType             交易类型
+     * @param txSubType          交易子类型
+     * @param wvmContractTxBytes 交易数据
+     * @param pubKey             公钥
+     * @param priKeyBytes        私钥
+     * @return
+     */
+    private MyPeer.PeerRequest getRequest(String ledger, Integer version, Integer txType, Integer txSubType, byte[] wvmContractTxBytes, byte[] pubKey, byte[] priKeyBytes) {
 
         long currentTime = System.currentTimeMillis() / 1000;
 
-        ByteBuf buf = Unpooled.buffer();
-        buf.writeBytes(int2Bytes(2));
-        buf.writeBytes(int2Bytes(3));
-        buf.writeBytes(int2Bytes(40));
-        buf.writeBytes(long2Bytes(currentTime));
-
-        buf.writeBytes(int2Bytes(wvmContractTxBytes.length));
-        buf.writeBytes(wvmContractTxBytes);
-
-        buf.writeInt(0);
-
-        buf.writeBytes(int2Bytes(pubKey.length));
-        buf.writeBytes(pubKey);
-
-        buf.writeInt(0);
-
-        byte[] bytes = convertBuf(buf);
+        // 获取dataBytes
+        byte[] bytes = getDataBytes(version, txType, txSubType, wvmContractTxBytes, pubKey, currentTime);
 
         byte[] hashData = sm3Hash(bytes);
         log.info("hashData 16进制形式{}", toHexString(hashData));
 
-        // 获取签名
+        // 获取数据的签名
         byte[] signBytes = new byte[0];
         try {
             signBytes = sm2Sign(priKeyBytes, hashData);
@@ -168,11 +207,10 @@ public class SmartContract implements Contract {
             e.printStackTrace();
         }
 
-
         MyTransaction.TransactionHeader transactionHeader = MyTransaction.TransactionHeader.newBuilder()
-                .setVersion(2)
-                .setType(3)
-                .setSubType(40)
+                .setVersion(version)
+                .setType(txType)
+                .setSubType(txSubType)
                 .setTimestamp(currentTime)
                 .setTransactionHash(ByteString.copyFrom(hashData))
                 .build();
@@ -186,20 +224,55 @@ public class SmartContract implements Contract {
                 .setExtra(ByteString.copyFrom(new byte[0]))
                 .build();
 
-        MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
+        return MyPeer.PeerRequest.newBuilder()
                 .setPubkey(ByteString.copyFrom(pubKey))
                 .setPayload(transaction.toByteString())
                 .build();
+    }
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
-        System.out.println("peerResponse = " + peerResponse);
+    /**
+     * 获取Data字节数据
+     *
+     * @param version            版本
+     * @param txType             交易类型
+     * @param txSubType          交易子类型
+     * @param wvmContractTxBytes 交易数据
+     * @param pubKey             公钥
+     * @param currentTime        当前时间
+     * @return
+     */
+    private byte[] getDataBytes(Integer version, Integer txType, Integer txSubType, byte[] wvmContractTxBytes, byte[] pubKey, long currentTime) {
+        ByteBuf buf = getByteBuf(version, txType, txSubType, currentTime);
 
-        if (peerResponse.getOk()) {
-            return RestResponse.success();
-        }
+        buf.writeBytes(int2Bytes(wvmContractTxBytes.length));
+        buf.writeBytes(wvmContractTxBytes);
 
-        return RestResponse.failure("创建合约失败！", StatusCode.SERVER_500000.value());
+        buf.writeInt(0);
+
+        buf.writeBytes(int2Bytes(pubKey.length));
+        buf.writeBytes(pubKey);
+
+        buf.writeInt(0);
+
+        return convertBuf(buf);
+    }
+
+    /**
+     * 组装buf
+     *
+     * @param version
+     * @param txType
+     * @param txSubType
+     * @param currentTime
+     * @return
+     */
+    private ByteBuf getByteBuf(Integer version, Integer txType, Integer txSubType, long currentTime) {
+        ByteBuf buf = Unpooled.buffer();
+        buf.writeBytes(int2Bytes(version));
+        buf.writeBytes(int2Bytes(txType));
+        buf.writeBytes(int2Bytes(txSubType));
+        buf.writeBytes(long2Bytes(currentTime));
+        return buf;
     }
 
     /**
@@ -241,7 +314,7 @@ public class SmartContract implements Contract {
             }
         }
 
-        if (arg.getArgs() != null && arg.getArgs().size() > 0) {
+        if (null != arg && arg.getArgs() != null && arg.getArgs().size() > 0) {
             // 将arg.getArgs() 转换成json串
             String jsonString = JSONObject.toJSONString(arg.getArgs());
             buf.writeBytes(int2Bytes(jsonString.length()));

@@ -21,7 +21,13 @@ import java.nio.charset.CharsetDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
+import static chain.tj.util.GmUtils.priToPubKey;
+import static chain.tj.util.GmUtils.sm2Sign;
+import static chain.tj.util.TjParseEncryptionKey.readKeyFromPem;
 
 public class PeerUtil {
 
@@ -467,6 +473,43 @@ public class PeerUtil {
 
         return s1;
 
+    }
+
+
+    /**
+     * 获取秘钥对和签名
+     *
+     * @param filePath 私钥文件路径
+     * @return
+     */
+    public static Map<String, byte[]> getKeyPairAndSign(String filePath) {
+        Map<String, byte[]> keys = new HashMap<>(2);
+
+        // 获取私钥
+        byte[] priKeyBytes = new byte[0];
+        try {
+            priKeyBytes = readKeyFromPem(filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 用私钥获取公钥
+        byte[] pubKey = priToPubKey(priKeyBytes);
+
+        // 获取自己的签名
+        byte[] signBytes = new byte[0];
+        try {
+            signBytes = sm2Sign(priKeyBytes, "ownersign".getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 将key和sign放入map
+        keys.put("priKey", priKeyBytes);
+        keys.put("pubKey", pubKey);
+        keys.put("sign", signBytes);
+
+        return keys;
     }
 
 

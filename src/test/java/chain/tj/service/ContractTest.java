@@ -31,4 +31,14 @@ public class ContractTest {
         RestResponse restResponse = smartContract.installSmartContract(c);
         System.out.println(restResponse);
     }
+
+    @Test
+    public void testDestorySmartContract() {
+        ContractReq c = new ContractReq();
+        // c.setCategory("wvm");
+        c.setName("abc");
+
+        RestResponse restResponse = smartContract.destorySmartContract(c);
+        System.out.println(restResponse);
+    }
 }
