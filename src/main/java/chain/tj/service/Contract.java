@@ -3,6 +3,7 @@ package chain.tj.service;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.ContractReq;
 import chain.tj.model.pojo.dto.InvokeSmartContractReq;
+import chain.tj.model.pojo.dto.QuerySmartContractReq;
 
 /**
  * @Describe:合约相关
@@ -35,5 +36,14 @@ public interface Contract {
      * @return
      */
     RestResponse invokeSmartContract(InvokeSmartContractReq invokeSmartContractReq);
+
+
+    /**
+     * 查询合约信息
+     *
+     * @param querySmartContractReq
+     * @return
+     */
+    RestResponse querySmartContract(QuerySmartContractReq querySmartContractReq);
 
 }
