@@ -116,7 +116,7 @@ public class SmartContract implements Contract {
     @Override
     public RestResponse destorySmartContract(ContractReq contractReq) {
         // 验证数据
-        checkData(contractReq);
+        checkBasicParam(contractReq.getPriKeyPath(),contractReq.getAddr(),contractReq.getPort());
         if (StringUtils.isBlank(contractReq.getName())) {
             return RestResponse.failure("合约名称不可以为空！", StatusCode.CLIENT_410001.value());
         }
@@ -131,7 +131,7 @@ public class SmartContract implements Contract {
         }
 
         // 获取密钥对和签名
-        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign(contractReq.getPriKeyPath());
         if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
@@ -146,7 +146,7 @@ public class SmartContract implements Contract {
                 .setPayload(transaction.toByteString())
                 .build();
         // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(contractReq.getAddr(), contractReq.getPort());
         // 发送请求
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         if (peerResponse.getOk()) {
