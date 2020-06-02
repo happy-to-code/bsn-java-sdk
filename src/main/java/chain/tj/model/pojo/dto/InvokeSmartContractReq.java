@@ -11,14 +11,41 @@ import java.util.List;
  */
 @Data
 public class InvokeSmartContractReq {
-    private String name;
-    private String version;
-    private String method;
-    private String caller;
-    private String category;
-    private String ledgerName;
-    private List<Object> args;
 
+    /**
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 版本
+     */
+    private String version;
+
+    /**
+     * 方法
+     */
+    private String method;
+
+    /**
+     * 调用人
+     */
+    private String caller;
+
+    /**
+     * 目录
+     */
+    private String category;
+
+    /**
+     * 账簿名称
+     */
+    private String ledgerName;
+
+    /**
+     * 其他参数
+     */
+    private List<Object> args;
 
 
     private Boolean isUnique;
@@ -28,6 +55,22 @@ public class InvokeSmartContractReq {
     private Long number;
 
     private String ledger;
+
+
+    /**
+     * ip地址
+     */
+    private String addr;
+
+    /**
+     * 端口
+     */
+    private Integer port;
+
+    /**
+     * 私钥地址路径
+     */
+    private String priKeyPath;
 
 
 }

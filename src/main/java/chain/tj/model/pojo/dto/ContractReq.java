@@ -10,12 +10,44 @@ import lombok.Data;
 @Data
 public class ContractReq {
 
+    /**
+     * 名称
+     */
     private String name;
-    private String version;
-    private String priKey;
-    private String category;
-    private String file;
 
+    /**
+     * 版本
+     */
+    private String version;
+
+    /**
+     * 私钥路径
+     */
+    private String priKeyPath;
+
+    /**
+     * 类别
+     */
+    private String category;
+
+    /**
+     * 合约文件路径
+     */
+    private String filePath;
+
+    /**
+     * 账簿
+     */
     private String ledger;
+
+    /**
+     * ip地址
+     */
+    private String addr;
+
+    /**
+     * 端口
+     */
+    private Integer port;
 
 }

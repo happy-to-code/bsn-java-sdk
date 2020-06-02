@@ -1,6 +1,7 @@
 package chain.tj.service.contract;
 
 import chain.tj.common.StatusCode;
+import chain.tj.common.exception.ServiceException;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.ienum.FateSubType;
 import chain.tj.model.ienum.TransactionType;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -51,14 +53,18 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse installSmartContract(ContractReq contractReq) {
+        // 验证数据
+        checkData(contractReq);
+
         // 获取密钥对和签名
-        Map<String, byte[]> keyPair = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        Map<String, byte[]> keyPair = getKeyPairAndSign(contractReq.getPriKeyPath());
         if (keyPair.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
-        String file = readFile("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        // 获取合约文件
+        String contractFile = readFile(contractReq.getFilePath());
         ByteBuf buf = Unpooled.buffer();
-        buf.writeBytes(file.getBytes());
+        buf.writeBytes(contractFile.getBytes());
         byte[] content = convertBuf(buf);
 
         // 获取随机字符串
@@ -85,7 +91,7 @@ public class SmartContract implements Contract {
                 .setPayload(transaction.toByteString())
                 .build();
         // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(contractReq.getAddr(), contractReq.getPort());
         // 发送请求
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
 
@@ -109,6 +115,8 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse destorySmartContract(ContractReq contractReq) {
+        // 验证数据
+        checkData(contractReq);
         if (StringUtils.isBlank(contractReq.getName())) {
             return RestResponse.failure("合约名称不可以为空！", StatusCode.CLIENT_410001.value());
         }
@@ -156,10 +164,13 @@ public class SmartContract implements Contract {
      */
     @Override
     public RestResponse invokeSmartContract(InvokeSmartContractReq invokeSmartContractReq) {
+        // 校验合约名称
         String name = invokeSmartContractReq.getName();
         if (StringUtils.isBlank(name)) {
             return RestResponse.failure("合约名称不可以为空", StatusCode.CLIENT_410001.value());
         }
+        // 校验数据
+        checkInvokeSmartContractParam(invokeSmartContractReq);
 
         if (!StringUtils.equals("Sys_StoreEncrypted", name)) {
             // 使用正则验证名称
@@ -188,7 +199,7 @@ public class SmartContract implements Contract {
                 .setPayload(transaction.toByteString())
                 .build();
         // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(invokeSmartContractReq.getAddr(), invokeSmartContractReq.getPort());
         // 发送请求
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
         if (peerResponse.getOk()) {
@@ -197,6 +208,7 @@ public class SmartContract implements Contract {
 
         return RestResponse.failure("调用合约失败！", StatusCode.SERVER_500000.value());
     }
+
 
     /**
      * 查询合约信息
@@ -211,6 +223,9 @@ public class SmartContract implements Contract {
         if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败", StatusCode.CLIENT_410021.value());
         }
+        // 校验数据
+        ckeckQuerySmartContractParam(querySmartContractReq);
+
 
         // 获取QuerySmartContract bodyByte
         byte[] bodyByte = getSmartContractBodyByte(querySmartContractReq.getName(), querySmartContractReq.getMethod(),
@@ -224,7 +239,7 @@ public class SmartContract implements Contract {
                 .setPayload(transaction.toByteString())
                 .build();
         // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort("10.1.3.150", 9008);
+        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(querySmartContractReq.getAddr(), querySmartContractReq.getPort());
         // 发送请求
         MyPeer.PeerResponse peerResponse = stub.newQueryTransaction(request);
 
@@ -233,6 +248,40 @@ public class SmartContract implements Contract {
         }
 
         return RestResponse.failure("查询合约信息失败！", StatusCode.SERVER_500000.value());
+    }
+
+
+    /**
+     * 校验查询合约信息参数
+     *
+     * @param querySmartContractReq
+     */
+    private void ckeckQuerySmartContractParam(QuerySmartContractReq querySmartContractReq) {
+        checkBasicParam(querySmartContractReq.getPriKeyPath(), querySmartContractReq.getAddr(), querySmartContractReq.getPort());
+
+        if (StringUtils.isBlank(querySmartContractReq.getName())) {
+            throw new ServiceException("参数：name不可以为空");
+        }
+
+        if (StringUtils.isBlank(querySmartContractReq.getCategory())) {
+            throw new ServiceException("参数：category不可以为空!");
+        }
+
+        if (StringUtils.isBlank(querySmartContractReq.getVersion())) {
+            throw new ServiceException("参数：version不可以为空!");
+        }
+
+        if (StringUtils.isBlank(querySmartContractReq.getMethod())) {
+            throw new ServiceException("参数：method不可以为空");
+        }
+
+        if (StringUtils.isBlank(querySmartContractReq.getCaller())) {
+            throw new ServiceException("参数：caller不可以为空");
+        }
+
+        if (null == querySmartContractReq.getArgs() || querySmartContractReq.getArgs().size() <= 0) {
+            throw new ServiceException("参数：args不可以为空!");
+        }
     }
 
     /**
@@ -459,5 +508,70 @@ public class SmartContract implements Contract {
         }
 
         return convertBuf(buf);
+    }
+
+
+    /**
+     * 验证数据
+     *
+     * @param contractReq
+     */
+    private void checkData(ContractReq contractReq) {
+        if (StringUtils.isBlank(contractReq.getFilePath())) {
+            throw new ServiceException("合约文件路径不可以为空！");
+        }
+
+        checkBasicParam(contractReq.getPriKeyPath(), contractReq.getAddr(), contractReq.getPort());
+    }
+
+    /**
+     * 验证基础信息
+     *
+     * @param priKeyPath
+     * @param addr
+     * @param port
+     */
+    private void checkBasicParam(String priKeyPath, String addr, Integer port) {
+        if (StringUtils.isBlank(priKeyPath)) {
+            throw new ServiceException("私钥文件路径不可以为空！");
+        }
+
+        if (StringUtils.isBlank(addr)) {
+            throw new ServiceException("ip地址不可以为空！");
+        }
+
+        if (null == port || port <= 0) {
+            throw new ServiceException("端口不合法！");
+        }
+    }
+
+    /**
+     * 校验调用合约参数
+     *
+     * @param invokeSmartContractReq
+     */
+    private void checkInvokeSmartContractParam(InvokeSmartContractReq invokeSmartContractReq) {
+        checkBasicParam(invokeSmartContractReq.getPriKeyPath(), invokeSmartContractReq.getAddr(), invokeSmartContractReq.getPort());
+
+        if (StringUtils.isBlank(invokeSmartContractReq.getCategory())) {
+            throw new ServiceException("参数：category不可以为空");
+        }
+
+        if (StringUtils.isBlank(invokeSmartContractReq.getVersion())) {
+            throw new ServiceException("参数：version不可以为空");
+        }
+
+        if (StringUtils.isBlank(invokeSmartContractReq.getMethod())) {
+            throw new ServiceException("参数：method不可以为空");
+        }
+
+        if (StringUtils.isBlank(invokeSmartContractReq.getCaller())) {
+            throw new ServiceException("参数：caller不可以为空");
+        }
+
+        if (null == invokeSmartContractReq.getArgs() || invokeSmartContractReq.getArgs().size() <= 0) {
+            throw new ServiceException("参数：args不可以为空");
+        }
+
     }
 }

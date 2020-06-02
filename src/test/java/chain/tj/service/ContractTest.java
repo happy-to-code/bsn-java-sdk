@@ -32,6 +32,10 @@ public class ContractTest {
         ContractReq c = new ContractReq();
         c.setCategory("wvm");
         c.setName("abc");
+        c.setFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        c.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        c.setAddr("10.1.3.150");
+        c.setPort(9008);
 
         RestResponse restResponse = smartContract.installSmartContract(c);
         System.out.println(restResponse);
@@ -74,10 +78,13 @@ public class ContractTest {
         c.setCategory("wvm");
         c.setArgs(list);
         c.setCaller("123");
-
         c.setVersion("2");
         c.setMethod("getBalance");
         c.setName("15d2b6f52de83395734c4d36999bf5ef883058b95d1aedfca3e7ea67ca0b1919");
+
+        c.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        c.setAddr("10.1.3.150");
+        c.setPort(9008);
 
         RestResponse restResponse = smartContract.querySmartContract(c);
         System.out.println(restResponse);
