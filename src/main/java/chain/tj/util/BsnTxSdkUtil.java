@@ -5,9 +5,14 @@ import chain.tj.model.pojo.dto.ContractReq;
 import chain.tj.model.pojo.dto.InvokeSmartContractReq;
 import chain.tj.model.pojo.dto.QuerySmartContractReq;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.service.Block;
 import chain.tj.service.Contract;
+import chain.tj.service.Member;
 import chain.tj.service.SystemTx;
+import chain.tj.service.block.BlockInfo;
 import chain.tj.service.contract.SmartContract;
+import chain.tj.service.memberinfo.MemberInfo;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +23,7 @@ import java.util.List;
  * @Date: 2020/5/22 15:06
  */
 public class BsnTxSdkUtil {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidProtocolBufferException {
         // SystemTx systemTx = new CreateSystemPeer();
         // NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
         //
@@ -98,7 +103,12 @@ public class BsnTxSdkUtil {
         // System.out.println(restResponse);
 
         //    ===============================================================================
+        // RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        // System.out.println("memberList = " + memberList);
 
+        //    =============================================
+        RestResponse height = blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        System.out.println("height = " + height);
     }
 
     /**
@@ -156,6 +166,59 @@ public class BsnTxSdkUtil {
         return contract.querySmartContract(querySmartContractReq);
     }
 
+    /**
+     * 获取节点状态数据
+     *
+     * @param addr
+     * @param rpcPort
+     * @param pubKeyPath
+     * @return
+     * @throws InvalidProtocolBufferException
+     */
+    public static RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) throws InvalidProtocolBufferException {
+        Member member = new MemberInfo();
+        return member.getMemberList(addr, rpcPort, pubKeyPath);
+    }
 
+    /**
+     * 获取区块高度
+     *
+     * @param addr       ip地址
+     * @param rpcPort    端口
+     * @param pubKeyPath 公钥文件路径地址
+     * @return
+     */
+    public static RestResponse blockHeight(String addr, Integer rpcPort, String pubKeyPath) {
+        Block block = new BlockInfo();
+        return block.blockHeight(addr, rpcPort, pubKeyPath);
+    }
+
+    /**
+     * 根据区块高度区块信息
+     *
+     * @param addr       ip地址
+     * @param rpcPort    端口
+     * @param pubKeyPath 公钥文件路径地址
+     * @param height
+     * @return
+     */
+    public static RestResponse getBlockByHeight(String addr, Integer rpcPort, String pubKeyPath, Integer height) {
+        Block block = new BlockInfo();
+        return block.getBlockByHeight(addr, rpcPort, pubKeyPath, height);
+    }
+
+    /**
+     * 根据hash值查询区块信息
+     *
+     * @param addr       ip地址
+     * @param rpcPort    端口
+     * @param pubKeyPath 公钥文件路径地址
+     * @param hash
+     * @return
+     */
+    public static RestResponse getBlockByHash(String addr, Integer rpcPort, String pubKeyPath, String hash) {
+        Block block = new BlockInfo();
+        return block.getBlockByHash(addr, rpcPort, pubKeyPath, hash);
+    }
 
 }

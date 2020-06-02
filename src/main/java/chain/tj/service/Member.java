@@ -17,6 +17,7 @@ public interface Member {
      * @param rpcPort    端口
      * @param pubKeyPath 公钥文件路径地址
      * @return
+     * @throws InvalidProtocolBufferException
      */
     RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) throws InvalidProtocolBufferException;
 }
