@@ -3,7 +3,6 @@ package chain.tj.util;
 import com.tjfoc.gmsm.*;
 import org.bouncycastle.math.ec.ECPoint;
 
-import java.io.IOException;
 import java.math.BigInteger;
 
 import static chain.tj.util.PeerUtil.toHexString;

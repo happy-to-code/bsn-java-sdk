@@ -14,9 +14,6 @@ import chain.tj.service.contract.SmartContract;
 import chain.tj.service.memberinfo.MemberInfo;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @Describe: 系统消息创建工具类
  * @Author: zhangyifei
@@ -103,12 +100,12 @@ public class BsnTxSdkUtil {
         // System.out.println(restResponse);
 
         //    ===============================================================================
-        // RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        // System.out.println("memberList = " + memberList);
+        RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        System.out.println("memberList = " + memberList);
 
         //    =============================================
-        RestResponse height = blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        System.out.println("height = " + height);
+        // RestResponse height = blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        // System.out.println("height = " + height);
     }
 
     /**
