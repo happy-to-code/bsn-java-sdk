@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @Author: zhangyifei
  * @Date: 2020/5/22 15:06
  */
-public class SystemTxUtil {
+public class BsnTxSdkUtil {
     public static void main(String[] args) {
         SystemTx systemTx = new CreateSystemPeer();
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
@@ -35,4 +35,6 @@ public class SystemTxUtil {
     public static RestResponse newSysTransaction(SystemTx systemTx, NewTxQueryDto newTxQueryDto) {
         return systemTx.newTransaction(newTxQueryDto);
     }
+
+
 }

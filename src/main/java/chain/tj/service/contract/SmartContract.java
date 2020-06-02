@@ -56,38 +56,9 @@ public class SmartContract implements Contract {
         if (keyPair.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
-
-        String fileBase64 = "//合约示例\n" +
-                "contract Transfer123456 {\n" +
-                "\t//初始化一个账户\n" +
-                "\tpublic string init(){\n" +
-                "\t\tdb_set(\"bob\",10000)\n" +
-                "        db_set(\"jim\",10000)\n" +
-                "        return \"success\"\n" +
-                "\t}\n" +
-                "\t\n" +
-                "\t//转账操作\n" +
-                "\tpublic string transfer(string from, string to, int amount) {\n" +
-                "\t\tint balA = db_get<int>(from)\n" +
-                "\t\tint balB = db_get<int>(to)\n" +
-                "\t\tbalA = balA-amount\n" +
-                "\t\tif (balA>0){\n" +
-                "\t\t\tbalB = balB+amount\n" +
-                "\t\t\tdb_set(from, balA)\n" +
-                "\t\t\tdb_set(to, balB)\n" +
-                "\t\t}else{\n" +
-                "            return \"insufficient balance\"\n" +
-                "        }\n" +
-                "\t\treturn \"success\"\n" +
-                "\t}\n" +
-                "\n" +
-                "\t//查询账户余额\n" +
-                "\tpublic int getBalance(string account){\n" +
-                "\t\treturn db_get<int>(account)\n" +
-                "\t}\n" +
-                "}";
+        String file = readFile("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
         ByteBuf buf = Unpooled.buffer();
-        buf.writeBytes(fileBase64.getBytes());
+        buf.writeBytes(file.getBytes());
         byte[] content = convertBuf(buf);
 
         // 获取随机字符串
@@ -119,6 +90,7 @@ public class SmartContract implements Contract {
         MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
 
         if (peerResponse.getOk()) {
+            // 封装返回体
             InstallContractVo installContractVo = new InstallContractVo();
             installContractVo.setName(arr2HexStr(peerResponse.getPayload().toByteArray()));
             installContractVo.setHashData(arr2HexStr(transaction.getHeader().getTransactionHash().toByteArray()));
@@ -257,7 +229,7 @@ public class SmartContract implements Contract {
         MyPeer.PeerResponse peerResponse = stub.newQueryTransaction(request);
 
         if (peerResponse.getOk()) {
-            return RestResponse.success().setData(arr2HexStr(peerResponse.getPayload().toByteArray()));
+            return RestResponse.success().setData(peerResponse.getPayload().toStringUtf8());
         }
 
         return RestResponse.failure("查询合约信息失败！", StatusCode.SERVER_500000.value());

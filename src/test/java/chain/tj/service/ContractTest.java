@@ -71,21 +71,17 @@ public class ContractTest {
         QuerySmartContractReq c = new QuerySmartContractReq();
         List<Object> list = new ArrayList<>();
         list.add("bob");
-        list.add("jim");
-        list.add(10);
         c.setCategory("wvm");
         c.setArgs(list);
         c.setCaller("123");
 
         c.setVersion("2");
-        c.setMethod("transfer");
+        c.setMethod("getBalance");
         c.setName("15d2b6f52de83395734c4d36999bf5ef883058b95d1aedfca3e7ea67ca0b1919");
 
         RestResponse restResponse = smartContract.querySmartContract(c);
         System.out.println(restResponse);
-
-        // 73756363657373
-        // 73756363657373
-
+        // 9940
+        // 9930
     }
 }

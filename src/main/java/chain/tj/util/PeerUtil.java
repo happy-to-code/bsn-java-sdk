@@ -429,13 +429,15 @@ public class PeerUtil {
             BufferedReader bfr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filePath)), "UTF-8"));
             String lineTxt;
             while ((lineTxt = bfr.readLine()) != null) {
-                result.append(lineTxt);
+                result.append(lineTxt).append("\n");
             }
             bfr.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result.toString();
+        String toString = result.toString();
+        String substring = toString.substring(0, toString.lastIndexOf("\n"));
+        return substring;
     }
 
 
