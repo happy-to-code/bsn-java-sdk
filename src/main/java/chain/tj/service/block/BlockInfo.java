@@ -58,15 +58,15 @@ public class BlockInfo implements Block {
             return RestResponse.failure("请求出错！", StatusCode.SERVER_500000.value());
         }
 
-        Msg.BlockchainNumber blockchainNumber;
+        Msg.BlockchainNumber blockChainNumber;
         try {
-            blockchainNumber = Msg.BlockchainNumber.parseFrom(response.getPayload());
+            blockChainNumber = Msg.BlockchainNumber.parseFrom(response.getPayload());
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
             return RestResponse.failure("请求出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
         }
 
-        return RestResponse.success().setData(blockchainNumber.getNumber());
+        return RestResponse.success().setData(blockChainNumber.getNumber());
     }
 
     /**
@@ -91,10 +91,10 @@ public class BlockInfo implements Block {
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
 
         // 封装请求对象
-        Msg.BlockchainNumber blockchainNumber = Msg.BlockchainNumber.newBuilder().setNumber(height).build();
+        Msg.BlockchainNumber blockChainNumber = Msg.BlockchainNumber.newBuilder().setNumber(height).build();
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
                 .setPubkey(peerPubKey)
-                .setPayload(blockchainNumber.toByteString())
+                .setPayload(blockChainNumber.toByteString())
                 .build();
 
         PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
@@ -132,10 +132,10 @@ public class BlockInfo implements Block {
         // 将16进制的pubKey转换成ByteString
         ByteString peerPubKey = convertPubKeyToByteString(pubKey);
 
-        Msg.BlockchainHash blockchainHash = Msg.BlockchainHash.newBuilder().setHashData(ByteString.copyFromUtf8(hash)).build();
+        Msg.BlockchainHash blockChainHash = Msg.BlockchainHash.newBuilder().setHashData(ByteString.copyFromUtf8(hash)).build();
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
                 .setPubkey(peerPubKey)
-                .setPayload(blockchainHash.toByteString())
+                .setPayload(blockChainHash.toByteString())
                 .build();
 
         PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);

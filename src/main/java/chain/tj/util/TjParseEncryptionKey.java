@@ -29,14 +29,7 @@ public class TjParseEncryptionKey {
      * @throws IOException
      */
     public static byte[] readKeyFromPem(String filePath) throws IOException {
-        ParseEncryptionKey parseEncryptionKey = new ParseEncryptionKey();
         return ParseEncryptionKey.readKeyFromPem(filePath);
-//		Reader reader = new BufferedReader(new FileReader(filePath));
-//		PemReader pemReader = new PemReader(reader);
-//		PemObject obj = pemReader.readPemObject();
-//		pemReader.close();
-//		byte[] der = obj.getContent();
-//		return der;
     }
 
     public byte[] readPrivateKey(byte[] prik) throws Exception {

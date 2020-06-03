@@ -2,7 +2,6 @@ package chain.tj.util;
 
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.proto.PeerGrpc;
-import cn.hutool.http.webservice.SoapUtil;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NegotiationType;
@@ -20,7 +19,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
