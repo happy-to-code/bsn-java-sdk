@@ -84,27 +84,27 @@ public class BsnTxSdkUtil {
         // System.out.println(restResponse);
 
         //    --------------------------------------------------
-        Contract contract = new SmartContract();
-        QuerySmartContractReq c = new QuerySmartContractReq();
-        List<Object> list = new ArrayList<>();
-        list.add("bob");
-        c.setCategory("wvm");
-        c.setArgs(list);
-        c.setCaller("123");
-        c.setVersion("2");
-        c.setMethod("getBalance");
-        c.setName("15d2b6f52de83395734c4d36999bf5ef883058b95d1aedfca3e7ea67ca0b1919");
-
-        c.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
-        c.setAddr("10.1.3.150");
-        c.setPort(9008);
-
-        RestResponse restResponse = querySmartContract(c);
-        System.out.println(restResponse);
+        // Contract contract = new SmartContract();
+        // QuerySmartContractReq c = new QuerySmartContractReq();
+        // List<Object> list = new ArrayList<>();
+        // list.add("bob");
+        // c.setCategory("wvm");
+        // c.setArgs(list);
+        // c.setCaller("123");
+        // c.setVersion("2");
+        // c.setMethod("getBalance");
+        // c.setName("15d2b6f52de83395734c4d36999bf5ef883058b95d1aedfca3e7ea67ca0b1919");
+        //
+        // c.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        // c.setAddr("10.1.3.150");
+        // c.setPort(9008);
+        //
+        // RestResponse restResponse = querySmartContract(c);
+        // System.out.println(restResponse);
 
         //    ===============================================================================
-        // RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        // System.out.println("memberList = " + memberList);
+        RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        System.out.println("memberList = " + memberList);
 
         //    =============================================
         // RestResponse height = blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");

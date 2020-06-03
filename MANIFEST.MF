@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: lib/bcpkix-jdk15on-158.jar lib/bcprov-jdk15on-158.jar lib/cryptokit.jni-1.0.jar lib/SADK-3.5.1.0.jar lib/SADK-3.5.1.0-javadoc.jar lib/tjfoc-gmsm-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+Main-Class: chain.tj.AppApplication
