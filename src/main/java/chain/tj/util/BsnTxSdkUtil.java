@@ -28,7 +28,7 @@ import static chain.tj.util.PeerBasicUtil.getStubList;
  * @Date: 2020/5/22 15:06
  */
 public class BsnTxSdkUtil {
-    public static void main(String[] args) throws InvalidProtocolBufferException {
+    public static void main(String[] args) {
         // 这边创建时是多态
         SystemTx systemTx = new CreateSystemPeer();
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
