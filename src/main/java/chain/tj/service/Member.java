@@ -1,7 +1,11 @@
 package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.PeerGrpc;
 import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.util.List;
 
 /**
  * @Describe:
@@ -13,11 +17,10 @@ public interface Member {
     /**
      * 获取节点信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      * @throws InvalidProtocolBufferException
      */
-    RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) throws InvalidProtocolBufferException;
+    RestResponse getMemberList(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) throws InvalidProtocolBufferException;
 }

@@ -18,11 +18,12 @@ public class TxCommonDataVo {
 
     /**
      * 公私钥对和签名字节数据（默认键值是：priKey、pubKey和sign）
+     * 此处的公钥是通过私钥推到出来的
      */
     private Map<String, byte[]> keyPairAndSign;
 
     /**
      * wvm合约文件字节数据
      */
-    private byte[] wvmBytes;
+    private byte[] wvmFileBytes;
 }

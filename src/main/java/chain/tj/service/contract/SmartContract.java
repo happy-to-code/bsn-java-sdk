@@ -116,7 +116,7 @@ public class SmartContract implements Contract {
     @Override
     public RestResponse destorySmartContract(ContractReq contractReq) {
         // 验证数据
-        checkBasicParam(contractReq.getPriKeyPath(),contractReq.getAddr(),contractReq.getPort());
+        checkBasicParam(contractReq.getPriKeyPath(), contractReq.getAddr(), contractReq.getPort());
         if (StringUtils.isBlank(contractReq.getName())) {
             return RestResponse.failure("合约名称不可以为空！", StatusCode.CLIENT_410001.value());
         }

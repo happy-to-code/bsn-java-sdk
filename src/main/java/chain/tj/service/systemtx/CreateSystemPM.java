@@ -59,7 +59,7 @@ public class CreateSystemPM implements SystemTx {
         log.info("sysData的十六进制：{}", toHexString(sysData));
 
         // 给TransactionDto对象赋值
-        setValueForTransactionDto(transactionDto,newTxQueryDto.getPriKeyPath());
+        setValueForTransactionDto(transactionDto, newTxQueryDto.getPriKeyPath());
 
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 

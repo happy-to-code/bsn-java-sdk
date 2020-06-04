@@ -103,6 +103,7 @@ public class PeerServiceTest extends TestCase {
 
         createSystemSubLeadger.newTransaction(newTxQueryDto);
     }
+
     @Test
     public void testCreateSystemFASC() {
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();

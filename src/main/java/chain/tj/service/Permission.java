@@ -1,6 +1,10 @@
 package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.PeerGrpc;
+
+import java.util.List;
 
 /**
  * @Describe:权限相关
@@ -11,10 +15,9 @@ public interface Permission {
     /**
      * 获取节点信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      */
-    RestResponse getPeerPermissions(String addr, Integer rpcPort, String pubKeyPath);
+    RestResponse getPeerPermissions(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo);
 }

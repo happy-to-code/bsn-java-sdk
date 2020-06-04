@@ -50,7 +50,7 @@ public class PeerBasicUtil {
         for (PeerConnectionDto dto : connectionDtoList) {
             String ip = dto.getIp().trim();
             Integer port = dto.getPort();
-            if (StringUtils.isNoneBlank(ip) && ip.length() >= 7 && ip.length() <= 15 && port != null && port > 0) {
+            if (StringUtils.isNotBlank(ip) && ip.length() >= 7 && ip.length() <= 15 && port != null && port > 0) {
                 stubs.add(getStubByIpAndPort(ip, port));
             }
         }
@@ -93,7 +93,7 @@ public class PeerBasicUtil {
                 buf.writeBytes(contractFile.getBytes());
                 byte[] content = convertBuf(buf);
 
-                commonDataVo.setWvmBytes(content);
+                commonDataVo.setWvmFileBytes(content);
             }
         }
 
@@ -128,7 +128,22 @@ public class PeerBasicUtil {
             commonDataVo.setKeyPairAndSign(keyPairAndSign);
         }
 
-
         return commonDataVo;
+    }
+
+
+    /**
+     * 校验参数
+     *
+     * @param stubList
+     * @param txCommonDataVo
+     */
+    public static void checkingParam(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) {
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
+        if (null == txCommonDataVo || null == txCommonDataVo.getPubKeyByte()) {
+            throw new ServiceException("获取公钥数据失败");
+        }
     }
 }

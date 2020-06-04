@@ -5,6 +5,8 @@ import chain.tj.model.pojo.dto.ContractReq;
 import chain.tj.model.pojo.dto.InvokeSmartContractReq;
 import chain.tj.model.pojo.dto.QuerySmartContractReq;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.Block;
 import chain.tj.service.Contract;
 import chain.tj.service.Member;
@@ -103,8 +105,6 @@ public class BsnTxSdkUtil {
         // System.out.println(restResponse);
 
         //    ===============================================================================
-        RestResponse memberList = getMemberList("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        System.out.println("memberList = " + memberList);
 
         //    =============================================
         // RestResponse height = blockHeight("10.1.3.150", 9008, "D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
@@ -169,15 +169,14 @@ public class BsnTxSdkUtil {
     /**
      * 获取节点状态数据
      *
-     * @param addr
-     * @param rpcPort
-     * @param pubKeyPath
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      * @throws InvalidProtocolBufferException
      */
-    public static RestResponse getMemberList(String addr, Integer rpcPort, String pubKeyPath) throws InvalidProtocolBufferException {
+    public static RestResponse getMemberList(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) throws InvalidProtocolBufferException {
         Member member = new MemberInfo();
-        return member.getMemberList(addr, rpcPort, pubKeyPath);
+        return member.getMemberList(stubList, txCommonDataVo);
     }
 
     /**
