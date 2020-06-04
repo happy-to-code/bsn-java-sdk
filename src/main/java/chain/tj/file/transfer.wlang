@@ -1,5 +1,5 @@
 //合约示例
-contract Transfer {
+contract Transfer123777 {
 	//初始化一个账户
 	public string init(){
 		db_set("bob",10000)

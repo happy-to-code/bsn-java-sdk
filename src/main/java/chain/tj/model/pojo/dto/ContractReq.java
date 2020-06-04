@@ -20,10 +20,6 @@ public class ContractReq {
      */
     private String version;
 
-    /**
-     * 私钥路径
-     */
-    private String priKeyPath;
 
     /**
      * 类别
@@ -31,23 +27,9 @@ public class ContractReq {
     private String category;
 
     /**
-     * 合约文件路径
-     */
-    private String filePath;
-
-    /**
      * 账簿
      */
     private String ledger;
 
-    /**
-     * ip地址
-     */
-    private String addr;
-
-    /**
-     * 端口
-     */
-    private Integer port;
 
 }

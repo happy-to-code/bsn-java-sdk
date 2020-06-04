@@ -57,20 +57,4 @@ public class InvokeSmartContractReq {
     private String ledger;
 
 
-    /**
-     * ip地址
-     */
-    private String addr;
-
-    /**
-     * 端口
-     */
-    private Integer port;
-
-    /**
-     * 私钥地址路径
-     */
-    private String priKeyPath;
-
-
 }

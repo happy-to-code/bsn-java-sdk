@@ -125,12 +125,14 @@ public class BsnTxSdkUtil {
     /**
      * 安装智能合约
      *
+     * @param stubList
+     * @param txCommonDataVo
      * @param contractReq
      * @return
      */
-    public static RestResponse installSmartContract(ContractReq contractReq) {
+    public static RestResponse installSmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, ContractReq contractReq) {
         Contract contract = new SmartContract();
-        return contract.installSmartContract(contractReq);
+        return contract.installSmartContract(stubList, txCommonDataVo, contractReq);
     }
 
     /**
@@ -139,9 +141,9 @@ public class BsnTxSdkUtil {
      * @param contractReq
      * @return
      */
-    public static RestResponse destorySmartContract(ContractReq contractReq) {
+    public static RestResponse destorySmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, ContractReq contractReq) {
         Contract contract = new SmartContract();
-        return contract.destorySmartContract(contractReq);
+        return contract.destorySmartContract(stubList, txCommonDataVo, contractReq);
     }
 
     /**
@@ -150,9 +152,9 @@ public class BsnTxSdkUtil {
      * @param invokeSmartContractReq
      * @return
      */
-    public static RestResponse invokeSmartContract(InvokeSmartContractReq invokeSmartContractReq) {
+    public static RestResponse invokeSmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, InvokeSmartContractReq invokeSmartContractReq) {
         Contract contract = new SmartContract();
-        return contract.invokeSmartContract(invokeSmartContractReq);
+        return contract.invokeSmartContract(stubList, txCommonDataVo, invokeSmartContractReq);
     }
 
     /**
@@ -161,9 +163,9 @@ public class BsnTxSdkUtil {
      * @param querySmartContractReq
      * @return
      */
-    public static RestResponse querySmartContract(QuerySmartContractReq querySmartContractReq) {
+    public static RestResponse querySmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, QuerySmartContractReq querySmartContractReq) {
         Contract contract = new SmartContract();
-        return contract.querySmartContract(querySmartContractReq);
+        return contract.querySmartContract(stubList, txCommonDataVo, querySmartContractReq);
     }
 
     /**
@@ -182,42 +184,39 @@ public class BsnTxSdkUtil {
     /**
      * 获取区块高度
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      */
-    public static RestResponse blockHeight(String addr, Integer rpcPort, String pubKeyPath) {
+    public static RestResponse blockHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) {
         Block block = new BlockInfo();
-        return block.blockHeight(addr, rpcPort, pubKeyPath);
+        return block.blockHeight(stubList, txCommonDataVo);
     }
 
     /**
      * 根据区块高度区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param height
      * @return
      */
-    public static RestResponse getBlockByHeight(String addr, Integer rpcPort, String pubKeyPath, Integer height) {
+    public static RestResponse getBlockByHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, Integer height) {
         Block block = new BlockInfo();
-        return block.getBlockByHeight(addr, rpcPort, pubKeyPath, height);
+        return block.getBlockByHeight(stubList, txCommonDataVo, height);
     }
 
     /**
      * 根据hash值查询区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param hash
      * @return
      */
-    public static RestResponse getBlockByHash(String addr, Integer rpcPort, String pubKeyPath, String hash) {
+    public static RestResponse getBlockByHash(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, String hash) {
         Block block = new BlockInfo();
-        return block.getBlockByHash(addr, rpcPort, pubKeyPath, hash);
+        return block.getBlockByHash(stubList, txCommonDataVo, hash);
     }
 
 }

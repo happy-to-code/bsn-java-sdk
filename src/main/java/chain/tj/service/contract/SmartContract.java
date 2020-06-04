@@ -12,19 +12,21 @@ import chain.tj.model.pojo.dto.QuerySmartContractReq;
 import chain.tj.model.pojo.dto.contract.ContractCallArg;
 import chain.tj.model.pojo.dto.contract.WVMContractTx;
 import chain.tj.model.pojo.vo.InstallContractVo;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.Msg;
 import chain.tj.model.proto.MyPeer;
 import chain.tj.model.proto.MyTransaction;
 import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.Contract;
 import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -32,7 +34,6 @@ import java.util.regex.Pattern;
 import static chain.tj.util.GmUtils.sm2Sign;
 import static chain.tj.util.GmUtils.sm3Hash;
 import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.PeerUtil.arr2HexStr;
 import static chain.tj.util.TransactionUtil.convertBuf;
 
 /**
@@ -49,23 +50,24 @@ public class SmartContract implements Contract {
      * 安装智能合约
      *
      * @param contractReq
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      */
     @Override
-    public RestResponse installSmartContract(ContractReq contractReq) {
+    public RestResponse installSmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, ContractReq contractReq) {
         // 验证数据
-        checkData(contractReq);
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
 
         // 获取密钥对和签名
-        Map<String, byte[]> keyPair = getKeyPairAndSign(contractReq.getPriKeyPath());
-        if (keyPair.isEmpty()) {
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
+        if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
         // 获取合约文件
-        String contractFile = readFile(contractReq.getFilePath());
-        ByteBuf buf = Unpooled.buffer();
-        buf.writeBytes(contractFile.getBytes());
-        byte[] content = convertBuf(buf);
+        byte[] content = txCommonDataVo.getWvmFileBytes();
 
         // 获取随机字符串
         String randomStr = getRandomStr();
@@ -76,32 +78,42 @@ public class SmartContract implements Contract {
 
         WVMContractTx wvmContractTx = new WVMContractTx();
         wvmContractTx.setArg(contractCallArg);
-        wvmContractTx.setOwner(keyPair.get("pubKey"));
+        wvmContractTx.setOwner(keyPairAndSign.get("pubKey"));
         wvmContractTx.setRandom(randomStr.getBytes());
         wvmContractTx.setSrc(content);
-        wvmContractTx.setSign(keyPair.get("sign"));
+        wvmContractTx.setSign(keyPairAndSign.get("sign"));
 
         // 序列化 wvmContractTx
         byte[] wvmContractTxBytes = serialWvmContractTx(wvmContractTx);
 
         // 获取请求体MyTransaction.Transaction getTransaction
-        MyTransaction.Transaction transaction = getTransaction(contractReq.getLedger(), Version.VersionTwo.getValue(), TransactionType.SCWVM.getValue(), FateSubType.WVMSCInstall.getValue(), wvmContractTxBytes, keyPair.get("pubKey"), keyPair.get("priKey"));
+        MyTransaction.Transaction transaction = getTransaction(contractReq.getLedger(), Version.VersionTwo.getValue(), TransactionType.SCWVM.getValue(), FateSubType.WVMSCInstall.getValue(), wvmContractTxBytes, keyPairAndSign.get("pubKey"), keyPairAndSign.get("priKey"));
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
-                .setPubkey(ByteString.copyFrom(keyPair.get("pubKey")))
+                .setPubkey(ByteString.copyFrom(keyPairAndSign.get("pubKey")))
                 .setPayload(transaction.toByteString())
                 .build();
-        // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(contractReq.getAddr(), contractReq.getPort());
-        // 发送请求
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
 
-        if (peerResponse.getOk()) {
-            // 封装返回体
-            InstallContractVo installContractVo = new InstallContractVo();
-            installContractVo.setName(arr2HexStr(peerResponse.getPayload().toByteArray()));
-            installContractVo.setHashData(arr2HexStr(transaction.getHeader().getTransactionHash().toByteArray()));
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.newTransaction(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    // 封装返回体
+                    InstallContractVo installContractVo = new InstallContractVo();
+                    installContractVo.setName(arr2HexStr(peerResponse.getPayload().toByteArray()));
+                    installContractVo.setHashData(arr2HexStr(transaction.getHeader().getTransactionHash().toByteArray()));
 
-            return RestResponse.success().setData(installContractVo);
+                    return RestResponse.success().setData(installContractVo);
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return RestResponse.failure("创建合约失败！", StatusCode.SERVER_500000.value());
@@ -110,13 +122,17 @@ public class SmartContract implements Contract {
     /**
      * 销毁合约
      *
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param contractReq
      * @return
      */
     @Override
-    public RestResponse destorySmartContract(ContractReq contractReq) {
+    public RestResponse destorySmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, ContractReq contractReq) {
         // 验证数据
-        checkBasicParam(contractReq.getPriKeyPath(), contractReq.getAddr(), contractReq.getPort());
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
         if (StringUtils.isBlank(contractReq.getName())) {
             return RestResponse.failure("合约名称不可以为空！", StatusCode.CLIENT_410001.value());
         }
@@ -131,7 +147,7 @@ public class SmartContract implements Contract {
         }
 
         // 获取密钥对和签名
-        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign(contractReq.getPriKeyPath());
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
         if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
@@ -145,12 +161,24 @@ public class SmartContract implements Contract {
                 .setPubkey(ByteString.copyFrom(keyPairAndSign.get("pubKey")))
                 .setPayload(transaction.toByteString())
                 .build();
-        // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(contractReq.getAddr(), contractReq.getPort());
+
         // 发送请求
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
-        if (peerResponse.getOk()) {
-            return RestResponse.success();
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.newTransaction(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    return RestResponse.success();
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return RestResponse.failure("删除合约失败！", StatusCode.SERVER_500000.value());
@@ -159,11 +187,13 @@ public class SmartContract implements Contract {
     /**
      * 调用合约
      *
+     * @param stubList               连接数组
+     * @param txCommonDataVo         交易公共数据对象
      * @param invokeSmartContractReq
      * @return
      */
     @Override
-    public RestResponse invokeSmartContract(InvokeSmartContractReq invokeSmartContractReq) {
+    public RestResponse invokeSmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, InvokeSmartContractReq invokeSmartContractReq) {
         // 校验合约名称
         String name = invokeSmartContractReq.getName();
         if (StringUtils.isBlank(name)) {
@@ -171,6 +201,9 @@ public class SmartContract implements Contract {
         }
         // 校验数据
         checkInvokeSmartContractParam(invokeSmartContractReq);
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
 
         if (!StringUtils.equals("Sys_StoreEncrypted", name)) {
             // 使用正则验证名称
@@ -181,7 +214,7 @@ public class SmartContract implements Contract {
             }
         }
         // 获取密钥对和签名
-        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
         if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败！", StatusCode.CLIENT_410021.value());
         }
@@ -198,12 +231,23 @@ public class SmartContract implements Contract {
                 .setPubkey(ByteString.copyFrom(keyPairAndSign.get("pubKey")))
                 .setPayload(transaction.toByteString())
                 .build();
-        // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(invokeSmartContractReq.getAddr(), invokeSmartContractReq.getPort());
+
         // 发送请求
-        MyPeer.PeerResponse peerResponse = stub.newTransaction(request);
-        if (peerResponse.getOk()) {
-            return RestResponse.success();
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                peerResponse = stub.newTransaction(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    return RestResponse.success();
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return RestResponse.failure("调用合约失败！", StatusCode.SERVER_500000.value());
@@ -213,19 +257,23 @@ public class SmartContract implements Contract {
     /**
      * 查询合约信息
      *
+     * @param stubList              连接数组
+     * @param txCommonDataVo        交易公共数据对象
      * @param querySmartContractReq
      * @return
      */
     @Override
-    public RestResponse querySmartContract(QuerySmartContractReq querySmartContractReq) {
+    public RestResponse querySmartContract(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, QuerySmartContractReq querySmartContractReq) {
         // 获取密钥对和签名
-        Map<String, byte[]> keyPairAndSign = getKeyPairAndSign("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
         if (keyPairAndSign.isEmpty()) {
             return RestResponse.failure("获取秘钥失败", StatusCode.CLIENT_410021.value());
         }
         // 校验数据
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
         ckeckQuerySmartContractParam(querySmartContractReq);
-
 
         // 获取QuerySmartContract bodyByte
         byte[] bodyByte = getSmartContractBodyByte(querySmartContractReq.getName(), querySmartContractReq.getMethod(),
@@ -238,13 +286,24 @@ public class SmartContract implements Contract {
                 .setPubkey(ByteString.copyFrom(keyPairAndSign.get("pubKey")))
                 .setPayload(transaction.toByteString())
                 .build();
-        // 获取stub
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(querySmartContractReq.getAddr(), querySmartContractReq.getPort());
-        // 发送请求
-        MyPeer.PeerResponse peerResponse = stub.newQueryTransaction(request);
 
-        if (peerResponse.getOk()) {
-            return RestResponse.success().setData(peerResponse.getPayload().toStringUtf8());
+        // 发送请求
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.newQueryTransaction(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    return RestResponse.success().setData(peerResponse.getPayload().toStringUtf8());
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return RestResponse.failure("查询合约信息失败！", StatusCode.SERVER_500000.value());
@@ -257,7 +316,6 @@ public class SmartContract implements Contract {
      * @param querySmartContractReq
      */
     private void ckeckQuerySmartContractParam(QuerySmartContractReq querySmartContractReq) {
-        checkBasicParam(querySmartContractReq.getPriKeyPath(), querySmartContractReq.getAddr(), querySmartContractReq.getPort());
 
         if (StringUtils.isBlank(querySmartContractReq.getName())) {
             throw new ServiceException("参数：name不可以为空");
@@ -512,19 +570,6 @@ public class SmartContract implements Contract {
 
 
     /**
-     * 验证数据
-     *
-     * @param contractReq
-     */
-    private void checkData(ContractReq contractReq) {
-        if (StringUtils.isBlank(contractReq.getFilePath())) {
-            throw new ServiceException("合约文件路径不可以为空！");
-        }
-
-        checkBasicParam(contractReq.getPriKeyPath(), contractReq.getAddr(), contractReq.getPort());
-    }
-
-    /**
      * 验证基础信息
      *
      * @param priKeyPath
@@ -551,7 +596,6 @@ public class SmartContract implements Contract {
      * @param invokeSmartContractReq
      */
     private void checkInvokeSmartContractParam(InvokeSmartContractReq invokeSmartContractReq) {
-        checkBasicParam(invokeSmartContractReq.getPriKeyPath(), invokeSmartContractReq.getAddr(), invokeSmartContractReq.getPort());
 
         if (StringUtils.isBlank(invokeSmartContractReq.getCategory())) {
             throw new ServiceException("参数：category不可以为空");

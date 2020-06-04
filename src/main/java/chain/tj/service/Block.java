@@ -1,6 +1,10 @@
 package chain.tj.service;
 
 import chain.tj.common.response.RestResponse;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.PeerGrpc;
+
+import java.util.List;
 
 /**
  * @Describe:区块相关
@@ -12,33 +16,30 @@ public interface Block {
     /**
      * 获取区块高度
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      */
-    RestResponse blockHeight(String addr, Integer rpcPort, String pubKeyPath);
+    RestResponse blockHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo);
 
     /**
      * 根据区块高度区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param height
      * @return
      */
-    RestResponse getBlockByHeight(String addr, Integer rpcPort, String pubKeyPath, Integer height);
+    RestResponse getBlockByHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, Integer height);
 
     /**
      * 根据hash值查询区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param hash
      * @return
      */
-    RestResponse getBlockByHash(String addr, Integer rpcPort, String pubKeyPath, String hash);
+    RestResponse getBlockByHash(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, String hash);
 
 }

@@ -3,6 +3,7 @@ package chain.tj.service.block;
 import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.vo.BlockInfoVo;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
 import chain.tj.model.proto.Msg;
 import chain.tj.model.proto.MyBlock;
 import chain.tj.model.proto.MyPeer;
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static chain.tj.util.PeerUtil.*;
-import static chain.tj.util.TransactionUtil.checkParam;
+import static chain.tj.util.PeerBasicUtil.checkingParam;
+import static chain.tj.util.PeerUtil.arr2HexStr;
 
 /**
  * @Describe:
@@ -31,130 +32,157 @@ public class BlockInfo implements Block {
     /**
      * 获取区块高度
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @return
      */
     @Override
-    public RestResponse blockHeight(String addr, Integer rpcPort, String pubKeyPath) {
+    public RestResponse blockHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) {
         // 验证参数
-        checkParam(addr, rpcPort, pubKeyPath);
-        // 读取PubKey
-        String pubKey = readFile(pubKeyPath);
-        // 将16进制的pubKey转换成ByteString
-        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
-        log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
+        checkingParam(stubList, txCommonDataVo);
 
         // 封装请求对象
-        MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder().setPubkey(peerPubKey).build();
+        MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder().setPubkey(ByteString.copyFrom(txCommonDataVo.getPubKeyByte())).build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
-
-        // 获取高度
-        MyPeer.PeerResponse response = stub.blockchainGetHeight(request);
-
-        if (!response.getOk()) {
-            return RestResponse.failure("请求出错！", StatusCode.SERVER_500000.value());
+        Msg.BlockchainNumber blockChainNumber = null;
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.blockchainGetHeight(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    try {
+                        blockChainNumber = Msg.BlockchainNumber.parseFrom(peerResponse.getPayload());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    break;
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        Msg.BlockchainNumber blockChainNumber;
-        try {
-            blockChainNumber = Msg.BlockchainNumber.parseFrom(response.getPayload());
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-            return RestResponse.failure("请求出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
+        if (null == blockChainNumber) {
+            return RestResponse.failure("查询数据失败", StatusCode.SERVER_500000.value());
         }
 
-        return RestResponse.success().setData(blockChainNumber.getNumber());
+        return RestResponse.success().setData(blockChainNumber);
     }
 
     /**
      * 根据区块高度区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param height
      * @return
      */
     @Override
-    public RestResponse getBlockByHeight(String addr, Integer rpcPort, String pubKeyPath, Integer height) {
+    public RestResponse getBlockByHeight(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, Integer height) {
         // 验证参数
-        checkParam(addr, rpcPort, pubKeyPath);
+        checkingParam(stubList, txCommonDataVo);
         if (null == height || height <= 0) {
             height = 0;
         }
-        // 读取PubKey
-        String pubKey = readFile(pubKeyPath);
-        // 将16进制的pubKey转换成ByteString
-        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
 
         // 封装请求对象
         Msg.BlockchainNumber blockChainNumber = Msg.BlockchainNumber.newBuilder().setNumber(height).build();
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
-                .setPubkey(peerPubKey)
+                .setPubkey(ByteString.copyFrom(txCommonDataVo.getPubKeyByte()))
                 .setPayload(blockChainNumber.toByteString())
                 .build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
-        MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
-
-        MyBlock.Block block;
-        try {
-            block = MyBlock.Block.parseFrom(peerResponse.getPayload());
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-            return RestResponse.failure("解析区块出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
+        MyBlock.Block block = null;
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.blockchainGetBlockByHeight(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    try {
+                        block = MyBlock.Block.parseFrom(peerResponse.getPayload());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    break;
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        // 转换区块头信息
-        BlockInfoVo blockInfoVo = convertBlockHead(block);
+        if (null == block) {
+            return RestResponse.failure("查询数据失败", StatusCode.SERVER_500000.value());
+        }
 
-        return RestResponse.success().setData(blockInfoVo);
+        // 转换区块头信息 并放入返回体
+        return RestResponse.success().setData(convertBlockHead(block));
+
     }
 
     /**
      * 根据hash值查询区块信息
      *
-     * @param addr       ip地址
-     * @param rpcPort    端口
-     * @param pubKeyPath 公钥文件路径地址
+     * @param stubList       连接数组
+     * @param txCommonDataVo 交易公共数据对象
      * @param hash
      * @return
      */
     @Override
-    public RestResponse getBlockByHash(String addr, Integer rpcPort, String pubKeyPath, String hash) {
+    public RestResponse getBlockByHash(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, String hash) {
         // 验证参数
-        checkParam(addr, rpcPort, pubKeyPath);
-        // 读取PubKey
-        String pubKey = readFile(pubKeyPath);
-        // 将16进制的pubKey转换成ByteString
-        ByteString peerPubKey = convertPubKeyToByteString(pubKey);
+        checkingParam(stubList, txCommonDataVo);
 
         Msg.BlockchainHash blockChainHash = Msg.BlockchainHash.newBuilder().setHashData(ByteString.copyFromUtf8(hash)).build();
         MyPeer.PeerRequest request = MyPeer.PeerRequest.newBuilder()
-                .setPubkey(peerPubKey)
+                .setPubkey(ByteString.copyFrom(txCommonDataVo.getPubKeyByte()))
                 .setPayload(blockChainHash.toByteString())
                 .build();
 
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(addr, rpcPort);
-        MyPeer.PeerResponse peerResponse = stub.blockchainGetBlockByHeight(request);
-
-        System.out.println("peerResponse = " + peerResponse);
-
-        MyBlock.Block block;
-        try {
-            block = MyBlock.Block.parseFrom(peerResponse.getPayload());
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-            return RestResponse.failure("解析区块信息出错:" + e.getMessage(), StatusCode.SERVER_500000.value());
+        MyBlock.Block block = null;
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            MyPeer.PeerResponse peerResponse;
+            try {
+                // 获取高度
+                peerResponse = stub.blockchainGetBlockByHash(request);
+                // 成功
+                if (null != peerResponse && peerResponse.getOk()) {
+                    try {
+                        block = MyBlock.Block.parseFrom(peerResponse.getPayload());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    break;
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        // 转换区块头信息
-        BlockInfoVo blockInfoVo = convertBlockHead(block);
+        if (null == block) {
+            return RestResponse.failure("查询数据失败", StatusCode.SERVER_500000.value());
+        }
 
-        return RestResponse.success().setData(blockInfoVo);
+        // 转换区块头信息 并放入返回体
+        return RestResponse.success().setData(convertBlockHead(block));
     }
 
     /**
