@@ -1,10 +1,9 @@
 package chain.tj.service;
 
-import chain.tj.model.pojo.dto.PeerTxDto;
-import chain.tj.model.pojo.dto.PermissionTxDto;
-import chain.tj.model.pojo.dto.SubLedgerTxDto;
-import chain.tj.model.pojo.dto.SysContractStatusTxDto;
+import chain.tj.model.pojo.dto.*;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
+import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.systemtx.CreateSystemFASC;
 import chain.tj.service.systemtx.CreateSystemPM;
 import chain.tj.service.systemtx.CreateSystemPeer;
@@ -16,7 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import static chain.tj.util.PeerBasicUtil.getCommonData;
+import static chain.tj.util.PeerBasicUtil.getStubList;
 
 /**
  * @Describe:
@@ -41,12 +45,20 @@ public class PeerServiceTest extends TestCase {
 
     @Test
     public void testNewTransaction() {
-        NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
-        newTxQueryDto.setAddr("10.1.3.150");
-        newTxQueryDto.setRpcPort(9008);
-        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        List<PeerConnectionDto> connectionDtoList = new ArrayList<>(10);
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.151", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.150", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.152", 9008));
+        List<PeerGrpc.PeerBlockingStub> stubList = getStubList(connectionDtoList);
 
+
+        PeerCommonDataDto dataDto = new PeerCommonDataDto();
+        dataDto.setPriKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        dataDto.setPubKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        dataDto.setWvmFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        TxCommonDataVo commonData = getCommonData(dataDto);
+
+        NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
         PeerTxDto peerTxDto = new PeerTxDto();
         peerTxDto.setPeerType(0);
         peerTxDto.setOpType(0);
@@ -58,17 +70,24 @@ public class PeerServiceTest extends TestCase {
 
         newTxQueryDto.setPeerTxDto(peerTxDto);
 
-        createSystemPeer.newTransaction(newTxQueryDto);
+        createSystemPeer.newTransaction(stubList, commonData, newTxQueryDto);
     }
 
     @Test
     public void testCreateSystemPM() {
-        NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
-        newTxQueryDto.setAddr("10.1.3.150");
-        newTxQueryDto.setRpcPort(9008);
-        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        List<PeerConnectionDto> connectionDtoList = new ArrayList<>(10);
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.151", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.150", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.152", 9008));
+        List<PeerGrpc.PeerBlockingStub> stubList = getStubList(connectionDtoList);
 
+
+        PeerCommonDataDto dataDto = new PeerCommonDataDto();
+        dataDto.setPriKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        dataDto.setPubKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        dataDto.setWvmFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        TxCommonDataVo commonData = getCommonData(dataDto);
+        NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
 
         PermissionTxDto permissionTxDto = new PermissionTxDto();
         permissionTxDto.setShownName("myname");
@@ -81,16 +100,24 @@ public class PeerServiceTest extends TestCase {
         // newTxQueryDto.setRpcAddr("10.1.3.150:9008");
         // newTxQueryDto.setShownName("myname");
 
-        createSystemPM.newTransaction(newTxQueryDto);
+        createSystemPM.newTransaction(stubList, commonData, newTxQueryDto);
     }
 
     @Test
     public void testCreateSystemSubLeadger() {
+        List<PeerConnectionDto> connectionDtoList = new ArrayList<>(10);
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.151", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.150", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.152", 9008));
+        List<PeerGrpc.PeerBlockingStub> stubList = getStubList(connectionDtoList);
+
+
+        PeerCommonDataDto dataDto = new PeerCommonDataDto();
+        dataDto.setPriKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        dataDto.setPubKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        dataDto.setWvmFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        TxCommonDataVo commonData = getCommonData(dataDto);
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
-        newTxQueryDto.setAddr("10.1.3.150");
-        newTxQueryDto.setRpcPort(9008);
-        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
 
         SubLedgerTxDto subLedgerTxDto = new SubLedgerTxDto();
         subLedgerTxDto.setOpType(0);
@@ -101,16 +128,24 @@ public class PeerServiceTest extends TestCase {
 
         newTxQueryDto.setSubLedgerTxDto(subLedgerTxDto);
 
-        createSystemSubLeadger.newTransaction(newTxQueryDto);
+        createSystemSubLeadger.newTransaction(stubList, commonData, newTxQueryDto);
     }
 
     @Test
     public void testCreateSystemFASC() {
+        List<PeerConnectionDto> connectionDtoList = new ArrayList<>(10);
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.151", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.150", 9008));
+        connectionDtoList.add(new PeerConnectionDto("10.1.3.152", 9008));
+        List<PeerGrpc.PeerBlockingStub> stubList = getStubList(connectionDtoList);
+
+
+        PeerCommonDataDto dataDto = new PeerCommonDataDto();
+        dataDto.setPriKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
+        dataDto.setPubKeyFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
+        dataDto.setWvmFilePath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\transfer.wlang");
+        TxCommonDataVo commonData = getCommonData(dataDto);
         NewTxQueryDto newTxQueryDto = new NewTxQueryDto();
-        newTxQueryDto.setAddr("10.1.3.150");
-        newTxQueryDto.setRpcPort(9008);
-        newTxQueryDto.setPubKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\pubKey.pem");
-        newTxQueryDto.setPriKeyPath("D:\\work_project\\tj-java-sdk\\src\\main\\java\\chain\\tj\\file\\key.pem");
 
         SysContractStatusTxDto statusTxDto = new SysContractStatusTxDto();
         statusTxDto.setName("aads");
@@ -120,6 +155,6 @@ public class PeerServiceTest extends TestCase {
 
         newTxQueryDto.setSysContractStatusTxDto(statusTxDto);
 
-        createSystemFASC.newTransaction(newTxQueryDto);
+        createSystemFASC.newTransaction(stubList, commonData, newTxQueryDto);
     }
 }

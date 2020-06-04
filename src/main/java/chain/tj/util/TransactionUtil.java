@@ -16,6 +16,8 @@ import io.netty.buffer.Unpooled;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static chain.tj.util.GmUtils.sm2Sign;
 import static chain.tj.util.GmUtils.sm3Hash;
@@ -153,19 +155,14 @@ public class TransactionUtil {
      *
      * @param transactionDto
      */
-    public static void setValueForTransactionDto(TransactionDto transactionDto, String priKeyPath) {
+    public static void setValueForTransactionDto(TransactionDto transactionDto, Map<String, byte[]> keyPairAndSign) {
         // 序列化transactionDto
         byte[] transactionDtoBytes = serialTransactionDto(transactionDto);
 
         // sm3加密
         byte[] hashVal = sm3Hash(transactionDtoBytes);
 
-        byte[] priKeyBytes = new byte[0];
-        try {
-            priKeyBytes = readKeyFromPem(priKeyPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        byte[] priKeyBytes = keyPairAndSign.get("priKey");
 
         byte[] signBytes = new byte[0];
         try {
@@ -184,40 +181,40 @@ public class TransactionUtil {
      * @param newTxQueryDto
      * @return
      */
-    public static BasicTxObj getBasicTxObj(NewTxQueryDto newTxQueryDto) {
-        // 验证参数
-        if (StringUtils.isBlank(newTxQueryDto.getAddr())) {
-            throw new ServiceException(StatusCode.CLIENT_410001.value(), "ip地址不可以为空！");
-        }
-        if (null == newTxQueryDto.getRpcPort() || newTxQueryDto.getRpcPort() <= 0) {
-            throw new ServiceException(StatusCode.CLIENT_4100301.value(), "端口不可以为空，并且要大于0");
-        }
-        if (StringUtils.isBlank(newTxQueryDto.getPubKeyPath())) {
-            throw new ServiceException(StatusCode.CLIENT_410001.value(), "公钥地址不可以为空！");
-        }
-        if (StringUtils.isBlank(newTxQueryDto.getPriKeyPath())) {
-            throw new ServiceException(StatusCode.CLIENT_410001.value(), "私钥地址不可以为空！");
-        }
-
-
-        // 读取PubKey
-        String pubkeyStr = readFile(newTxQueryDto.getPubKeyPath());
-        if (StringUtils.isBlank(pubkeyStr)) {
-            throw new ServiceException("获取公钥失败或者公钥文件内容为空！");
-        }
-        // 将16进制的pubKey转换成ByteString
-        ByteString pubKey = convertPubKeyToByteString(pubkeyStr);
-
-        // 获取grpc连接stub对象
-        PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
-
-        BasicTxObj obj = new BasicTxObj();
-        obj.setPubKey(pubKey);
-        obj.setStub(stub);
-        obj.setCurrentTime(System.currentTimeMillis() / 1000);
-
-        return obj;
-    }
+    // public static BasicTxObj getBasicTxObj(NewTxQueryDto newTxQueryDto) {
+    //     // 验证参数
+    //     if (StringUtils.isBlank(newTxQueryDto.getAddr())) {
+    //         throw new ServiceException(StatusCode.CLIENT_410001.value(), "ip地址不可以为空！");
+    //     }
+    //     if (null == newTxQueryDto.getRpcPort() || newTxQueryDto.getRpcPort() <= 0) {
+    //         throw new ServiceException(StatusCode.CLIENT_4100301.value(), "端口不可以为空，并且要大于0");
+    //     }
+    //     if (StringUtils.isBlank(newTxQueryDto.getPubKeyPath())) {
+    //         throw new ServiceException(StatusCode.CLIENT_410001.value(), "公钥地址不可以为空！");
+    //     }
+    //     if (StringUtils.isBlank(newTxQueryDto.getPriKeyPath())) {
+    //         throw new ServiceException(StatusCode.CLIENT_410001.value(), "私钥地址不可以为空！");
+    //     }
+    //
+    //
+    //     // 读取PubKey
+    //     String pubkeyStr = readFile(newTxQueryDto.getPubKeyPath());
+    //     if (StringUtils.isBlank(pubkeyStr)) {
+    //         throw new ServiceException("获取公钥失败或者公钥文件内容为空！");
+    //     }
+    //     // 将16进制的pubKey转换成ByteString
+    //     ByteString pubKey = convertPubKeyToByteString(pubkeyStr);
+    //
+    //     // 获取grpc连接stub对象
+    //     PeerGrpc.PeerBlockingStub stub = getStubByIpAndPort(newTxQueryDto.getAddr(), newTxQueryDto.getRpcPort());
+    //
+    //     BasicTxObj obj = new BasicTxObj();
+    //     obj.setPubKey(pubKey);
+    //     obj.setStub(stub);
+    //     obj.setCurrentTime(System.currentTimeMillis() / 1000);
+    //
+    //     return obj;
+    // }
 
     /**
      * 验证参数
@@ -237,6 +234,34 @@ public class TransactionUtil {
         if (StringUtils.isBlank(pubKeyPath)) {
             throw new ServiceException(StatusCode.CLIENT_410001.value(), "公钥地址不可以为空！");
         }
+    }
+
+
+    /**
+     * 重复调用接口
+     *
+     * @param stubList
+     * @param request
+     * @return
+     */
+    public static boolean repeatCall(List<PeerGrpc.PeerBlockingStub> stubList, MyPeer.PeerRequest request) {
+        MyPeer.PeerResponse peerResponse;
+        for (PeerGrpc.PeerBlockingStub stub : stubList) {
+            // 调用接口
+            try {
+                peerResponse = stub.newTransaction(request);
+                // 成功
+                if (peerResponse.getOk()) {
+                    return true;
+                } else {
+                    // 如果调用一个节点失败  尝试另外的节点
+                    continue;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
 

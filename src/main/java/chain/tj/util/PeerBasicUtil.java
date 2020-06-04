@@ -146,4 +146,19 @@ public class PeerBasicUtil {
             throw new ServiceException("获取公钥数据失败");
         }
     }
+
+    /**
+     * 校验参数
+     *
+     * @param stubList
+     * @param txCommonDataVo
+     */
+    public static void checkingData(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo) {
+        if (stubList == null || stubList.size() <= 0) {
+            throw new ServiceException("连接对象不可以为空");
+        }
+        if (null == txCommonDataVo || null == txCommonDataVo.getKeyPairAndSign()) {
+            throw new ServiceException("获取密钥对和签名数据失败");
+        }
+    }
 }

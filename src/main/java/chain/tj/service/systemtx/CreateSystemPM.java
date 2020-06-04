@@ -7,7 +7,9 @@ import chain.tj.model.pojo.dto.TransactionDto;
 import chain.tj.model.pojo.dto.TransactionHeaderDto;
 import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
 import chain.tj.model.proto.MyPeer;
+import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBuf;
@@ -16,6 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
+import static chain.tj.util.PeerBasicUtil.checkingData;
 import static chain.tj.util.PeerUtil.int2Bytes;
 import static chain.tj.util.PeerUtil.toHexString;
 import static chain.tj.util.TransactionUtil.*;
@@ -36,14 +42,21 @@ public class CreateSystemPM implements SystemTx {
      * @return
      */
     @Override
-    public RestResponse newTransaction(NewTxQueryDto newTxQueryDto) {
-        // 获取交易基本对象
-        BasicTxObj basicTxObj = getBasicTxObj(newTxQueryDto);
-        ByteString peerPubKey = basicTxObj.getPubKey();
-        log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
+    public RestResponse newTransaction(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, NewTxQueryDto newTxQueryDto) {
+        // 验证参数
+        checkingData(stubList, txCommonDataVo);
+
+        // 获取密钥对和签名
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
+
+        // 获取pubKey
+        ByteString peerPubKey = ByteString.copyFrom(keyPairAndSign.get("pubKey"));
+
+        // 当前时间
+        long currentTime = System.currentTimeMillis() / 1000;
 
         // 创建交易参数对象
-        TransactionDto transactionDto = createTransactionDto(basicTxObj.getCurrentTime());
+        TransactionDto transactionDto = createTransactionDto(currentTime);
         transactionDto.setPubKey(peerPubKey.toByteArray());
 
         // 构建 PermissionTxDto 对象
@@ -59,15 +72,12 @@ public class CreateSystemPM implements SystemTx {
         log.info("sysData的十六进制：{}", toHexString(sysData));
 
         // 给TransactionDto对象赋值
-        setValueForTransactionDto(transactionDto, newTxQueryDto.getPriKeyPath());
+        setValueForTransactionDto(transactionDto, keyPairAndSign);
 
         MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
 
-        // 调用接口
-        MyPeer.PeerResponse peerResponse = basicTxObj.getStub().newTransaction(request);
-        log.info("peerResponse--->{}", peerResponse);
-
-        if (peerResponse.getOk()) {
+        // 重复调用接口
+        if (repeatCall(stubList, request)) {
             return RestResponse.success();
         }
 

@@ -15,26 +15,6 @@ import lombok.Data;
 public class NewTxQueryDto {
 
     /**
-     * ip地址
-     */
-    private String addr;
-
-    /**
-     * 端口
-     */
-    private Integer rpcPort;
-
-    /**
-     * 公钥地址
-     */
-    private String pubKeyPath;
-
-    /**
-     * 私钥地址
-     */
-    private String priKeyPath;
-
-    /**
      * 节点变更参数对象
      */
     private PeerTxDto peerTxDto;

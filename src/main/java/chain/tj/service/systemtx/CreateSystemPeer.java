@@ -4,14 +4,19 @@ import chain.tj.common.StatusCode;
 import chain.tj.common.response.RestResponse;
 import chain.tj.model.pojo.dto.PeerTxDto;
 import chain.tj.model.pojo.dto.TransactionDto;
-import chain.tj.model.pojo.query.BasicTxObj;
 import chain.tj.model.pojo.query.NewTxQueryDto;
+import chain.tj.model.pojo.vo.TxCommonDataVo;
 import chain.tj.model.proto.MyPeer;
+import chain.tj.model.proto.PeerGrpc;
 import chain.tj.service.SystemTx;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
+import static chain.tj.util.PeerBasicUtil.checkingData;
 import static chain.tj.util.PeerUtil.*;
 import static chain.tj.util.TransactionUtil.*;
 
@@ -25,30 +30,31 @@ import static chain.tj.util.TransactionUtil.*;
 public class CreateSystemPeer implements SystemTx {
 
     @Override
-    public RestResponse newTransaction(NewTxQueryDto newTxQueryDto) {
-        // 获取交易基本对象
-        BasicTxObj basicTxObj = getBasicTxObj(newTxQueryDto);
-        ByteString peerPubKey = basicTxObj.getPubKey();
-        log.info("peerPubKey的十六进制：{}", toHexString(peerPubKey.toByteArray()));
+    public RestResponse newTransaction(List<PeerGrpc.PeerBlockingStub> stubList, TxCommonDataVo txCommonDataVo, NewTxQueryDto newTxQueryDto) {
+        // 验证参数
+        checkingData(stubList, txCommonDataVo);
+
+        // 获取密钥对和签名
+        Map<String, byte[]> keyPairAndSign = txCommonDataVo.getKeyPairAndSign();
+
+        // 当前时间
+        long currentTime = System.currentTimeMillis() / 1000;
 
         // 根据subType获取TransactionDto
-        TransactionDto transactionDto = getTransactionDtoBySubType(basicTxObj.getCurrentTime(), newTxQueryDto);
+        TransactionDto transactionDto = getTransactionDtoBySubType(currentTime, newTxQueryDto);
 
         // 序列化PeerDto,并且给transactionDto赋值
-        serialPeerTxDto(newTxQueryDto, peerPubKey, transactionDto);
+        serialPeerTxDto(newTxQueryDto, ByteString.copyFrom(keyPairAndSign.get("pubKey")), transactionDto);
 
         // 给TransactionDto对象赋值
-        setValueForTransactionDto(transactionDto, newTxQueryDto.getPriKeyPath());
+        setValueForTransactionDto(transactionDto, keyPairAndSign);
 
         // PeerRequest: Transaction, PeerResponse:PeerResponse
         // 封装请求对象
-        MyPeer.PeerRequest request = getPeerRequest(transactionDto, peerPubKey);
+        MyPeer.PeerRequest request = getPeerRequest(transactionDto, ByteString.copyFrom(keyPairAndSign.get("pubKey")));
 
-        // 调用接口
-        MyPeer.PeerResponse peerResponse = basicTxObj.getStub().newTransaction(request);
-        log.info("peerResponse--->{}", peerResponse);
-
-        if (peerResponse.getOk()) {
+        // 重复调用接口
+        if (repeatCall(stubList, request)) {
             return RestResponse.success();
         }
 
